@@ -55,6 +55,16 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" make backspace behave like I expect it to in normal mode
+:nmap <CR> :call Backspace()
+:fun! Backspace()
+  if col(".") == col("$")-1 " cursor at end of line
+    execute "normal!a\<CR>\<Esc>" " append a <CR>
+  else
+    execute "normal!i\<CR>\<Esc>"
+  endif
+endfun
+
 set tabstop=2
 set smarttab
 set shiftwidth=2
