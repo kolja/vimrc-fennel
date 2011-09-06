@@ -20,7 +20,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vim/vimrc
+autocmd! bufwritepost vimrc source ~/.vim/vimrc/vimrc
 
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -43,7 +43,7 @@ nmap tt :NERDTreeToggle<CR>
 nmap <leader>w :w!<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vim/vimrc<cr>
+map <leader>e :e! ~/.vim/vimrc/vimrc<cr>
 
 " leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
 map <leader>d :nohlsearch<CR>
