@@ -3,8 +3,6 @@ set nocompatible
 set hidden  " lusty explorer needs it
 
 call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
 filetype on
 filetype indent on
 filetype plugin on
@@ -30,7 +28,7 @@ if &t_Co > 2 || has("gui_running")
   set mousehide     " Hide the mouse when typing text
   set guifont=Monaco:h12
   set anti
-  colors rubyblue
+  colors ir_black
 endif
 
 " ------------------- Key mappings
