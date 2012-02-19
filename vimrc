@@ -3,8 +3,6 @@ set nocompatible
 set hidden  " lusty explorer needs it
 
 call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
 filetype on
 filetype indent on
 filetype plugin on
