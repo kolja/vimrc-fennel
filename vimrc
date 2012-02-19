@@ -12,12 +12,20 @@ filetype plugin on
 " Sets how many lines of history VIM has to remember
 set history=700
 
+" GPG Default Receipients
+let g:GPGDefaultRecipients=["kolja"]
+
+let g:LustyJugglerSuppressRubyWarning = 1
+
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" remap the leader to ',' 
+" remap the leader to ','
 let mapleader = ","
 let g:mapleader = ","
+
+" Nerd Tree will set vims Rootdirectory to its own when invoked
+let NERDTreeChDirMode=1
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim/vimrc/vimrc
@@ -30,12 +38,11 @@ if &t_Co > 2 || has("gui_running")
   set mousehide     " Hide the mouse when typing text
   set guifont=Monaco:h12
   set anti
-  colors rubyblue
+  colors ir_black
 endif
 
 " ------------------- Key mappings
-
-nmap ff :FufFile<CR>
+nmap ff :FufFile **/<CR>
 nmap fb :FufBuffer<CR>
 nmap tt :NERDTreeToggle<CR>
 
