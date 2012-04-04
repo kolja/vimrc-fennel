@@ -2,13 +2,15 @@
 set nocompatible
 set hidden  " lusty explorer needs it
 
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
+call pathogen#helptags()
 filetype on
 filetype indent on
 filetype plugin on
 
 " Sets how many lines of history VIM has to remember
 set history=700
+set foldmethod=indent
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -17,8 +19,16 @@ set autoread
 let mapleader = ","
 let g:mapleader = ","
 
+" allow NerdTree to set the Working Directory correctly
+let NERDTreeChDirMode=2
+
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim/vimrc/vimrc
+
+" Remove all trailing whitespace before a file is written
+autocmd FileType css,less,js,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd BufNewFile,BufRead *.json set ft=javascript 
+autocmd BufNewFile,BufRead *.jeco set ft=html 
 
 if &t_Co > 2 || has("gui_running")
   syntax on
@@ -26,22 +36,29 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
   set ch=2          " Make command line two lines high
   set mousehide     " Hide the mouse when typing text
-  set guifont=Monaco:h12
+  set guifont=Inconsolata\ 10
   set anti
   colors ir_black
 endif
 
 " ------------------- Key mappings
 
-nmap ff :FufFile<CR>
-nmap fb :FufBuffer<CR>
+nmap <leader>f :FufFile **/<CR>
+nmap <leader>b :FufBuffer<CR>
 nmap tt :NERDTreeToggle<CR>
+
+" Remove trailing whitespace:
+nmap <leader>r :%s/\v\s+$//
 
 " Fast saving
 nmap <leader>w :w!<cr>
+nmap <leader>q :wq<cr>
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vim/vimrc/vimrc<cr>
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo dd of=%
 
 " leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
 map <leader>d :nohlsearch<CR>
@@ -53,34 +70,36 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" make backspace behave like I expect it to in normal mode
-:nmap <CR> :call Backspace()
-:fun! Backspace()
-  if col(".") == col("$")-1 " cursor at end of line
-    execute "normal!a\<CR>\<Esc>" " append a <CR>
-  else
-    execute "normal!i\<CR>\<Esc>"
-  endif
-endfun
+" intuitive paste
+nmap <C-V> "+gP
+imap <C-V> <ESC><C-V>i
+vmap <C-C> "+y
+
+" Show in a new window the Subversion blame annotation for the current file. 
+" problem: when there are local mods this doesn't align with the source file. 
+" To do: When invoked on a revnum in a Blame window, re-blame same file up to previous rev. 
+:function s:svnBlame() 
+   let line = line(".") 
+   setlocal nowrap 
+   aboveleft 18vnew 
+   setlocal nomodified readonly buftype=nofile nowrap winwidth=1 
+   " blame, ignoring white space changes 
+   %!svn blame -x-w "#" 
+   " find the highest revision number and highlight it 
+   "%!sort -n 
+   "normal G*u 
+   " return to original line 
+   exec "normal " . line . "G" 
+   setlocal scrollbind 
+   wincmd p 
+   setlocal scrollbind 
+   syncbind 
+:endfunction 
+" :map gb :call <SID>svnBlame()<CR> 
+" :command Blame call s:svnBlame() 
 
 set tabstop=2
 set smarttab
 set shiftwidth=2
 set autoindent
 set expandtab
-
-" Kacpers preferences
-
-set lcs=tab:\ \ ,trail:~,extends:>,precedes:<
-
-let vala_comment_strings = 1 " Enable comment strings
-
-autocmd BufRead *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-autocmd BufRead *.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-au BufRead,BufNewFile *.vala            setfiletype vala
-au BufRead,BufNewFile *.vapi            setfiletype vala
-
-set nu
-set showmatch
-set list
-set nocp incsearch
