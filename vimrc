@@ -12,10 +12,15 @@ filetype plugin on
 set history=700
 set foldmethod=indent
 
+" GPG Default Receipients
+let g:GPGDefaultRecipients=["kolja"]
+
+let g:LustyJugglerSuppressRubyWarning = 1
+
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" remap the leader to ',' 
+" remap the leader to ','
 let mapleader = ","
 let g:mapleader = ","
 
