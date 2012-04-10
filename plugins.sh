@@ -15,3 +15,4 @@ git clone git://github.com/groenewege/vim-less
 git clone git://github.com/tpope/vim-repeat.git
 git clone git://github.com/wavded/vim-stylus.git
 git clone git://github.com/tpope/vim-surround.git
+git clone git://github.com/tpope/vim-fugitive.git
