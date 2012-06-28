@@ -1,6 +1,8 @@
 
 set nocompatible
+set incsearch
 set hidden  " lusty explorer needs it
+set undofile
 
 call pathogen#infect()
 call pathogen#helptags()
@@ -75,6 +77,13 @@ nmap <C-right> <C-W>v
 nmap <C-left> <C-W>v<C-W>l<CR>
 nmap <C-up> <C-W>s<C-W>j<CR>
 nmap <C-down> <C-W>s
+
+" always use 'very magic' regexes
+nmap / /\v
+
+" keep selection after shifting in/outdenting a block in Visual mode
+vnoremap < <gv
+vnoremap > >gv
 
 " move blocks of text in visual mode
 vmap <up> xkP`[V`]
