@@ -73,6 +73,8 @@ map <leader>e :e! ~/.vim/vimrc/vimrc<cr>
 " see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
 nmap <left> :bp<CR>
 nmap <right> :bn<CR>
+nmap <up> <C-y>
+nmap <down> <C-e>
 nmap <C-right> <C-W>v
 nmap <C-left> <C-W>v<C-W>l<CR>
 nmap <C-up> <C-W>s<C-W>j<CR>
@@ -81,6 +83,7 @@ nmap <C-down> <C-W>s
 " always use 'very magic' regexes
 nmap / /\v
 
+nmap <leader>s :%s/\v
 " keep selection after shifting in/outdenting a block in Visual mode
 vnoremap < <gv
 vnoremap > >gv
