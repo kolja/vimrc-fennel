@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 git submodule add git://github.com/mileszs/ack.vim.git bundle/ack
 git submodule add git://gitorious.org/vim-gnupg/vim-gnupg.git bundle/gnupg
