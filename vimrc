@@ -4,6 +4,15 @@ set incsearch
 set hidden  " lusty explorer needs it
 set undofile
 
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set autoindent
+
+set hlsearch
+
 call pathogen#infect()
 call pathogen#helptags()
 filetype on
@@ -13,6 +22,18 @@ filetype plugin on
 " Sets how many lines of history VIM has to remember
 set history=700
 set foldmethod=indent
+set tags=/Users/kwilcke/reboot/trunk/zalando-shop/tags
+let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+
+" highlight tabs and trailing spaces
+set list listchars=eol:¬,tab:>>,trail:·
+highlight NonText ctermfg=7 guifg=red
+highlight SpecialKey ctermfg=7 guifg=red
+nmap <leader>l :set list!<CR>
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+" see: http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
+cmap w!! %!sudo tee > /dev/null %
 
 " show linenumbers
 set number
@@ -21,6 +42,9 @@ set number
 let g:GPGDefaultRecipients=["kolja"]
 
 let g:LustyJugglerSuppressRubyWarning = 1
+
+" for ctags to work... see: http://stackoverflow.com/questions/1790623/how-can-i-make-vims-taglist-plugin-show-useful-information-for-javascript
+let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -37,18 +61,18 @@ autocmd! bufwritepost vimrc source ~/.vim/vimrc/vimrc
 
 " Remove all trailing whitespace before a file is written
 autocmd FileType css,less,js,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
-autocmd BufNewFile,BufRead *.json set ft=javascript 
-autocmd BufNewFile,BufRead *.jeco set ft=html 
+autocmd BufNewFile,BufRead *.json set ft=javascript
+autocmd BufNewFile,BufRead *.jeco set ft=html
 
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  set guioptions=-t " don't show the menu
-  set hlsearch
-  set ch=2          " Make command line two lines high
-  set mousehide     " Hide the mouse when typing text
-  set guifont=Monaco:h14
-  set anti
-  colors ir_black
+    syntax on
+    set guioptions=-t " don't show the menu
+    set hlsearch
+    set ch=2          " Make command line two lines high
+    set mousehide     " Hide the mouse when typing text
+    set guifont=Monaco:h14
+    set anti
+    colors ir_black
 endif
 
 " ------------------- Key mappings
@@ -59,8 +83,8 @@ nmap <leader>b :FufBuffer<CR>
 nmap tt :NERDTreeToggle<CR>
 nmap T!  :NERDTree<CR>
 
-" Remove trailing whitespace:
-nmap <leader>r :%s/\v\s+$//
+nmap n nzz
+nmap N Nzz
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -110,37 +134,45 @@ nmap <C-V> "+gP
 imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y
 
-" Show in a new window the Subversion blame annotation for the current file. 
-" problem: when there are local mods this doesn't align with the source file. 
-" To do: When invoked on a revnum in a Blame window, re-blame same file up to previous rev. 
-function! s:svnBlame() 
-   let line = line(".") 
-   setlocal nowrap 
-   aboveleft 18vnew 
-   setlocal nomodified readonly buftype=nofile nowrap winwidth=1 
-   " blame, ignoring white space changes 
-   %!svn blame -x-w "#" 
-   " find the highest revision number and highlight it 
-   "%!sort -n 
-   "normal G*u 
-   " return to original line 
-   exec "normal " . line . "G" 
-   setlocal scrollbind 
-   wincmd p 
-   setlocal scrollbind 
-   syncbind 
-endfunction 
-map gb :call <SID>svnBlame()<CR> 
-command! Blame call s:svnBlame() 
+" Show in a new window the Subversion blame annotation for the current file.
+" problem: when there are local mods this doesn't align with the source file.
+" To do: When invoked on a revnum in a Blame window, re-blame same file up to previous rev.
+function! s:svnBlame()
+   let line = line(".")
+   setlocal nowrap
+   aboveleft 18vnew
+   setlocal nomodified readonly buftype=nofile nowrap winwidth=1
+   " blame, ignoring white space changes
+   %!svn blame -x-w "#"
+   " find the highest revision number and highlight it
+   "%!sort -n
+   "normal G*u
+   " return to original line
+   exec "normal " . line . "G"
+   setlocal scrollbind
+   wincmd p
+   setlocal scrollbind
+   syncbind
+endfunction
 
-" Transparent editing of gpg encrypted files.
-" By Wouter Hanegraaff <wouter@blub.net>
+map gb :call <SID>svnBlame()<CR>
+command! Blame call s:svnBlame()
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set smarttab
-set expandtab
-set autoindent
+" from vimcasts.org:
+" Preserve last search and Cursor position (to execute arbitrary commands that
+" would otherwise change them.
+function! <SID>Preserve(command)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
 
-set hlsearch
+nmap <leader>r :call <SID>Preserve("%s/\\s\\+$//e")<CR>
+autocmd BufWritePre *.rb,*.js :call <SID>Preserve("%s/\\s\\+$//e")
+
