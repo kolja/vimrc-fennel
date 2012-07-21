@@ -1,4 +1,11 @@
 
+call pathogen#infect()
+call pathogen#helptags()
+
+filetype on
+filetype indent on
+filetype plugin on
+
 set nocompatible
 set incsearch
 set hidden  " lusty explorer needs it
@@ -13,12 +20,6 @@ set autoindent
 
 set hlsearch
 
-call pathogen#infect()
-call pathogen#helptags()
-filetype on
-filetype indent on
-filetype plugin on
-
 " Sets how many lines of history VIM has to remember
 set history=700
 set foldmethod=indent
@@ -27,8 +28,6 @@ let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 
 " highlight tabs and trailing spaces
 set list listchars=eol:¬,tab:>>,trail:·
-highlight NonText ctermfg=7 guifg=red
-highlight SpecialKey ctermfg=7 guifg=red
 nmap <leader>l :set list!<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
@@ -66,12 +65,17 @@ autocmd BufNewFile,BufRead *.jeco set ft=html
 if &t_Co > 2 || has("gui_running")
     syntax on
     set guioptions=-t " don't show the menu
+    set guioptions=+R " show scrollbar
     set hlsearch
     set ch=2          " Make command line two lines high
     set mousehide     " Hide the mouse when typing text
-    set guifont=Monaco:h14
+    set guifont=Menlo:h14
+    " set guifont=Monaco:h14
     set anti
-    colors ir_black
+    " my favourites:
+    " ir_black, jellybeans, cthulhian,
+    " redblack
+    colors jellybeans
 endif
 
 " ------------------- Key mappings
