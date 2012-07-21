@@ -57,10 +57,9 @@ let g:mapleader = ","
 let NERDTreeChDirMode=2
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vim/vimrc/vimrc
+autocmd! bufwritepost vimrc source ~/.vim/vimrc
 
 " Remove all trailing whitespace before a file is written
-autocmd FileType css,less,js,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.jeco set ft=html
 
@@ -91,7 +90,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :wq<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vim/vimrc/vimrc<cr>
+map <leader>e :e! ~/.vim/vimrc<cr>
 
 " Use Arrow keys to navigate buffers and create new windows
 " see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
