@@ -69,8 +69,8 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
     set ch=2          " Make command line two lines high
     set mousehide     " Hide the mouse when typing text
-    set guifont=Menlo:h14
-    " set guifont=Monaco:h14
+    set guifont=Menlo:h15
+    " set guifont=Monaco:h24
     set anti
     " my favourites:
     " ir_black, jellybeans, cthulhian,
@@ -79,6 +79,10 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " ------------------- Key mappings
+
+" call colors for the word under the cursor
+nmap <leader>c "cyiw:exe ":colors "@c<CR>
+
 command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 
 nmap <leader>f :FufFile **/<CR>
