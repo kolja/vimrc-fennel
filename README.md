@@ -8,6 +8,6 @@ To set it all up run
 
 then
 
-    ./setup.sh
+    ~/.vim/setup.sh
 
-The setup.sh skript will download the plugins and create a symbolic link to .vimrc
+The setup.sh script will download the plugins and create a symbolic link to .vimrc
