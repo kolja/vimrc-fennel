@@ -27,7 +27,7 @@ set tags=/Users/kwilcke/reboot/trunk/zalando-shop/tags
 let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 
 " highlight tabs and trailing spaces
-set list listchars=eol:¬,tab:>>,trail:·
+set list listchars=tab:››,eol:¬,trail:·
 nmap <leader>l :set list!<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
@@ -69,7 +69,7 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
     set ch=2          " Make command line two lines high
     set mousehide     " Hide the mouse when typing text
-    set guifont=Menlo:h15
+    set guifont=Menlo:h14
     " set guifont=Monaco:h24
     set anti
     " my favourites:
@@ -161,6 +161,8 @@ function! s:svnBlame()
    setlocal scrollbind
    syncbind
 endfunction
+
+set scroll=5
 
 map gb :call <SID>svnBlame()<CR>
 command! Blame call s:svnBlame()

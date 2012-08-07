@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/private/var/www/system'
+let g:netrw_dirhist_2='/private/var/www/roadmap'
+let g:netrw_dirhist_3='/Users/kwilcke/Desktop/coffeescript_techtalk/ace'
