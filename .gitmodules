@@ -76,3 +76,9 @@
 [submodule "bundle/snipmate-snippets"]
 	path = bundle/snipmate-snippets
 	url = https://github.com/honza/snipmate-snippets.git
+[submodule "bundle/jsruntime"]
+	path = bundle/jsruntime
+	url = git://github.com/michalliu/jsruntime.vim.git
+[submodule "bundle/jsoncodecs"]
+	path = bundle/jsoncodecs
+	url = git://github.com/michalliu/jsoncodecs.vim.git

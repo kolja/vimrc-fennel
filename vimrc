@@ -141,6 +141,9 @@ nmap <C-V> "+gP
 imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y
 
+" make A and I work in visual mode as they do in visual block mode
+vnoremap <C-q> <esc>'<<C-q>'>$
+
 " Show in a new window the Subversion blame annotation for the current file.
 " problem: when there are local mods this doesn't align with the source file.
 " To do: When invoked on a revnum in a Blame window, re-blame same file up to previous rev.
@@ -165,7 +168,6 @@ endfunction
 set scroll=5
 
 map gb :call <SID>svnBlame()<CR>
-command! Blame call s:svnBlame()
 
 " from vimcasts.org:
 " Preserve last search and Cursor position (to execute arbitrary commands that
