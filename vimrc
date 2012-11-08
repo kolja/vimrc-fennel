@@ -18,6 +18,11 @@ set smarttab
 set expandtab
 set autoindent
 
+" don't use swapfiles. Use git instead
+set nobackup
+set nowritebackup
+set noswapfile
+
 set hlsearch
 
 " Sets how many lines of history VIM has to remember
@@ -80,8 +85,12 @@ endif
 
 " ------------------- Key mappings
 
+" reload chrome from within vim
+
+" map <leader>c :!/usr/local/bin/chromereload.sh<cr><cr>
+
 " call colors for the word under the cursor
-nmap <leader>c "cyiw:exe ":colors "@c<CR>
+" nmap <leader>c "cyiw:exe ":colors "@c<CR>
 
 command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 
@@ -96,6 +105,11 @@ nmap N Nzz
 " Fast saving
 nmap <leader>w :w!<cr>
 nmap <leader>q :wq<cr>
+
+" jsHint
+nmap <leader>j :JSHint<cr>
+
+nmap <leader>o :only<cr>
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vim/vimrc<cr>
@@ -114,7 +128,7 @@ nmap <C-down> <C-W>s
 " always use 'very magic' regexes
 nmap / /\v
 
-nmap <leader>s :%s/\v
+" nmap <leader>s :%s/\v
 " keep selection after shifting in/outdenting a block in Visual mode
 vnoremap < <gv
 vnoremap > >gv

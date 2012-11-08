@@ -82,3 +82,6 @@
 [submodule "bundle/jsoncodecs"]
 	path = bundle/jsoncodecs
 	url = git://github.com/michalliu/jsoncodecs.vim.git
+[submodule "The-NERD-tree"]
+	path = bundle/NerdTree
+	url = git://github.com/vim-scripts/The-NERD-tree.git
