@@ -1,11 +1,13 @@
-vimrc
-=====
+my .vimrc
+=========
 
-My Vim configuration. You can use it and shape it to fit your needs. It uses vundle and a small script to
-make spreading you configuration fast and easy. Just do :
+This is my .vimrc plus vim plugins (as submodules).
+To set it all up run
 
-> git clone git@github.com:mrVanDalo/vimrc.git ~/.vim
+    git clone git://github.com/kolja/vimrc.git ~/.vim
 
-> ~/.vim/setup.sh
- 
-and you're done.
+then
+
+    ~/.vim/setup.sh
+
+The setup.sh script will download the plugins and create a symbolic link to .vimrc
