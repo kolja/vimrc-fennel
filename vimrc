@@ -23,6 +23,7 @@ set shiftwidth=4
 set smarttab
 set expandtab
 set autoindent
+set laststatus=2
 
 " don't use swapfiles. Use git instead
 set nobackup
@@ -67,6 +68,7 @@ autocmd! bufwritepost vimrc source ~/.vim/vimrc
 " Remove all trailing whitespace before a file is written
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.jeco set ft=html
+autocmd BufNewFile,BufRead *.coffee set ft=coffee
 
 " ------------------- Key mappings
 
@@ -148,8 +150,9 @@ function! s:setGuiOptions()
         set hlsearch
         set ch=2          " Make command line two lines high
         set mousehide     " Hide the mouse when typing text
-        set guifont=Menlo:h14
+        " set guifont=Menlo:h14
         " set guifont=Monaco:h24
+        set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
         set anti
         " my favourites:
         " ir_black, jellybeans, cthulhian,
@@ -167,8 +170,6 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
-filetype plugin indent on
-"
 " Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
@@ -186,4 +187,9 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
-Bundle "Lokaltog/powerline"
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle "scrooloose/nerdtree"
+Bundle "kchmck/vim-coffee-script"
+
+filetype plugin indent on
+
