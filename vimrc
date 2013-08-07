@@ -1,6 +1,7 @@
 
 let mapleader = ","
 set scroll=5
+
 " Use Arrow keys to navigate buffers and create new windows
 " see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
 nmap <left> :bp<CR>
@@ -37,9 +38,10 @@ set clipboard=unnamed
 " Sets how many lines of history VIM has to remember
 set history=700
 set foldmethod=indent
-set tags=/Users/kwilcke/reboot/trunk/zalando-shop/tags
-let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 
+"set tags=/Users/kwilcke/reboot/trunk/zalando-shop/tags
+"let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+"
 " show linenumbers
 set number
 " highlight tabs and trailing spaces
@@ -47,24 +49,20 @@ set list listchars=tab:››,eol:¬,trail:·
 nmap <leader>l :set list!<CR>
 
 " GPG Default Receipients
-let g:GPGDefaultRecipients=["kolja"]
+"let g:GPGDefaultRecipients=["kolja"]
 
 " for ctags to work... see: http://stackoverflow.com/questions/1790623/how-can-i-make-vims-taglist-plugin-show-useful-information-for-javascript
-let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
+"let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
 
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" remap the leader to ','
-let mapleader = ","
-let g:mapleader = ","
+"" Set to auto read when a file is changed from the outside
+"" set autoread
 
 " allow NerdTree to set the Working Directory correctly
-let NERDTreeChDirMode=2
-
-" When vimrc is edited, reload it
+" let NERDTreeChDirMode=2
+"
+"" When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim/vimrc
-
+"
 " Remove all trailing whitespace before a file is written
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.jeco set ft=html
@@ -74,13 +72,13 @@ autocmd BufNewFile,BufRead *.coffee set ft=coffee
 
 " reload chrome from within vim
 
-" map <leader>c :!/usr/local/bin/chromereload.sh<cr><cr>
+map <leader>c :!/usr/local/bin/chromereload.sh<cr><cr>
 
 " call colors for the word under the cursor
-" nmap <leader>c "cyiw:exe ":colors "@c<CR>
+nmap <leader>c "cyiw:exe ":colors "@c<CR>
 
-command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
-
+" command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
+"
 nmap <leader>f :FufFile **/<CR>
 nmap <leader>b :FufBuffer<CR>
 nmap tt :NERDTreeToggle<CR>
@@ -94,15 +92,17 @@ nmap <leader>w :w!<cr>
 nmap <leader>q :wq<cr>
 
 " jsHint
-nmap <leader>j :JSHint<cr>
+"nmap <leader>j :JSHint<cr>
 
 nmap <leader>o :only<cr>
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vim/vimrc<cr>
+
 " jump to function definition in javascript
 nmap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
-" nmap <leader>s :%s/\v
+nmap <leader>s :%s/\v
+
 " keep selection after shifting in/outdenting a block in Visual mode
 vnoremap < <gv
 vnoremap > >gv
@@ -134,13 +134,8 @@ vmap <C-C> "+y
 " make A and I work in visual mode as they do in visual block mode
 vnoremap <C-q> <esc>'<<C-q>'>$ 
 
-" move blocks of text in visual mode
-vmap <up> xkP`[V`]
-vmap <down> xp`[V`]
-
 " always use 'very magic' regexes
 nmap / /\v
-set nocompatible
 
 function! s:setGuiOptions()
     if &t_Co > 2 || has("gui_running")
@@ -161,7 +156,7 @@ function! s:setGuiOptions()
     endif
 endfunction
 
-"--------------------------------------------------[ vundle  
+" --------------------------------------------------[ vundle  
 
 filetype off
 
@@ -190,6 +185,7 @@ Bundle "honza/vim-snippets"
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle "scrooloose/nerdtree"
 Bundle "kchmck/vim-coffee-script"
+Bundle "michaeljsmith/vim-indent-object"
 
 filetype plugin indent on
 
