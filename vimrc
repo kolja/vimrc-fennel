@@ -186,6 +186,7 @@ Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle "scrooloose/nerdtree"
 Bundle "kchmck/vim-coffee-script"
 Bundle "michaeljsmith/vim-indent-object"
+Bundle "scrooloose/nerdcommenter"
 
 filetype plugin indent on
 
