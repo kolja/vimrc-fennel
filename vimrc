@@ -203,6 +203,7 @@ Bundle "scrooloose/nerdtree"
 Bundle "kchmck/vim-coffee-script"
 Bundle "michaeljsmith/vim-indent-object"
 Bundle "godlygeek/tabular"
+Bundle "scrooloose/nerdcommenter"
 
 filetype plugin indent on
 
