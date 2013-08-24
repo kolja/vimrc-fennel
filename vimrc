@@ -15,7 +15,7 @@ nmap <C-down> <C-W>s
 
 set nocompatible
 set incsearch
-set hidden  " lusty explorer needs it
+set hidden
 set undofile
 
 set tabstop=4
@@ -49,20 +49,20 @@ set list listchars=tab:››,eol:¬,trail:·
 nmap <leader>l :set list!<CR>
 
 " GPG Default Receipients
-"let g:GPGDefaultRecipients=["kolja"]
+let g:GPGDefaultRecipients=["kolja"]
 
 " for ctags to work... see: http://stackoverflow.com/questions/1790623/how-can-i-make-vims-taglist-plugin-show-useful-information-for-javascript
-"let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
+" let g:tlist_javascript_settings = 'javascript;r:var;s:string;a:array;o:object;u:function'
 
-"" Set to auto read when a file is changed from the outside
-"" set autoread
+" Set to auto read when a file is changed from the outside
+set autoread
 
 " allow NerdTree to set the Working Directory correctly
 " let NERDTreeChDirMode=2
 "
 "" When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vim/vimrc
-"
+autocmd! bufwritepost nested vimrc source ~/.vim/vimrc
+
 " Remove all trailing whitespace before a file is written
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.jeco set ft=html
@@ -71,7 +71,6 @@ autocmd BufNewFile,BufRead *.coffee set ft=coffee
 " ------------------- Key mappings
 
 " reload chrome from within vim
-
 map <leader>c :!/usr/local/bin/chromereload.sh<cr><cr>
 
 " call colors for the word under the cursor
@@ -82,7 +81,6 @@ nmap <leader>c "cyiw:exe ":colors "@c<CR>
 nmap <leader>f :FufFile **/<CR>
 nmap <leader>b :FufBuffer<CR>
 nmap tt :NERDTreeToggle<CR>
-nmap T!  :NERDTree<CR>
 
 nmap n nzz
 nmap N Nzz
@@ -103,19 +101,10 @@ map <leader>e :e! ~/.vim/vimrc<cr>
 nmap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
 nmap <leader>s :%s/\v
 
-" keep selection after shifting in/outdenting a block in Visual mode
-vnoremap < <gv
-vnoremap > >gv
-
 " move blocks of text in visual mode
 vmap <up> xkP`[V`]
 vmap <down> xp`[V`]
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-" see: http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
-cmap w!! %!sudo tee > /dev/null %
-
-"--------------------------------------------------[ preconfig
 " leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
 map <leader>d :nohlsearch<CR>
 map <leader>h <ctrl-w>
@@ -132,7 +121,7 @@ imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y
 
 " make A and I work in visual mode as they do in visual block mode
-vnoremap <C-q> <esc>'<<C-q>'>$ 
+vnoremap <C-q> <esc>'<<C-q>'>$
 
 " always use 'very magic' regexes
 nmap / /\v
@@ -156,7 +145,33 @@ function! s:setGuiOptions()
     endif
 endfunction
 
-" --------------------------------------------------[ vundle  
+" --------------------- From Drews vimrc:
+
+" Visual line repeat
+xnoremap . :normal .<CR>
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+" Strip trailing whitespace
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
+nmap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
+
+" --------------------------------------------------[ vundle
 
 filetype off
 
@@ -178,6 +193,7 @@ Bundle 'flazz/vim-colorschemes'
 call s:setGuiOptions()
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
@@ -186,6 +202,7 @@ Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle "scrooloose/nerdtree"
 Bundle "kchmck/vim-coffee-script"
 Bundle "michaeljsmith/vim-indent-object"
+Bundle "godlygeek/tabular"
 
 filetype plugin indent on
 
