@@ -1,7 +1,12 @@
-
+set enc=utf-8
 let mapleader = ","
 set scroll=5
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
+" set t_Co=256
 
+scriptencoding utf-8
 " Use Arrow keys to navigate buffers and create new windows
 " see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
 nmap <left> :bp<CR>
@@ -73,9 +78,6 @@ autocmd BufNewFile,BufRead *.coffee set ft=coffee
 " reload chrome from within vim
 map <leader>c :!/usr/local/bin/chromereload.sh<cr><cr>
 
-" call colors for the word under the cursor
-nmap <leader>c "cyiw:exe ":colors "@c<CR>
-
 " command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 "
 nmap <leader>f :FufFile **/<CR>
@@ -87,7 +89,7 @@ nmap N Nzz
 
 " Fast saving
 nmap <leader>w :w!<cr>
-nmap <leader>q :wq<cr>
+nmap <leader>q @q
 
 " jsHint
 "nmap <leader>j :JSHint<cr>
@@ -120,6 +122,9 @@ nmap <C-V> "+gP
 imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y
 
+" the default ClipBrd shortcut conflicts with NERDCommenter
+nmap <unique> <silent> <Leader>u <Plug>ClipBrdOpen
+
 " make A and I work in visual mode as they do in visual block mode
 vnoremap <C-q> <esc>'<<C-q>'>$
 
@@ -140,8 +145,8 @@ function! s:setGuiOptions()
         set anti
         " my favourites:
         " ir_black, jellybeans, cthulhian,
-        " redblack
-        colors jellybeans
+        " redblack darkburn candycode darkdesert dante darkocean
+        colors darkburn
     endif
 endfunction
 
@@ -189,6 +194,7 @@ Bundle 'gmarik/vundle'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'Command-T'
+Bundle 'bling/vim-airline'
 Bundle 'flazz/vim-colorschemes'
 call s:setGuiOptions()
 Bundle 'tpope/vim-fugitive'
@@ -198,12 +204,14 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle "scrooloose/nerdtree"
 Bundle "kchmck/vim-coffee-script"
 Bundle "michaeljsmith/vim-indent-object"
 Bundle "godlygeek/tabular"
+Bundle "tomtom/tregisters_vim"
 Bundle "scrooloose/nerdcommenter"
+Bundle "genutils"
+Bundle "clipbrd"
 
 filetype plugin indent on
 
