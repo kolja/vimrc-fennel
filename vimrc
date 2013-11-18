@@ -71,16 +71,16 @@ autocmd BufNewFile,BufRead *.coffee set ft=coffee
 " ------------------- Key mappings
 
 " reload chrome from within vim
-map <leader>c :!/usr/local/bin/chromereload.sh<cr><cr>
+map <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 
 " call colors for the word under the cursor
 nmap <leader>c "cyiw:exe ":colors "@c<CR>
 
 " command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 "
-nmap <leader>f :FufFile **/<CR>
+nmap <leader>f :FufFile /Users/kwilcke/dev/zeos/zalando-shop/webapp/src/main/webapp/**/<CR>
 nmap <leader>b :FufBuffer<CR>
-nmap tt :NERDTreeToggle<CR>
+" nmap tt :NERDTreeToggle<CR>
 
 nmap n nzz
 nmap N Nzz
@@ -145,6 +145,57 @@ function! s:setGuiOptions()
     endif
 endfunction
 
+" http://stackoverflow.com/questions/6624043/how-to-open-or-close-nerdtree-and-tagbar-with-leader
+function! ToggleNERDTreeAndTagbar()
+    let w:jumpbacktohere = 1
+
+    " Detect which plugins are open
+    if exists('t:NERDTreeBufName')
+        let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
+    else
+        let nerdtree_open = 0
+    endif
+    let tagbar_open = bufwinnr('__Tagbar__') != -1
+
+    " Perform the appropriate action
+    if nerdtree_open && tagbar_open
+        NERDTreeClose
+        TagbarClose
+    elseif nerdtree_open
+        TagbarOpen
+    elseif tagbar_open
+        NERDTree
+    else
+        NERDTree
+        TagbarOpen
+    endif
+
+    " Jump back to the original window
+    for window in range(1, winnr('$'))
+        execute window . 'wincmd w'
+        if exists('w:jumpbacktohere')
+            unlet w:jumpbacktohere
+            break
+        endif
+    endfor
+endfunction
+nnoremap tt :call ToggleNERDTreeAndTagbar()<CR>
+
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
+endif
 " --------------------- From Drews vimrc:
 
 " Visual line repeat
@@ -200,9 +251,12 @@ Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle "scrooloose/nerdtree"
+Bundle "majutsushi/tagbar"
 Bundle "kchmck/vim-coffee-script"
+Bundle "groenewege/vim-less"
 Bundle "michaeljsmith/vim-indent-object"
 Bundle "godlygeek/tabular"
+Bundle "maksimr/vim-jsbeautify"
 Bundle "scrooloose/nerdcommenter"
 
 filetype plugin indent on
