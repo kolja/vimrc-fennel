@@ -3,14 +3,14 @@ let mapleader = ","
 set scroll=5
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-set laststatus=2
-" set t_Co=256
+set laststatus=1
+set t_Co=256
 
 scriptencoding utf-8
 " Use Arrow keys to navigate buffers and create new windows
 " see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
-nmap <left> :bp<CR>
-nmap <right> :bn<CR>
+map! <D-left> :bp<CR>
+map! <D-right> :bn<CR>
 nmap <up> <C-y>
 nmap <down> <C-e>
 nmap <C-right> <C-W>v
@@ -72,6 +72,7 @@ autocmd! bufwritepost nested vimrc source ~/.vim/vimrc
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.jeco set ft=html
 autocmd BufNewFile,BufRead *.coffee set ft=coffee
+autocmd BufNewFile,BufRead *.less set ft=css
 
 " ------------------- Key mappings
 
@@ -80,8 +81,9 @@ map <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 
 " command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 "
-nmap <leader>f :FufFile /Users/kwilcke/dev/zeos/zalando-shop/webapp/src/main/webapp/**/<CR>
-nmap <leader>b :FufBuffer<CR>
+nmap <leader>f :CtrlP /Users/kwilcke/dev/zeos/zalando-shop<CR>
+nmap <leader>b :CtrlPBuffer<CR>
+let g:ctrlp_working_path = 0
 " nmap tt :NERDTreeToggle<CR>
 
 nmap n nzz
@@ -123,7 +125,7 @@ imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y
 
 " the default ClipBrd shortcut conflicts with NERDCommenter
-nmap <unique> <silent> <Leader>u <Plug>ClipBrdOpen
+" nmap <unique> <silent> <Leader>u <Plug>ClipBrdOpen
 
 " make A and I work in visual mode as they do in visual block mode
 vnoremap <C-q> <esc>'<<C-q>'>$
@@ -144,9 +146,11 @@ function! s:setGuiOptions()
         set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
         set anti
         " my favourites:
+        " candycode darkburn dante
+        " redblack
         " ir_black, jellybeans, cthulhian,
-        " redblack darkburn candycode darkdesert dante darkocean
-        colors darkburn
+        " darkdesert darkocean
+        colors ir_black
     endif
 endfunction
 
@@ -243,9 +247,9 @@ Bundle 'gmarik/vundle'
 " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
 Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'Command-T'
+Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
+Bundle 'mileszs/ack.vim'
 Bundle 'flazz/vim-colorschemes'
 call s:setGuiOptions()
 Bundle 'tpope/vim-fugitive'
@@ -265,7 +269,6 @@ Bundle "maksimr/vim-jsbeautify"
 Bundle "tomtom/tregisters_vim"
 Bundle "scrooloose/nerdcommenter"
 Bundle "genutils"
-Bundle "clipbrd"
 
 filetype plugin indent on
 
