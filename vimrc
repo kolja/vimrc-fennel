@@ -1,5 +1,6 @@
 set enc=utf-8
 let mapleader = ","
+nnoremap \ ,
 set scroll=5
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -9,8 +10,8 @@ set t_Co=256
 scriptencoding utf-8
 " Use Arrow keys to navigate buffers and create new windows
 " see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
-map! <D-left> :bp<CR>
-map! <D-right> :bn<CR>
+nmap <D-left> :bp<CR>
+nmap <D-right> :bn<CR>
 nmap <up> <C-y>
 nmap <down> <C-e>
 nmap <C-right> <C-W>v
@@ -21,7 +22,6 @@ nmap <C-down> <C-W>s
 set nocompatible
 set incsearch
 set hidden
-set undofile
 
 set tabstop=4
 set softtabstop=4
@@ -42,7 +42,7 @@ set clipboard=unnamed
 
 " Sets how many lines of history VIM has to remember
 set history=700
-set foldmethod=indent
+set nofoldenable
 
 "set tags=/Users/kwilcke/reboot/trunk/zalando-shop/tags
 "let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'
@@ -63,7 +63,7 @@ let g:GPGDefaultRecipients=["kolja"]
 set autoread
 
 " allow NerdTree to set the Working Directory correctly
-" let NERDTreeChDirMode=2
+let NERDTreeChDirMode=2
 "
 "" When vimrc is edited, reload it
 autocmd! bufwritepost nested vimrc source ~/.vim/vimrc
@@ -84,7 +84,8 @@ map <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 nmap <leader>f :CtrlP /Users/kwilcke/dev/zeos/zalando-shop<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path = 0
-" nmap tt :NERDTreeToggle<CR>
+nmap tt :NERDTreeTabsToggle<CR>
+" nnoremap tt :call ToggleNERDTreeAndTagbar()<CR>
 
 nmap n nzz
 nmap N Nzz
@@ -143,7 +144,7 @@ function! s:setGuiOptions()
         set mousehide     " Hide the mouse when typing text
         " set guifont=Menlo:h14
         " set guifont=Monaco:h24
-        set guifont=Droid\ Sans\ Mono\ for\ Powerline:h14
+        set guifont=Meslo\ LG\ S\ for\ Powerline:h13
         set anti
         " my favourites:
         " candycode darkburn dante
@@ -188,7 +189,6 @@ function! ToggleNERDTreeAndTagbar()
         endif
     endfor
 endfunction
-nnoremap tt :call ToggleNERDTreeAndTagbar()<CR>
 
 if executable('coffeetags')
   let g:tagbar_type_coffee = {
@@ -260,6 +260,7 @@ Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 Bundle "scrooloose/nerdtree"
+Bundle 'jistr/vim-nerdtree-tabs'
 Bundle "majutsushi/tagbar"
 Bundle "kchmck/vim-coffee-script"
 Bundle "groenewege/vim-less"
