@@ -4,6 +4,8 @@ nnoremap \ ,
 set scroll=5
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+" let g:user_emmet_leader_key='`'
+let g:user_emmet_expandabbr_key = '`'
 set laststatus=1
 set t_Co=256
 
@@ -145,7 +147,7 @@ function! s:setGuiOptions()
         set mousehide     " Hide the mouse when typing text
         " set guifont=Menlo:h14
         " set guifont=Monaco:h24
-        set guifont=Meslo\ LG\ S\ for\ Powerline:h13
+        set guifont=Meslo\ LG\ M\ for\ Powerline:h13
         set anti
         " my favourites:
         " candycode darkburn dante
@@ -154,41 +156,6 @@ function! s:setGuiOptions()
         " darkdesert darkocean
         colors ir_black
     endif
-endfunction
-
-" http://stackoverflow.com/questions/6624043/how-to-open-or-close-nerdtree-and-tagbar-with-leader
-function! ToggleNERDTreeAndTagbar()
-    let w:jumpbacktohere = 1
-
-    " Detect which plugins are open
-    if exists('t:NERDTreeBufName')
-        let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
-    else
-        let nerdtree_open = 0
-    endif
-    let tagbar_open = bufwinnr('__Tagbar__') != -1
-
-    " Perform the appropriate action
-    if nerdtree_open && tagbar_open
-        NERDTreeClose
-        TagbarClose
-    elseif nerdtree_open
-        TagbarOpen
-    elseif tagbar_open
-        NERDTree
-    else
-        NERDTree
-        TagbarOpen
-    endif
-
-    " Jump back to the original window
-    for window in range(1, winnr('$'))
-        execute window . 'wincmd w'
-        if exists('w:jumpbacktohere')
-            unlet w:jumpbacktohere
-            break
-        endif
-    endfor
 endfunction
 
 if executable('coffeetags')
@@ -206,8 +173,8 @@ if executable('coffeetags')
         \ }
         \ }
 endif
-" --------------------- From Drews vimrc:
 
+" --------------------- From Drews vimrc:
 " Visual line repeat
 xnoremap . :normal .<CR>
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
@@ -231,6 +198,7 @@ function! Preserve(command)
 endfunction
 
 nmap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
+nnoremap <leader>u :call Preserve("Gread -")<CR>
 
 " --------------------------------------------------[ vundle
 
@@ -257,12 +225,13 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "mattn/emmet-vim"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 Bundle "scrooloose/nerdtree"
 Bundle 'jistr/vim-nerdtree-tabs'
-Bundle "majutsushi/tagbar"
+" Bundle "majutsushi/tagbar"
 Bundle "kchmck/vim-coffee-script"
 Bundle "groenewege/vim-less"
 Bundle "michaeljsmith/vim-indent-object"
