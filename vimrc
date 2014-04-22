@@ -81,7 +81,8 @@ map <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 
 " command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 "
-nmap <leader>f :CtrlP /Users/kwilcke/dev/zeos/zalando-shop<CR>
+nmap <leader>f :CtrlP /Users/kolja/dev/shop/webapp/src/main/webapp<CR>
+nmap <leader><leader>f :CtrlP /Users/kolja/dev/shop/frontend<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path = 0
 nmap tt :NERDTreeTabsToggle<CR>
