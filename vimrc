@@ -1,3 +1,45 @@
+
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/vundle'
+
+" Brief help
+" :PluginList          - list configured bundles
+" :PluginInstall(!)    - install(update) bundles
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+Plugin 'L9'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'mileszs/ack.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'mattn/emmet-vim'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'groenewege/vim-less'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'godlygeek/tabular'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'tomtom/tregisters_vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'genutils'
+call vundle#end()
+
+filetype plugin indent on
+
 set enc=utf-8
 let mapleader = ","
 nnoremap \ ,
@@ -157,6 +199,8 @@ function! s:setGuiOptions()
     endif
 endfunction
 
+call s:setGuiOptions()
+
 if executable('coffeetags')
   let g:tagbar_type_coffee = {
         \ 'ctagsbin' : 'coffeetags',
@@ -198,47 +242,4 @@ endfunction
 
 nmap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
 nnoremap <leader>u :call Preserve("Gread -")<CR>
-
-" --------------------------------------------------[ vundle
-
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-
-Bundle 'L9'
-Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'mileszs/ack.vim'
-Bundle 'flazz/vim-colorschemes'
-call s:setGuiOptions()
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "mattn/emmet-vim"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
-Bundle "scrooloose/nerdtree"
-Bundle 'jistr/vim-nerdtree-tabs'
-" Bundle "majutsushi/tagbar"
-Bundle "kchmck/vim-coffee-script"
-Bundle "groenewege/vim-less"
-Bundle "michaeljsmith/vim-indent-object"
-Bundle "godlygeek/tabular"
-Bundle "maksimr/vim-jsbeautify"
-Bundle "tomtom/tregisters_vim"
-Bundle "scrooloose/nerdcommenter"
-Bundle "genutils"
-
-filetype plugin indent on
 
