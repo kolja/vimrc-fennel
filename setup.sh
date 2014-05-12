@@ -18,4 +18,4 @@ echo "make symbolic link of vimrc"
 ln -s ~/.vim/vimrc ~/.vimrc
 
 # install plugins
-vim -c BundleInstall
+vim +PluginInstall +qall

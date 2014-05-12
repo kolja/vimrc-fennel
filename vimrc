@@ -1,36 +1,26 @@
 
-" --------------------------------------------------[ vundle
-set nocompatible
 filetype off
 
+" for docs see: help vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'gmarik/vundle'
-
-" Brief help
-" :PluginList          - list configured bundles
-" :PluginInstall(!)    - install(update) bundles
-" :PluginSearch(!) foo - search(or refresh cache first) for foo
-" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
-
 Plugin 'L9'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
-Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'mattn/emmet-vim'
-Plugin 'marijnh/tern_for_vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'rking/ag.vim'
+Plugin 'marijnh/tern_for_vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'groenewege/vim-less'
 Plugin 'michaeljsmith/vim-indent-object'
@@ -39,7 +29,8 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'tomtom/tregisters_vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'genutils'
-call vundle#end()            " required
+call vundle#end()
+
 filetype plugin indent on
 
 set enc=utf-8
@@ -191,8 +182,6 @@ function! s:setGuiOptions()
         set hlsearch
         set ch=2          " Make command line two lines high
         set mousehide     " Hide the mouse when typing text
-        " set guifont=Menlo:h14
-        " set guifont=Monaco:h24
         set guifont=Meslo\ LG\ M\ for\ Powerline:h13
         set anti
         " my favourites:
