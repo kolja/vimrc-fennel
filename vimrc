@@ -16,8 +16,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'mattn/emmet-vim'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+Plugin 'sirver/ultisnips'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'marijnh/tern_for_vim'
@@ -120,8 +119,7 @@ map <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 
 " command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 "
-nmap <leader>f :CtrlP /Users/kolja/dev/shop/webapp/src/main/webapp<CR>
-nmap <leader><leader>f :CtrlP /Users/kolja/dev/shop/frontend<CR>
+nmap <leader>f :CtrlP /Users/kolja/dev/shop/webapp<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path = 0
 nmap tt :NERDTreeTabsToggle<CR>
