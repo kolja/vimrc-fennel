@@ -1,0 +1,21 @@
+global !p
+def line(string, size):
+	if size<3: size = 3
+	return string * size
+endglobal
+
+snippet h1 "header"
+`!p
+snip.rv = line("-",len(t[1]))
+`
+${1:Headline}
+`!p
+snip.rv = line("-",len(t[1]))
+`
+endsnippet
+
+snippet jsdate "header"
+`#!/usr/local/bin/node
+console.log(Date());
+`
+endsnippet

@@ -14,7 +14,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'mattn/emmet-vim'
+"Plugin 'mattn/emmet-vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'sirver/ultisnips'
 Plugin 'scrooloose/nerdtree'
@@ -28,6 +28,7 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'tomtom/tregisters_vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'genutils'
+Plugin 'Rykka/riv.vim'
 call vundle#end()
 
 filetype plugin indent on
@@ -41,6 +42,8 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:user_emmet_leader_key='`'
 let g:user_emmet_expandabbr_key = '`'
 let g:UltiSnipsEditSplit = 'vertical'
+let g:riv_i_tab_pum_next = 0 " riv compatibility with snipmate
+let g:riv_ignored_imaps = "<Tab>"
 set laststatus=1
 set t_Co=256
 
