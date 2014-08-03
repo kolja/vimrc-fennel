@@ -40,6 +40,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " let g:user_emmet_leader_key='`'
 let g:user_emmet_expandabbr_key = '`'
+let g:UltiSnipsEditSplit = 'vertical'
 set laststatus=1
 set t_Co=256
 

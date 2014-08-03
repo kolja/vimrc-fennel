@@ -2,9 +2,20 @@ snippet cl "console.log"
 console.log(${1:"blork"});
 endsnippet
 
-snippet fun "function"
-function ($1) {
-	${VISUAL}
-	return $2;
+snippet f "function"
+function (${1:arg}) {
+	${VISUAL}$0
 }
 endsnippet
+
+snippet if "if"
+if (${1:true}) {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet v "var"
+var ${1:name} = $0;
+endsnippet
+
+
