@@ -8,14 +8,17 @@ snippet h1 "header"
 `!p
 snip.rv = line("-",len(t[1]))
 `
-${1:Headline}
+${1:${VISUAL:Headline}}
 `!p
 snip.rv = line("-",len(t[1]))
 `
+
+$0
 endsnippet
 
-snippet jsdate "header"
+snippet date "insert date"
 `#!/usr/local/bin/node
-console.log(Date());
+date = require('moment')().locale('de');
+console.log(date.format('ll'));
 `
 endsnippet
