@@ -16,9 +16,18 @@ snip.rv = line("-",len(t[1]))
 $0
 endsnippet
 
-snippet date "insert date"
+snippet jsdate "insert date"
 `#!/usr/local/bin/node
 date = require('moment')().locale('de');
 console.log(date.format('ll'));
+`
+endsnippet
+
+snippet date "insert date"
+`!p
+import time
+import locale
+locale.setlocale(locale.LC_TIME, "de_DE")
+snip.rv = time.strftime("%a, %d %B %Y")
 `
 endsnippet
