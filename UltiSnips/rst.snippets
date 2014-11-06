@@ -4,7 +4,7 @@ def line(string, size):
 	return string * size
 endglobal
 
-snippet h1 "header"
+snippet h1 "header: level1"
 `!p
 snip.rv = line("-",len(t[1]))
 `
@@ -14,6 +14,28 @@ snip.rv = line("-",len(t[1]))
 `
 
 $0
+endsnippet
+
+snippet = "sub header: level2"
+${1:${VISUAL:Headline}}
+`!p
+snip.rv = line("=",len(t[1]))
+`
+
+$0
+endsnippet
+
+snippet - "sub header: level3"
+${1:${VISUAL:Headline}}
+`!p
+snip.rv = line("-",len(t[1]))
+`
+
+$0
+endsnippet
+
+snippet link "link"
+\`${2} <http://${1:${VISUAL:url}}>\`_ $0
 endsnippet
 
 snippet jsdate "insert date"

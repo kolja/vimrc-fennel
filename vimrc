@@ -7,6 +7,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'L9'
 Plugin 'kien/ctrlp.vim'
+Plugin 'moll/vim-bbye.git'
 Plugin 'bling/vim-airline'
 Plugin 'rking/ag.vim'
 Plugin 'flazz/vim-colorschemes'
@@ -125,6 +126,7 @@ map <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 " command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 "
 nmap <leader>f :CtrlP /Users/kolja/dev/shop/webapp<CR>
+nmap <leader><leader>f :CtrlP /Users/kolja/dev/shop<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path = 0
 nmap tt :NERDTreeTabsToggle<CR>
@@ -135,7 +137,7 @@ nmap N Nzz
 
 " Fast saving
 nmap <leader>w :w!<cr>
-nmap <leader>q @q
+nmap <leader>q :Bdelete<cr>
 
 " jsHint
 "nmap <leader>j :JSHint<cr>
@@ -144,6 +146,9 @@ nmap <leader>o :only<cr>
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vim/vimrc<cr>
+
+" run in node
+nnoremap <leader>n :!node %<CR>
 
 " jump to function definition in javascript
 nmap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
