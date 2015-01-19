@@ -6,8 +6,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'L9'
-Plugin 'kien/ctrlp.vim'
 Plugin 'moll/vim-bbye.git'
+Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'rking/ag.vim'
 Plugin 'flazz/vim-colorschemes'
@@ -15,8 +15,17 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-unimpaired'
+
+" Clojure support
+" see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-classpath'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-leiningen'
+
 Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'sirver/ultisnips'
 Plugin 'scrooloose/nerdtree'
@@ -219,6 +228,29 @@ if executable('coffeetags')
         \ }
 endif
 
+function! XikiLaunch()
+  ruby << EOF
+
+    xiki_dir = ENV['XIKI_DIR']
+    ['core/ol', 'vim/line', 'vim/tree'].each {|o| load "#{xiki_dir}/lib/xiki/#{o}.rb"}
+    include Xiki
+
+    line = Line.value
+    next_line = Line.value 2
+
+    indent = line[/^ +/]
+    command = "xiki '#{line}'"
+    result = `#{command}`
+    Tree << result
+EOF
+endfunction
+
+imap <silent> <2-LeftMouse> <C-c>:call XikiLaunch()<CR>i
+nmap <silent> <2-LeftMouse> :call XikiLaunch()<CR>
+imap <silent> <C-CR> <C-c>:call XikiLaunch()<CR>i
+nmap <silent> <C-CR> :call XikiLaunch()<CR>
+imap <silent> <C-@> <C-c>:call XikiLaunch()<CR>i
+nmap <silent> <C-@> :call XikiLaunch()<CR>
 " --------------------- From Drews vimrc:
 " Visual line repeat
 xnoremap . :normal .<CR>
