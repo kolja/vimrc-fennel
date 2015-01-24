@@ -13,6 +13,15 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+
+" Clojure support
+" see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-classpath'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-leiningen'
+
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'mattn/emmet-vim'
 Plugin 'tomtom/tlib_vim'
@@ -28,6 +37,8 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'tomtom/tregisters_vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'genutils'
+Plugin 'Rykka/riv.vim'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -39,7 +50,7 @@ set scroll=5
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " let g:user_emmet_leader_key='`'
-let g:user_emmet_expandabbr_key = '`'
+" let g:user_emmet_expandabbr_key = '`'
 let g:UltiSnipsEditSplit = 'vertical'
 set laststatus=1
 set t_Co=256
@@ -91,6 +102,8 @@ set number
 " highlight tabs and trailing spaces
 set list listchars=tab:››,eol:¬,trail:·
 nmap <leader>l :set list!<CR>
+nmap <leader>ue :UltiSnipsEdit<CR>
+nnoremap <leader>n :!node %<cr>
 
 " GPG Default Receipients
 let g:GPGDefaultRecipients=["kolja"]
