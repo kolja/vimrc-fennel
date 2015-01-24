@@ -40,10 +40,6 @@ Plugin 'tomtom/tregisters_vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'genutils'
 Plugin 'Rykka/riv.vim'
-<<<<<<< HEAD
-
-=======
->>>>>>> d8afdb38fe479dcf2f54a04114a8038eafed71e2
 call vundle#end()
 
 filetype plugin indent on
