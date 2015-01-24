@@ -6,12 +6,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'L9'
+Plugin 'moll/vim-bbye.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'rking/ag.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-unimpaired'
 
 " Clojure support
@@ -38,7 +40,10 @@ Plugin 'tomtom/tregisters_vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'genutils'
 Plugin 'Rykka/riv.vim'
+<<<<<<< HEAD
 
+=======
+>>>>>>> d8afdb38fe479dcf2f54a04114a8038eafed71e2
 call vundle#end()
 
 filetype plugin indent on
@@ -52,6 +57,8 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:user_emmet_leader_key='`'
 " let g:user_emmet_expandabbr_key = '`'
 let g:UltiSnipsEditSplit = 'vertical'
+let g:riv_i_tab_pum_next = 0 " riv compatibility with snipmate
+let g:riv_ignored_imaps = "<Tab>"
 set laststatus=1
 set t_Co=256
 
@@ -134,6 +141,7 @@ map <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 " command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
 "
 nmap <leader>f :CtrlP /Users/kolja/dev/shop/webapp<CR>
+nmap <leader><leader>f :CtrlP /Users/kolja/dev/shop<CR>
 nmap <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path = 0
 nmap tt :NERDTreeTabsToggle<CR>
@@ -144,7 +152,7 @@ nmap N Nzz
 
 " Fast saving
 nmap <leader>w :w!<cr>
-nmap <leader>q @q
+nmap <leader>q :Bdelete<cr>
 
 " jsHint
 "nmap <leader>j :JSHint<cr>
@@ -153,6 +161,9 @@ nmap <leader>o :only<cr>
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vim/vimrc<cr>
+
+" run in node
+nnoremap <leader>n :!node %<CR>
 
 " jump to function definition in javascript
 nmap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
@@ -223,6 +234,29 @@ if executable('coffeetags')
         \ }
 endif
 
+function! XikiLaunch()
+  ruby << EOF
+
+    xiki_dir = ENV['XIKI_DIR']
+    ['core/ol', 'vim/line', 'vim/tree'].each {|o| load "#{xiki_dir}/lib/xiki/#{o}.rb"}
+    include Xiki
+
+    line = Line.value
+    next_line = Line.value 2
+
+    indent = line[/^ +/]
+    command = "xiki '#{line}'"
+    result = `#{command}`
+    Tree << result
+EOF
+endfunction
+
+imap <silent> <2-LeftMouse> <C-c>:call XikiLaunch()<CR>i
+nmap <silent> <2-LeftMouse> :call XikiLaunch()<CR>
+imap <silent> <C-CR> <C-c>:call XikiLaunch()<CR>i
+nmap <silent> <C-CR> :call XikiLaunch()<CR>
+imap <silent> <C-@> <C-c>:call XikiLaunch()<CR>i
+nmap <silent> <C-@> :call XikiLaunch()<CR>
 " --------------------- From Drews vimrc:
 " Visual line repeat
 xnoremap . :normal .<CR>
