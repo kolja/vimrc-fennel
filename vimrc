@@ -1,52 +1,11 @@
 
 filetype off
-
-" for docs see: help vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/vundle'
-Plugin 'L9'
-Plugin 'moll/vim-bbye.git'
-Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'rking/ag.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat.git'
-Plugin 'tpope/vim-unimpaired'
-
-" Clojure support
-" see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-classpath'
-Plugin 'guns/vim-clojure-static'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-leiningen'
-
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'mattn/emmet-vim'
-Plugin 'tomtom/tlib_vim'
-Plugin 'sirver/ultisnips'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'groenewege/vim-less'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'godlygeek/tabular'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'tomtom/tregisters_vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'genutils'
-Plugin 'Rykka/riv.vim'
-call vundle#end()
-
+source ~/.vim/vimrc-plugins
 filetype plugin indent on
 
+source ~/.vim/vimrc-mappings
+
 set enc=utf-8
-let mapleader = ","
-nnoremap \ ,
 set scroll=5
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -61,16 +20,6 @@ set t_Co=256
 let g:agprg="ag --column --smart-case -U"
 
 scriptencoding utf-8
-" Use Arrow keys to navigate buffers and create new windows
-" see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
-nmap <D-left> :bp<CR>
-nmap <D-right> :bn<CR>
-nmap <up> <C-y>
-nmap <down> <C-e>
-nmap <C-right> <C-W>v
-nmap <C-left> <C-W>v<C-W>l<CR>
-nmap <C-up> <C-W>s<C-W>j<CR>
-nmap <C-down> <C-W>s
 
 set nocompatible
 set incsearch
@@ -104,9 +53,6 @@ set nofoldenable
 set number
 " highlight tabs and trailing spaces
 set list listchars=tab:››,eol:¬,trail:·
-nmap <leader>l :set list!<CR>
-nmap <leader>ue :UltiSnipsEdit<CR>
-nnoremap <leader>n :!node %<cr>
 
 " GPG Default Receipients
 let g:GPGDefaultRecipients=["kolja"]
@@ -129,69 +75,6 @@ autocmd BufNewFile,BufRead *.jeco set ft=html
 autocmd BufNewFile,BufRead *.coffee set ft=coffee
 autocmd BufNewFile,BufRead *.less set ft=css
 
-" ------------------- Key mappings
-
-" reload chrome from within vim
-map <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
-
-" command! Notes :e! ~/Documents/notes/pass/pass.txt.asc
-"
-nmap <leader>f :CtrlP /Users/kolja/dev/shop/webapp<CR>
-nmap <leader><leader>f :CtrlP /Users/kolja/dev/shop<CR>
-nmap <leader>b :CtrlPBuffer<CR>
-let g:ctrlp_working_path = 0
-nmap tt :NERDTreeTabsToggle<CR>
-" nnoremap tt :call ToggleNERDTreeAndTagbar()<CR>
-
-nmap n nzz
-nmap N Nzz
-
-" Fast saving
-nmap <leader>w :w!<cr>
-nmap <leader>q :Bdelete<cr>
-
-" jsHint
-"nmap <leader>j :JSHint<cr>
-
-nmap <leader>o :only<cr>
-
-" Fast editing of the .vimrc
-map <leader>e :e! ~/.vim/vimrc<cr>
-
-" run in node
-nnoremap <leader>n :!node %<CR>
-
-" jump to function definition in javascript
-nmap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
-nmap <leader>s :%s/\v
-
-" move blocks of text in visual mode
-vmap <up> xkP`[V`]
-vmap <down> xp`[V`]
-
-" leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
-map <leader>d :nohlsearch<CR>
-map <leader>h <ctrl-w>
-
-" Smart way to move beteen windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" intuitive paste
-nmap <C-V> "+gP
-imap <C-V> <ESC><C-V>i
-vmap <C-C> "+y
-
-" the default ClipBrd shortcut conflicts with NERDCommenter
-" nmap <unique> <silent> <Leader>u <Plug>ClipBrdOpen
-
-" make A and I work in visual mode as they do in visual block mode
-vnoremap <C-q> <esc>'<<C-q>'>$
-
-" always use 'very magic' regexes
-nmap / /\v
 
 function! s:setGuiOptions()
     if &t_Co > 2 || has("gui_running")
@@ -247,16 +130,6 @@ function! XikiLaunch()
 EOF
 endfunction
 
-imap <silent> <2-LeftMouse> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <2-LeftMouse> :call XikiLaunch()<CR>
-imap <silent> <C-CR> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <C-CR> :call XikiLaunch()<CR>
-imap <silent> <C-@> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <C-@> :call XikiLaunch()<CR>
-" --------------------- From Drews vimrc:
-" Visual line repeat
-xnoremap . :normal .<CR>
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
@@ -276,6 +149,4 @@ function! Preserve(command)
   call cursor(l, c)
 endfunction
 
-nmap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
-nnoremap <leader>u :call Preserve("Gread -")<CR>
 
