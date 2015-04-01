@@ -126,6 +126,7 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.jeco set ft=html
 autocmd BufNewFile,BufRead *.coffee set ft=coffee
 autocmd BufNewFile,BufRead *.less set ft=css
+autocmd BufNewFile,BufRead *.boot set ft=clojure
 
 " ------------------- Key mappings
 
