@@ -29,21 +29,19 @@ nmap N Nzz
 
 " Fast saving
 nmap <leader>w :w!<cr>
-nmap <leader>q :Bdelete<cr>
 
-" jsHint
-"nmap <leader>j :JSHint<cr>
+" better :bd (buffer delete)
+nmap <leader>q :Bdelete<cr>
 
 nmap <leader>o :only<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vim/vimrc<cr>
+nmap <leader>e :e! ~/.vim/vimrc<cr>
 
-" run in node
-nnoremap <leader>n :!node %<CR>
+" Fast editing of Snippets
+nmap <leader>ue :UltiSnipsEdit<CR>
 
-" jump to function definition in javascript
-nmap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
+" search and replace
 nmap <leader>s :%s/\v
 
 " move blocks of text in visual mode
@@ -65,9 +63,6 @@ nmap <C-V> "+gP
 imap <C-V> <ESC><C-V>i
 vmap <C-C> "+y
 
-" the default ClipBrd shortcut conflicts with NERDCommenter
-" nmap <unique> <silent> <Leader>u <Plug>ClipBrdOpen
-
 " make A and I work in visual mode as they do in visual block mode
 vnoremap <C-q> <esc>'<<C-q>'>$
 
@@ -75,15 +70,9 @@ vnoremap <C-q> <esc>'<<C-q>'>$
 nmap / /\v
 
 nmap <leader>l :set list!<CR>
-nmap <leader>ue :UltiSnipsEdit<CR>
-nnoremap <leader>n :!node %<cr>
 
-imap <silent> <2-LeftMouse> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <2-LeftMouse> :call XikiLaunch()<CR>
-imap <silent> <C-CR> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <C-CR> :call XikiLaunch()<CR>
-imap <silent> <C-@> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <C-@> :call XikiLaunch()<CR>
+" run in node
+nnoremap <leader>n :!node %<CR>
 
 " --------------------- From Drews vimrc:
 " Visual line repeat
