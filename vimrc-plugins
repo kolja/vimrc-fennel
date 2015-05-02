@@ -5,14 +5,14 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'L9'
 Plugin 'moll/vim-bbye.git'
-Plugin 'kien/ctrlp.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
 Plugin 'bling/vim-airline'
 Plugin 'rking/ag.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat.git'
-Plugin 'tpope/vim-unimpaired'
 
 " Clojure support
 " see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim

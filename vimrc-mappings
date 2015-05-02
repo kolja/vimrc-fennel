@@ -2,93 +2,79 @@
 " ------------------- Key mappings
 
 let mapleader = ","
+" , used to have this 'backwards to character' functionality. Use '\' for this instead.
 nnoremap \ ,
 
 " Use Arrow keys to navigate buffers and create new windows
 " see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
-nmap <D-left> :bp<CR>
-nmap <D-right> :bn<CR>
-nmap <up> <C-y>
-nmap <down> <C-e>
-nmap <C-right> <C-W>v
-nmap <C-left> <C-W>v<C-W>l<CR>
-nmap <C-up> <C-W>s<C-W>j<CR>
-nmap <C-down> <C-W>s
+nnoremap <D-left> :bp<CR>
+nnoremap <D-right> :bn<CR>
+nnoremap <up> <C-y>
+nnoremap <down> <C-e>
+nnoremap <C-right> <C-W>v
+nnoremap <C-left> <C-W>v<C-W>l<CR>
+nnoremap <C-up> <C-W>s<C-W>j<CR>
+nnoremap <C-down> <C-W>s
 
 " reload chrome from within vim
 nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 
-nmap <leader>f :CtrlP /Users/kolja/dev/shop/webapp<CR>
-nmap <leader><leader>f :CtrlP /Users/kolja/dev/shop<CR>
-nmap <leader>b :CtrlPBuffer<CR>
-let g:ctrlp_working_path = 0
-nmap tt :NERDTreeTabsToggle<CR>
+nnoremap <leader>f :Unite -start-insert file_rec/async<CR>
+nnoremap <leader>b :Unite buffer<CR>
+nnoremap tt :NERDTreeTabsToggle<CR>
 
-nmap n nzz
-nmap N Nzz
+nnoremap n nzz
+nnoremap N Nzz
 
 " Fast saving
-nmap <leader>w :w!<cr>
-nmap <leader>q :Bdelete<cr>
+nnoremap <leader>w :w!<cr>
+nnoremap <leader>q :Bdelete<cr>
 
-" jsHint
-"nmap <leader>j :JSHint<cr>
-
-nmap <leader>o :only<cr>
+nnoremap <leader>o :only<cr>
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vim/vimrc<cr>
+nnoremap <leader>e :e! ~/.vim/vimrc<cr>
 
 " run in node
 nnoremap <leader>n :!node %<CR>
 
 " jump to function definition in javascript
-nmap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
-nmap <leader>s :%s/\v
+nnoremap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
+nnoremap <leader>s :%s/\v
 
 " move blocks of text in visual mode
-vmap <up> xkP`[V`]
-vmap <down> xp`[V`]
+vnoremap <up> xkP`[V`]
+vnoremap <down> xp`[V`]
 
 " leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
-map <leader>d :nohlsearch<CR>
-map <leader>h <ctrl-w>
+noremap <leader>d :nohlsearch<CR>
+noremap <leader>h <ctrl-w>
 
 " Smart way to move beteen windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-h> <C-W>h
+noremap <C-l> <C-W>l
 
 " intuitive paste
-nmap <C-V> "+gP
-imap <C-V> <ESC><C-V>i
-vmap <C-C> "+y
-
-" the default ClipBrd shortcut conflicts with NERDCommenter
-" nmap <unique> <silent> <Leader>u <Plug>ClipBrdOpen
+nnoremap <C-V> "+gP
+inoremap <C-V> <ESC><C-V>i
+vnoremap <C-C> "+y
 
 " make A and I work in visual mode as they do in visual block mode
 vnoremap <C-q> <esc>'<<C-q>'>$
 
 " always use 'very magic' regexes
-nmap / /\v
+nnoremap / /\v
 
-nmap <leader>l :set list!<CR>
-nmap <leader>ue :UltiSnipsEdit<CR>
+nnoremap <leader>l :set list!<CR>
+nnoremap <leader>ue :UltiSnipsEdit<CR>
 nnoremap <leader>n :!node %<cr>
-
-imap <silent> <2-LeftMouse> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <2-LeftMouse> :call XikiLaunch()<CR>
-imap <silent> <C-CR> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <C-CR> :call XikiLaunch()<CR>
-imap <silent> <C-@> <C-c>:call XikiLaunch()<CR>i
-nmap <silent> <C-@> :call XikiLaunch()<CR>
 
 " --------------------- From Drews vimrc:
 " Visual line repeat
 xnoremap . :normal .<CR>
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
-nmap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
+nnoremap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
 nnoremap <leader>u :call Preserve("Gread -")<CR>

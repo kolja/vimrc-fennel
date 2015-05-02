@@ -5,6 +5,14 @@ filetype plugin indent on
 
 source ~/.vim/vimrc-mappings
 
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#custom#source(
+        \ 'file', 'matchers',
+        \ ['matcher_default', 'matcher_hide_hidden_files',
+        \  'matcher_hide_current_file',
+        \  'matcher_project_ignore_files'])
+
+
 set enc=utf-8
 set scroll=5
 let g:airline_powerline_fonts = 1
@@ -65,16 +73,18 @@ set autoread
 
 " allow NerdTree to set the Working Directory correctly
 let NERDTreeChDirMode=2
-"
-"" When vimrc is edited, reload it
-autocmd! bufwritepost nested vimrc source ~/.vim/vimrc
 
-" Remove all trailing whitespace before a file is written
-autocmd BufNewFile,BufRead *.json set ft=javascript
-autocmd BufNewFile,BufRead *.jeco set ft=html
-autocmd BufNewFile,BufRead *.coffee set ft=coffee
-autocmd BufNewFile,BufRead *.less set ft=css
-autocmd BufNewFile,BufRead *.boot set ft=clojure
+augroup file_type
+    autocmd!
+    " When vimrc is edited, reload it
+    autocmd bufwritepost nested vimrc source ~/.vim/vimrc
+    " Remove all trailing whitespace before a file is written
+    autocmd BufNewFile,BufRead *.json set ft=javascript
+    autocmd BufNewFile,BufRead *.jeco set ft=html
+    autocmd BufNewFile,BufRead *.coffee set ft=coffee
+    autocmd BufNewFile,BufRead *.less set ft=css
+    autocmd BufNewFile,BufRead *.boot set ft=clojure
+augroup end
 
 
 function! s:setGuiOptions()
@@ -113,24 +123,6 @@ if executable('coffeetags')
         \ }
         \ }
 endif
-
-function! XikiLaunch()
-  ruby << EOF
-
-    xiki_dir = ENV['XIKI_DIR']
-    ['core/ol', 'vim/line', 'vim/tree'].each {|o| load "#{xiki_dir}/lib/xiki/#{o}.rb"}
-    include Xiki
-
-    line = Line.value
-    next_line = Line.value 2
-
-    indent = line[/^ +/]
-    command = "xiki '#{line}'"
-    result = `#{command}`
-    Tree << result
-EOF
-endfunction
-
 
 function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
