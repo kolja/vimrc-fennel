@@ -28,6 +28,8 @@ nnoremap N Nzz
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
+
+" better :bd (buffer delete)
 nnoremap <leader>q :Bdelete<cr>
 
 nnoremap <leader>o :only<cr>
@@ -35,11 +37,14 @@ nnoremap <leader>o :only<cr>
 " Fast editing of the .vimrc
 nnoremap <leader>e :e! ~/.vim/vimrc<cr>
 
-" run in node
-nnoremap <leader>n :!node %<CR>
+" Fast editing of Snippets
+nnoremap <leader>ue :UltiSnipsEdit<CR>
 
 " jump to function definition in javascript
 nnoremap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
+nnoremap <leader>s :%s/\v
+
+" search and replace
 nnoremap <leader>s :%s/\v
 
 " move blocks of text in visual mode
@@ -68,8 +73,9 @@ vnoremap <C-q> <esc>'<<C-q>'>$
 nnoremap / /\v
 
 nnoremap <leader>l :set list!<CR>
-nnoremap <leader>ue :UltiSnipsEdit<CR>
-nnoremap <leader>n :!node %<cr>
+
+" run in node
+nnoremap <leader>n :!node %<CR>
 
 " --------------------- From Drews vimrc:
 " Visual line repeat

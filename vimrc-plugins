@@ -1,4 +1,5 @@
 
+filetype off
 " for docs see: help vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -39,3 +40,4 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'genutils'
 Plugin 'Rykka/riv.vim'
 call vundle#end()
+filetype plugin indent on
