@@ -11,10 +11,18 @@ nnoremap <D-left> :bp<CR>
 nnoremap <D-right> :bn<CR>
 nnoremap <up> <C-y>
 nnoremap <down> <C-e>
+
+" create split windows intuitively
 nnoremap <C-right> <C-W>v
 nnoremap <C-left> <C-W>v<C-W>l<CR>
 nnoremap <C-up> <C-W>s<C-W>j<CR>
 nnoremap <C-down> <C-W>s
+
+" Smart way to move beteen windows
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 
 " reload chrome from within vim
 nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
@@ -25,6 +33,9 @@ nnoremap tt :NERDTreeTabsToggle<CR>
 
 nnoremap n nzz
 nnoremap N Nzz
+
+" visual Block mode
+nnoremap <leader>v v<C-v>
 
 " Fast saving
 nnoremap <leader>w :w!<cr>
@@ -55,11 +66,6 @@ vnoremap <down> xp`[V`]
 noremap <leader>d :nohlsearch<CR>
 noremap <leader>h <ctrl-w>
 
-" Smart way to move beteen windows
-noremap <C-j> <C-W>j
-noremap <C-k> <C-W>k
-noremap <C-h> <C-W>h
-noremap <C-l> <C-W>l
 
 " intuitive paste
 nnoremap <C-V> "+gP
