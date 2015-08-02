@@ -14,14 +14,19 @@ set enc=utf-8
 set scroll=5
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-" let g:user_emmet_leader_key='`'
-" let g:user_emmet_expandabbr_key = '`'
+let g:user_emmet_leader_key='`'
+let g:user_emmet_expandabbr_key = '`'
 let g:UltiSnipsEditSplit = 'vertical'
 " riv compatibility with snipmate
 let g:riv_i_tab_pum_next = 0
 let g:riv_ignored_imaps = "<Tab>"
 set laststatus=1
 set t_Co=256
+
+let g:paredit_shortmaps = 1
+let g:paredit_electric_return = 1
+let g:paredit_smartjump = 1
+let g:paredit_mode = 1
 
 let g:agprg="ag --column --smart-case -U"
 
@@ -117,4 +122,12 @@ function! Preserve(command)
     call cursor(l, c)
 endfunction
 
-
+function! g:ToggleParedit()
+    if g:paredit_mode
+        let g:paredit_mode = 0
+        echom "ParEdit mode off"
+    else
+        let g:paredit_mode = 1
+        echom "ParEdit mode on"
+    endif
+endfunction

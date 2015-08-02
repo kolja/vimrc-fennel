@@ -1,7 +1,8 @@
 
 " ------------------- Key mappings
-
+"
 let mapleader = ","
+let maplocalleader = " "
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
 nnoremap \ ,
 
@@ -66,6 +67,7 @@ vnoremap <down> xp`[V`]
 noremap <leader>d :nohlsearch<CR>
 noremap <leader>h <ctrl-w>
 
+nnoremap tp :call ToggleParedit()<cr>
 
 " intuitive paste
 nnoremap <C-V> "+gP

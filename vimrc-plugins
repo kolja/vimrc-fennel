@@ -3,7 +3,7 @@ filetype off
 " for docs see: help vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 Plugin 'L9'
 Plugin 'moll/vim-bbye.git'
 Plugin 'Shougo/unite.vim'
@@ -19,9 +19,8 @@ Plugin 'tpope/vim-repeat.git'
 " see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-classpath'
-Plugin 'guns/vim-clojure-static'
-Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-leiningen'
+Plugin 'vim-scripts/paredit.vim'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'mattn/emmet-vim'
