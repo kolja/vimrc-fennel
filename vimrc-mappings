@@ -3,6 +3,11 @@
 "
 let mapleader = ","
 let maplocalleader = " "
+
+" what's missing from sexp
+" join adjacent forms
+noremap <localleader>j B>)hdsf
+
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
 nnoremap \ ,
 
@@ -39,7 +44,7 @@ nnoremap N Nzz
 nnoremap <leader>v v<C-v>
 
 " Fast saving
-nnoremap <leader>w :w!<cr>
+" nnoremap <leader>w :w!<cr>
 
 " better :bd (buffer delete)
 nnoremap <leader>q :Bdelete<cr>
@@ -57,7 +62,7 @@ nnoremap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
 nnoremap <leader>s :%s/\v
 
 " search and replace
-nnoremap <leader>s :%s/\v
+nnoremap <leader>s :%s/
 
 " move blocks of text in visual mode
 vnoremap <up> xkP`[V`]

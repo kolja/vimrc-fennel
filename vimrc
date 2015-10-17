@@ -12,18 +12,18 @@ call unite#custom#source(
 
 set enc=utf-8
 set scroll=5
+set scrolloff=7
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:user_emmet_leader_key='`'
 let g:user_emmet_expandabbr_key = '`'
 let g:UltiSnipsEditSplit = 'vertical'
-" riv compatibility with snipmate
-let g:riv_i_tab_pum_next = 0
-let g:riv_ignored_imaps = "<Tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 set laststatus=1
 set t_Co=256
 
-let g:paredit_shortmaps = 1
 let g:paredit_electric_return = 1
 let g:paredit_smartjump = 1
 let g:paredit_mode = 1
@@ -43,6 +43,8 @@ set smarttab
 set expandtab
 set autoindent
 set laststatus=2
+set shellxescape="&|<>()@^
+set cryptmethod=blowfish
 
 " don't use swapfiles. Use git instead
 set nobackup
@@ -71,6 +73,8 @@ set autoread
 
 " allow NerdTree to set the Working Directory correctly
 let NERDTreeChDirMode=2
+
+command! Figwheel :Piggieback! (do (require 'figwheel-sidecar.repl-api) (figwheel-sidecar.repl-api/cljs-repl))
 
 augroup file_type
     autocmd!

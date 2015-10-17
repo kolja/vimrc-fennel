@@ -1,0 +1,23 @@
+snippet ns "(ns ...)"
+(ns cucato.components.${1:name}
+	(:require [cljs.pprint :refer [pprint]]))
+endsnippet
+
+snippet defn "(defn ...)"
+(defn ${1:name} [${2:arg}]
+	${VISUAL}${0})
+endsnippet
+
+snippet let "(let [])"
+(let [${1:name} ${2:${VISUAL}}]
+)${0}
+endsnippet
+
+snippet defm "(defmulti ...)"
+(defmulti ${1:name}
+	${2:"Documentation"}
+	(fn [${3}] ${4}))
+
+(defmethod $1 ${5:dispatch-val} [$3]
+	${0})
+endsnippet
