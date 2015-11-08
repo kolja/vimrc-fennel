@@ -72,7 +72,6 @@ vnoremap <down> xp`[V`]
 noremap <leader>d :nohlsearch<CR>
 noremap <leader>h <ctrl-w>
 
-nnoremap tp :call ToggleParedit()<cr>
 
 " intuitive paste
 nnoremap <C-V> "+gP
@@ -95,5 +94,6 @@ nnoremap <leader>n :!node %<CR>
 xnoremap . :normal .<CR>
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
+vnoremap <leader><space> :call Preserve("'<,'>s/\\s\\+$//e")<CR>
 nnoremap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
 nnoremap <leader>u :call Preserve("Gread -")<CR>

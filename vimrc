@@ -24,10 +24,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 set laststatus=1
 set t_Co=256
 
-let g:paredit_electric_return = 1
-let g:paredit_smartjump = 1
-let g:paredit_mode = 1
-
 let g:agprg="ag --column --smart-case -U"
 
 scriptencoding utf-8
@@ -86,6 +82,7 @@ augroup file_type
     autocmd BufNewFile,BufRead *.coffee set ft=coffee
     autocmd BufNewFile,BufRead *.less set ft=css
     autocmd BufNewFile,BufRead *.boot set ft=clojure
+    autocmd BufNewFile,BufRead *.edn set ft=clojure
 augroup end
 
 function! s:setGuiOptions()
