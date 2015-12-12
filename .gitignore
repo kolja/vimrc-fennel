@@ -1,3 +1,4 @@
 bundle/*
 bundle/*/
 !bundle/Vundle.vim
+init.vim

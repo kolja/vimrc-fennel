@@ -11,13 +11,6 @@ noremap <localleader>j B>)hdsf
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
 nnoremap \ ,
 
-" Use Arrow keys to navigate buffers and create new windows
-" see: http://www.rousette.org.uk/blog/archives/vim-and-zsh-oh-my/
-nnoremap <D-left> :bp<CR>
-nnoremap <D-right> :bn<CR>
-nnoremap <up> <C-y>
-nnoremap <down> <C-e>
-
 " create split windows intuitively
 nnoremap <C-right> <C-W>v
 nnoremap <C-left> <C-W>v<C-W>l<CR>
@@ -29,6 +22,15 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
+
+" nvim specific mappings
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <C-j> <C-W>j
+    tnoremap <C-k> <C-W>k
+    tnoremap <C-h> <C-W>h
+    tnoremap <C-l> <C-W>l
+endif
 
 " reload chrome from within vim
 nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>

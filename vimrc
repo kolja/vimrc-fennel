@@ -9,18 +9,23 @@ call unite#custom#source(
         \  'matcher_hide_current_file',
         \  'matcher_project_ignore_files'])
 
-
 set enc=utf-8
 set scroll=5
 set scrolloff=7
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:user_emmet_leader_key='`'
-let g:user_emmet_expandabbr_key = '`'
+" let g:user_emmet_leader_key='`'
+" let g:user_emmet_expandabbr_key = '`'
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" nvim specific config
+if has('nvim')
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+endif
+
 set laststatus=1
 set t_Co=256
 
@@ -40,7 +45,7 @@ set expandtab
 set autoindent
 set laststatus=2
 set shellxescape="&|<>()@^
-set cryptmethod=blowfish
+"set cryptmethod=blowfish
 
 " don't use swapfiles. Use git instead
 set nobackup
@@ -85,8 +90,9 @@ augroup file_type
     autocmd BufNewFile,BufRead *.edn set ft=clojure
 augroup end
 
+"    if &t_Co > 2 || has("gui_running")
+"    endif
 function! s:setGuiOptions()
-    if &t_Co > 2 || has("gui_running")
         syntax on
         set guioptions=-t " don't show the menu
         set guioptions=+R " show scrollbar
@@ -95,12 +101,16 @@ function! s:setGuiOptions()
         set mousehide     " Hide the mouse when typing text
         set guifont=Meslo\ LG\ M\ for\ Powerline:h13
         set anti
+        set background=dark
+        let g:solarized_visibility = "high"
+        let g:solarized_contrast = "high"
+        let g:solarized_termcolors = 16
+        let g:solarized_termtrans = 1
         " my favourites:
         " candycode, darkburn, dante, redblack,
         " ir_black, jellybeans, cthulhian,
-        " darkdesert, darkocean
-        colorscheme ir_black
-    endif
+        " darkdesert, darkocean, solarized
+        colorscheme solarized
 endfunction
 
 call s:setGuiOptions()
