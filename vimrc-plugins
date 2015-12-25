@@ -1,47 +1,46 @@
 
-filetype off
-" for docs see: help vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'          " Plugin management
-Plugin 'L9'
-Plugin 'moll/vim-bbye.git'          " intuitive closing of Buffers, altervative to :bd
-Plugin 'Shougo/unite.vim'
-Plugin 'rking/ag.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'bling/vim-airline'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat.git'
-Plugin 'scrooloose/syntastic'
+call plug#begin('~/.vim/bundle')
+"Plug 'L9' " general purpose utility functions
+Plug 'moll/vim-bbye'          " intuitive closing of Buffers, altervative to :bd
+Plug 'Shougo/unite.vim'
+"Plug 'rking/ag.vim'
+"Plug 'Shougo/vimproc.vim'
+Plug 'bling/vim-airline'
+Plug 'flazz/vim-colorschemes'
+"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+"Plug 'scrooloose/syntastic'
 
-" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-classpath'
-Plugin 'tpope/vim-leiningen'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+"" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
+"Plug 'tpope/vim-fireplace'
+"Plug 'tpope/vim-classpath'
+"Plug 'tpope/vim-leiningen'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+" Plug 'neovim/node-host'
+" Plug 'snoe/nvim-parinfer.js'
 
-" Haskell support
-Plugin 'dag/vim2hs'
+"" Haskell support
+"Plug 'dag/vim2hs'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'Twinside/vim-haskellConceal'
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'mattn/emmet-vim'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'tomtom/tlib_vim'
-Plugin 'sirver/ultisnips'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'groenewege/vim-less'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'godlygeek/tabular'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'tomtom/tregisters_vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'genutils'
-Plugin 'Rykka/riv.vim'
-call vundle#end()
-filetype plugin indent on
+"Plug 'MarcWeber/vim-addon-mw-utils'
+"Plug 'mattn/emmet-vim'
+"Plug 'plasticboy/vim-markdown'
+"Plug 'tomtom/tlib_vim'
+"Plug 'sirver/ultisnips'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+"Plug 'marijnh/tern_for_vim'
+"Plug 'groenewege/vim-less'
+Plug 'michaeljsmith/vim-indent-object'
+"Plug 'godlygeek/tabular'
+"Plug 'maksimr/vim-jsbeautify'
+"Plug 'tomtom/tregisters_vim'
+Plug 'scrooloose/nerdcommenter'
+"Plug 'genutils'
+"Plug 'Rykka/riv.vim'
+
+call plug#end()
