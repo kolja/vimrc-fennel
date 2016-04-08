@@ -11,6 +11,10 @@ noremap <localleader>j B>)hdsf
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
 nnoremap \ ,
 
+" navigate buffers with ease
+nnoremap <D-right> :bn<CR>
+nnoremap <D-left> :bp<CR>
+
 " create split windows intuitively
 nnoremap <C-right> <C-W>v
 nnoremap <C-left> <C-W>v<C-W>l<CR>
