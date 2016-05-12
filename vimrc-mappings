@@ -12,8 +12,12 @@ noremap <localleader>j B>)hdsf
 nnoremap \ ,
 
 " navigate buffers with ease
-nnoremap <D-right> :bn<CR>
-nnoremap <D-left> :bp<CR>
+" these don't work:
+nnoremap <C-S-right> :bn<CR>
+nnoremap <C-S-left> :bp<CR>
+" so use these for now:
+nnoremap ˙ :bp<CR>
+nnoremap ¬ :bn<CR>
 
 " create split windows intuitively
 nnoremap <C-right> <C-W>v

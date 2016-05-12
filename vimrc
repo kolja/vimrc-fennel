@@ -107,7 +107,6 @@ function! s:setGuiOptions()
         set ch=2          " Make command line two lines high
         set mousehide     " Hide the mouse when typing text
         set guifont=Meslo\ LG\ M\ for\ Powerline:h13
-        set anti
         set background=dark
         let g:solarized_visibility = "high"
         let g:solarized_contrast = "high"
