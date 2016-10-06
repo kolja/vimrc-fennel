@@ -1,45 +1,56 @@
 
+function! DoRemote(arg)
+    UpdateRemotePlugins
+endfunction
+
 call plug#begin('~/.vim/bundle')
 "Plug 'L9' " general purpose utility functions
 Plug 'moll/vim-bbye'          " intuitive closing of Buffers, altervative to :bd
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim'
 "Plug 'Shougo/vimproc.vim'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
+Plug 'felixhummel/setcolors.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 "Plug 'scrooloose/syntastic'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 "" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-leiningen'
-
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
-" Plug 'neovim/node-host'
-" Plug 'snoe/nvim-parinfer.js'
+Plug 'SevereOverfl0w/async-clj-omni'
+Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
 
 "" Haskell support
-Plug 'neovimhaskell/haskell-vim'
-Plug 'Twinside/vim-haskellConceal'
+" Plug 'neovimhaskell/haskell-vim'
+" Plug 'Twinside/vim-haskellConceal'
 
 " Elm support
-Plug 'lambdatoast/elm.vim'
+" Plug 'lambdatoast/elm.vim'
 
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'mattn/emmet-vim'
-"Plug 'tomtom/tlib_vim'
-"Plug 'sirver/ultisnips'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'mattn/emmet-vim'
+" Plug 'tomtom/tlib_vim'
+" Plug 'sirver/ultisnips'
+
 Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdcommenter'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'michaeljsmith/vim-indent-object'
 "Plug 'godlygeek/tabular'
 "Plug 'maksimr/vim-jsbeautify'
 "Plug 'tomtom/tregisters_vim'
-Plug 'scrooloose/nerdcommenter'
 "Plug 'genutils'
 "Plug 'Rykka/riv.vim'
 

@@ -2,11 +2,7 @@
 " ------------------- Key mappings
 "
 let mapleader = ","
-let maplocalleader = " "
-
-" what's missing from sexp
-" join adjacent forms
-noremap <localleader>j B>)hdsf
+let maplocalleader = ","
 
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
 nnoremap \ ,
@@ -16,8 +12,8 @@ nnoremap \ ,
 nnoremap <C-S-right> :bn<CR>
 nnoremap <C-S-left> :bp<CR>
 " so use these for now:
-nnoremap ˙ :bp<CR>
-nnoremap ¬ :bn<CR>
+nnoremap H :bp<CR>
+nnoremap L :bn<CR>
 
 " create split windows intuitively
 nnoremap <C-right> <C-W>v
@@ -41,11 +37,14 @@ if has('nvim')
 endif
 
 " reload chrome from within vim
-nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
+" nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
+nnoremap <leader>r :Require!<cr><cr>
 
-nnoremap <leader>f :Unite -start-insert file_rec/async<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Unite buffer<CR>
 nnoremap tt :NERDTreeTabsToggle<CR>
+
+nnoremap <leader>g :GitGutterToggle<CR>
 
 nnoremap n nzz
 nnoremap N Nzz
@@ -53,13 +52,8 @@ nnoremap N Nzz
 " visual Block mode
 nnoremap <leader>v v<C-v>
 
-" Fast saving
-" nnoremap <leader>w :w!<cr>
-
 " better :bd (buffer delete)
 nnoremap <leader>q :Bdelete<cr>
-
-nnoremap <leader>o :only<cr>
 
 " Fast editing of the .vimrc
 nnoremap <leader>e :e! ~/.vim/vimrc<cr>

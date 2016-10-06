@@ -7,7 +7,30 @@ function! s:CombineSelection(line1, line2, cp)
   execute a:line1.','.a:line2.'s/\%V[^[:cntrl:]]/&'.char.'/ge'
 endfunction
 " ----------------------------------------------------------------
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source(
@@ -19,6 +42,20 @@ call unite#custom#source(
 set enc=utf-8
 set scroll=5
 set scrolloff=7
+
+"------------------------------------- deoplete --------------------------------
+"
+set runtimepath+=~/.vim/bundle/deoplete.nvim/
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
+let g:deoplete#enable_smart_case = 1
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-j> deoplete#mappings#smart_close_popup()
+inoremap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
+
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " let g:user_emmet_leader_key='`'
@@ -31,6 +68,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " nvim specific config
 if has('nvim')
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+    " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
 set laststatus=1
@@ -93,12 +131,12 @@ augroup file_type
     autocmd BufNewFile,BufRead *.jeco set ft=html
     autocmd BufNewFile,BufRead *.coffee set ft=coffee
     autocmd BufNewFile,BufRead *.less set ft=css
+    autocmd BufNewFile,BufRead *.styl set ft=css
     autocmd BufNewFile,BufRead *.boot set ft=clojure
+    autocmd BufNewFile,BufRead *.cljs set ft=clojure
     autocmd BufNewFile,BufRead *.edn set ft=clojure
 augroup end
 
-"    if &t_Co > 2 || has("gui_running")
-"    endif
 function! s:setGuiOptions()
         syntax on
         set guioptions=-t " don't show the menu
@@ -110,12 +148,14 @@ function! s:setGuiOptions()
         set background=dark
         let g:solarized_visibility = "high"
         let g:solarized_contrast = "high"
-        let g:solarized_termcolors = 16
+        let g:solarized_termcolors = 256
         let g:solarized_termtrans = 1
-        " my favourites:
-        " candycode, darkburn, dante, redblack,
+        " my favourites (dark):
+        " candycode, darkburn, dante, redblack, antares
         " ir_black, jellybeans, cthulhian,
-        " darkdesert, darkocean, solarized
+        " darkdesert, solarized
+        " (light)
+        " simpleandfriendly
         colorscheme solarized
 endfunction
 
@@ -124,6 +164,21 @@ call s:setGuiOptions()
 function! ExecuteMacroOverVisualRange()
     echo "@".getcmdline()
     execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+nnoremap <leader>cc :call ToggleLightDarkColorscheme()<cr>
+
+let g:darkColorScheme=1
+function! ToggleLightDarkColorscheme()
+    if g:darkColorScheme
+        colorscheme pencil " moria
+        set background=light
+        let g:darkColorScheme=0
+    else
+        colorscheme solarized " lucid, znake, gruvbox
+        set background=dark
+        let g:darkColorScheme=1
+    endif
 endfunction
 
 " Strip trailing whitespace
