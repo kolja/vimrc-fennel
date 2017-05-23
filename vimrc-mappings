@@ -4,6 +4,9 @@
 let mapleader = ","
 let maplocalleader = ","
 
+command Time :echom system("date '+\%H:\%M' | tr -d '\n'")
+nnoremap <leader>t :Time<CR>
+
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
 nnoremap \ ,
 
@@ -12,8 +15,8 @@ nnoremap \ ,
 nnoremap <C-S-right> :bn<CR>
 nnoremap <C-S-left> :bp<CR>
 " so use these for now:
-nnoremap H :bp<CR>
-nnoremap L :bn<CR>
+nnoremap ˙ :bp<CR>
+nnoremap ¬ :bn<CR>
 
 " create split windows intuitively
 nnoremap <C-right> <C-W>v
@@ -38,6 +41,7 @@ endif
 
 " reload chrome from within vim
 " nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
+nmap ? <Plug>DashSearch
 nnoremap <leader>r :Require!<cr><cr>
 
 nnoremap <leader>f :Files<CR>
@@ -48,6 +52,7 @@ nnoremap <leader>g :GitGutterToggle<CR>
 
 nnoremap n nzz
 nnoremap N Nzz
+
 
 " visual Block mode
 nnoremap <leader>v v<C-v>
@@ -87,6 +92,9 @@ vnoremap <C-q> <esc>'<<C-q>'>$
 
 " always use 'very magic' regexes
 nnoremap / /\v
+
+" fix indentation after splice
+nnoremap <leader>o <leader>o==
 
 nnoremap <leader>l :set list!<CR>
 

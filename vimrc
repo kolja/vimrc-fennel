@@ -2,6 +2,9 @@
 source ~/.vim/vimrc-plugins
 source ~/.vim/vimrc-mappings
 
+let g:clj_fmt_config_dir = '.lein/profiles.clj'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 function! s:CombineSelection(line1, line2, cp)
   execute 'let char = "\u'.a:cp.'"'
   execute a:line1.','.a:line2.'s/\%V[^[:cntrl:]]/&'.char.'/ge'
@@ -43,6 +46,7 @@ set enc=utf-8
 set scroll=5
 set scrolloff=7
 
+let g:UltiSnipsUsePythonVersion = 3
 "------------------------------------- deoplete --------------------------------
 "
 set runtimepath+=~/.vim/bundle/deoplete.nvim/
@@ -61,14 +65,13 @@ let g:airline#extensions#tabline#enabled = 1
 " let g:user_emmet_leader_key='`'
 " let g:user_emmet_expandabbr_key = '`'
 let g:UltiSnipsEditSplit = 'vertical'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="`"
+let g:UltiSnipsJumpForwardTrigger="`"
+let g:UltiSnipsJumpBackwardTrigger="~"
 
 " nvim specific config
 if has('nvim')
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-    " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
 set laststatus=1
@@ -126,15 +129,10 @@ augroup file_type
     autocmd!
     " When vimrc is edited, reload it
     autocmd bufwritepost nested vimrc source ~/.vim/vimrc
-    " Remove all trailing whitespace before a file is written
     autocmd BufNewFile,BufRead *.json set ft=javascript
-    autocmd BufNewFile,BufRead *.jeco set ft=html
     autocmd BufNewFile,BufRead *.coffee set ft=coffee
-    autocmd BufNewFile,BufRead *.less set ft=css
-    autocmd BufNewFile,BufRead *.styl set ft=css
-    autocmd BufNewFile,BufRead *.boot set ft=clojure
-    autocmd BufNewFile,BufRead *.cljs set ft=clojure
-    autocmd BufNewFile,BufRead *.edn set ft=clojure
+    autocmd BufNewFile,BufRead *.less,*.scss,*.styl set ft=css
+    autocmd BufNewFile,BufRead *.boot,*.cljs,*.edn set ft=clojure
 augroup end
 
 function! s:setGuiOptions()
@@ -166,7 +164,6 @@ function! ExecuteMacroOverVisualRange()
     execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-nnoremap <leader>cc :call ToggleLightDarkColorscheme()<cr>
 
 let g:darkColorScheme=1
 function! ToggleLightDarkColorscheme()
@@ -180,6 +177,8 @@ function! ToggleLightDarkColorscheme()
         let g:darkColorScheme=1
     endif
 endfunction
+
+nnoremap <leader>c :call ToggleLightDarkColorscheme()<cr>
 
 " Strip trailing whitespace
 function! Preserve(command)

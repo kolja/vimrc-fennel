@@ -19,18 +19,22 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+" Plug 'neovim/node-host' " dependency to cljrefactor
 
 "" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
+" Plug 'clojure-vim/acid.nvim' " doesn't quite work yet, apparently
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-leiningen'
+Plug 'tpope/vim-salve' " files will take a long time to open after project.clj has been changed
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'SevereOverfl0w/async-clj-omni'
-Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
+" Plug 'SevereOverfl0w/async-clj-omni'
+" Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
+" Plug 'clojure-vim/clj-refactor.nvim'
+" Plug 'kolja/vim-cljfmt'
 
 "" Haskell support
 " Plug 'neovimhaskell/haskell-vim'
@@ -39,19 +43,22 @@ Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
 " Elm support
 " Plug 'lambdatoast/elm.vim'
 
+Plug 'Rykka/riv.vim'
+Plug 'Rykka/InstantRst'
+
 " Plug 'MarcWeber/vim-addon-mw-utils'
 " Plug 'mattn/emmet-vim'
 " Plug 'tomtom/tlib_vim'
 " Plug 'sirver/ultisnips'
 
+Plug 'rizzatti/dash.vim'
 Plug 'scrooloose/nerdtree'
-"Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'michaeljsmith/vim-indent-object'
 "Plug 'godlygeek/tabular'
 "Plug 'maksimr/vim-jsbeautify'
 "Plug 'tomtom/tregisters_vim'
 "Plug 'genutils'
-"Plug 'Rykka/riv.vim'
 
 call plug#end()
