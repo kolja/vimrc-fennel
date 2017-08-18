@@ -35,6 +35,9 @@ endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
+" feed Ag into fzf
+command! -bang -nargs=* Ack call fzf#vim#ag(<q-args>, {'down': '40%', 'options': --no-color'})
+
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#custom#source(
         \ 'file', 'matchers',

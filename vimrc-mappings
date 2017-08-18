@@ -11,33 +11,33 @@ nnoremap <leader>t :Time<CR>
 nnoremap \ ,
 
 " navigate buffers with ease
-" these don't work:
-nnoremap <C-S-right> :bn<CR>
-nnoremap <C-S-left> :bp<CR>
-" so use these for now:
-nnoremap ˙ :bp<CR>
-nnoremap ¬ :bn<CR>
+" note: this requires system-level config, mapping cmd-hjkl to
+" cmd-<arrow-keys>)
+nnoremap <S-C-right> :bn<CR>
+nnoremap <S-C-left> :bp<CR>
+tnoremap <S-C-right> <C-\><C-n>:bn<CR>
+tnoremap <S-C-left> <C-\><C-n>:bp<CR>
+tnoremap <ESC> <C-\><C-n>
+
+autocmd BufWinEnter,WinEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
 
 " create split windows intuitively
-nnoremap <C-right> <C-W>v
-nnoremap <C-left> <C-W>v<C-W>l<CR>
-nnoremap <C-up> <C-W>s<C-W>j<CR>
-nnoremap <C-down> <C-W>s
+nnoremap <C-right> :set splitright<CR>:vnew<CR>
+nnoremap <C-left> :set nosplitright<CR>:vnew<CR>
+nnoremap <C-up> :set nosplitbelow<CR>:new<CR>
+nnoremap <C-down> :set splitbelow<CR>:new<CR>
 
 " Smart way to move beteen windows
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
+tnoremap <C-j> <C-\><C-n><C-W>j
+tnoremap <C-k> <C-\><C-n><C-W>k
+tnoremap <C-h> <C-\><C-n><C-W>h
+tnoremap <C-l> <C-\><C-n><C-W>l
 
-" nvim specific mappings
-if has('nvim')
-    tnoremap <Esc> <C-\><C-n>
-    tnoremap <C-j> <C-W>j
-    tnoremap <C-k> <C-W>k
-    tnoremap <C-h> <C-W>h
-    tnoremap <C-l> <C-W>l
-endif
 
 " reload chrome from within vim
 " nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
@@ -80,12 +80,6 @@ vnoremap <down> xp`[V`]
 " leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
 noremap <leader>d :nohlsearch<CR>
 noremap <leader>h <ctrl-w>
-
-
-" intuitive paste
-nnoremap <C-V> "+gP
-inoremap <C-V> <ESC><C-V>i
-vnoremap <C-C> "+y
 
 " make A and I work in visual mode as they do in visual block mode
 vnoremap <C-q> <esc>'<<C-q>'>$

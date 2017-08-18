@@ -22,7 +22,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-" Plug 'neovim/node-host' " dependency to cljrefactor
+Plug '~/cljs-host'
+Plug 'neovim/node-host' " dependency to cljrefactor
 
 "" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
 " Plug 'clojure-vim/acid.nvim' " doesn't quite work yet, apparently
