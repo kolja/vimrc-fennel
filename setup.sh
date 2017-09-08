@@ -14,6 +14,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 echo "make symbolic link of vimrc"
 ln -s ~/.vim/vimrc ~/.vimrc
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
 
 # install plugins
 vim +PlugInstall

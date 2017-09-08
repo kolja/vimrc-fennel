@@ -22,11 +22,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug '~/cljs-host'
-Plug 'neovim/node-host' " dependency to cljrefactor
 
 "" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
 " Plug 'clojure-vim/acid.nvim' " doesn't quite work yet, apparently
+" Plug 'neovim/node-host' " dependency to cljrefactor
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-salve' " files will take a long time to open after project.clj has been changed

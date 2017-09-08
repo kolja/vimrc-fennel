@@ -15,9 +15,11 @@ nnoremap \ ,
 " cmd-<arrow-keys>)
 nnoremap <S-C-right> :bn<CR>
 nnoremap <S-C-left> :bp<CR>
-tnoremap <S-C-right> <C-\><C-n>:bn<CR>
-tnoremap <S-C-left> <C-\><C-n>:bp<CR>
-tnoremap <ESC> <C-\><C-n>
+if has('nvim')
+    tnoremap <S-C-right> <C-\><C-n>:bn<CR>
+    tnoremap <S-C-left> <C-\><C-n>:bp<CR>
+    tnoremap <ESC> <C-\><C-n>
+endif
 
 autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
@@ -33,10 +35,12 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
-tnoremap <C-j> <C-\><C-n><C-W>j
-tnoremap <C-k> <C-\><C-n><C-W>k
-tnoremap <C-h> <C-\><C-n><C-W>h
-tnoremap <C-l> <C-\><C-n><C-W>l
+if has('nvim')
+    tnoremap <C-j> <C-\><C-n><C-W>j
+    tnoremap <C-k> <C-\><C-n><C-W>k
+    tnoremap <C-h> <C-\><C-n><C-W>h
+    tnoremap <C-l> <C-\><C-n><C-W>l
+endif
 
 
 " reload chrome from within vim

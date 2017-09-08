@@ -5,6 +5,12 @@ source ~/.vim/vimrc-mappings
 let g:clj_fmt_config_dir = '.lein/profiles.clj'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
+" modify selected text using combining diacritics
+command! -range -nargs=0 Overline        call s:CombineSelection(<line1>, <line2>, '0305')
+command! -range -nargs=0 Underline       call s:CombineSelection(<line1>, <line2>, '0332')
+command! -range -nargs=0 DoubleUnderline call s:CombineSelection(<line1>, <line2>, '0333')
+command! -range -nargs=0 Strikethrough   call s:CombineSelection(<line1>, <line2>, '0336')
+
 function! s:CombineSelection(line1, line2, cp)
   execute 'let char = "\u'.a:cp.'"'
   execute a:line1.','.a:line2.'s/\%V[^[:cntrl:]]/&'.char.'/ge'
@@ -95,7 +101,6 @@ set smarttab
 set expandtab
 set autoindent
 set laststatus=2
-set shellxescape="&|<>()@^
 "set cryptmethod=blowfish
 
 " don't use swapfiles. Use git instead
