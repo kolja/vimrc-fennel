@@ -4,19 +4,27 @@
 if [ -e ~/.vimrc ]; then
   now=$(date +"%m-%d-%Y")
   old=~/vimrc-${now}.bak
-  echo "backup old vimrc to $old"
   mv ~/.vimrc $old
+  echo "old vimrc backed up to $old"
 fi
 
 # bootstrap vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-echo "make symbolic link of vimrc"
+# link .vimrc
 ln -s ~/.vim/vimrc ~/.vimrc
 mkdir -p ~/.config
 ln -s ~/.vim ~/.config/nvim
 ln -s ~/.vimrc ~/.config/nvim/init.vim
+echo "created symbolic link of vimrc"
 
 # install plugins
-vim +PlugInstall
+vim -u ~/.vim/vimrc-plugins +PlugInstall +qa!
+
+echo "==========================================="
+echo " vim setup complete"
+echo " consider installing a powerline font from"
+echo " https://github.com/powerline/fonts"
+echo "==========================================="
+

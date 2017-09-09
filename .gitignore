@@ -1,4 +1,6 @@
 bundle/*
 bundle/*/
 !bundle/Vundle.vim
+autoload/plug.vim
+vimrc-private
 init.vim
