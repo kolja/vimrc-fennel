@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # make a backup copy of existing .vimrc
 if [ -e ~/.vimrc ]; then
@@ -17,6 +18,7 @@ ln -s ~/.vim/vimrc ~/.vimrc
 mkdir -p ~/.config
 ln -s ~/.vim ~/.config/nvim
 ln -s ~/.vimrc ~/.config/nvim/init.vim
+touch ~/.vimrc-private # location for personal vim-settings
 echo "created symbolic link of vimrc"
 
 # install plugins
