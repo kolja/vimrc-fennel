@@ -24,9 +24,10 @@ echo "created symbolic link of vimrc"
 # install plugins
 vim -u ~/.vim/vimrc-plugins +PlugInstall +qa!
 
-echo "==========================================="
+echo "==============================================="
 echo " vim setup complete"
-echo " consider installing a powerline font from"
-echo " https://github.com/powerline/fonts"
-echo "==========================================="
+echo " consider installing a powerline font via"
+echo "     brew tap caskroom/fonts"
+echo "     brew cask install font-firacode-nerd-font"
+echo "==============================================="
 

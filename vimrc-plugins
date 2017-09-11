@@ -25,15 +25,14 @@ Plug 'plasticboy/vim-markdown'
 
 "" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
 " Plug 'clojure-vim/acid.nvim' " doesn't quite work yet, apparently
-" Plug 'neovim/node-host' " dependency to cljrefactor
 Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-salve' " files will take a long time to open after project.clj has been changed
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Plug 'SevereOverfl0w/async-clj-omni'
-" Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
 " Plug 'clojure-vim/clj-refactor.nvim'
+" Plug 'neovim/node-host' " dependency to cljrefactor
 " Plug 'kolja/vim-cljfmt'
 
 "" Haskell support
@@ -43,22 +42,31 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Elm support
 " Plug 'lambdatoast/elm.vim'
 
-Plug 'Rykka/riv.vim'
-Plug 'Rykka/InstantRst'
+" JavaScript support
+Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
+"Plug 'maksimr/vim-jsbeautify'
 
-" Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'mattn/emmet-vim'
-" Plug 'tomtom/tlib_vim'
-" Plug 'sirver/ultisnips'
+Plug 'neomake/neomake'
+Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
+"Plug 'Rykka/riv.vim'
+"Plug 'Rykka/InstantRst'
+
+Plug 'mattn/emmet-vim'
+Plug 'sirver/ultisnips'
+" Plug 'terryma/vim-multiple-cursors'
 
 Plug 'rizzatti/dash.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'michaeljsmith/vim-indent-object'
 "Plug 'godlygeek/tabular'
-"Plug 'maksimr/vim-jsbeautify'
 "Plug 'tomtom/tregisters_vim'
 "Plug 'genutils'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()

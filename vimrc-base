@@ -52,7 +52,8 @@ set enc=utf-8
 set scroll=5
 set scrolloff=7
 
-let g:UltiSnipsUsePythonVersion = 3
+let g:neomake_javascript_enabled_makers = ['eslint']
+
 "------------------------------------- deoplete --------------------------------
 "
 set runtimepath+=~/.vim/bundle/deoplete.nvim/
@@ -68,11 +69,14 @@ inoremap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
 " let g:user_emmet_leader_key='`'
-" let g:user_emmet_expandabbr_key = '`'
+let g:user_emmet_expandabbr_key = '`'
+
+let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsEditSplit = 'vertical'
-let g:UltiSnipsExpandTrigger="`"
-let g:UltiSnipsJumpForwardTrigger="`"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="~"
 
 " nvim specific config
@@ -143,7 +147,7 @@ function! s:setGuiOptions()
     set hlsearch
     set ch=2          " Make command line two lines high
     set mousehide     " Hide the mouse when typing text
-    set guifont=Meslo\ LG\ M\ for\ Powerline:h13
+    set guifont=FiraCode-Regular:h11
     set background=dark
     let g:solarized_visibility = "high"
     let g:solarized_contrast = "high"
