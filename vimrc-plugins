@@ -19,7 +19,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
@@ -45,9 +44,11 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " JavaScript support
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
-"Plug 'maksimr/vim-jsbeautify'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 
-Plug 'neomake/neomake'
+Plug 'neomake/neomake', {'do': 'npm install -g npm-which'}
 Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 

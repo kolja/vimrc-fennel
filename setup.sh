@@ -29,5 +29,8 @@ echo " vim setup complete"
 echo " consider installing a powerline font via"
 echo "     brew tap caskroom/fonts"
 echo "     brew cask install font-firacode-nerd-font"
+echo ""
+echo " Some plugins require Python3, so:"
+echo "     sudo pip3 install --upgrade neovim"
 echo "==============================================="
 
