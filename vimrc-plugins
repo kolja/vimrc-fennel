@@ -50,7 +50,8 @@ Plug 'prettier/vim-prettier', {
 
 Plug 'neomake/neomake', {'do': 'npm install -g npm-which'}
 Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'ternjs/tern_for_vim', {'do': 'npm install && npm install -g tern' }
+Plug 'carlitux/deoplete-ternjs'
 
 "Plug 'Rykka/riv.vim'
 "Plug 'Rykka/InstantRst'
