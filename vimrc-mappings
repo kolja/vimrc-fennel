@@ -107,3 +107,7 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 vnoremap <leader><space> :call Preserve("'<,'>s/\\s\\+$//e")<CR>
 nnoremap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
 nnoremap <leader>u :call Preserve("Gread -")<CR>
+
+" check todo item
+nnoremap <leader>x :call ToggleDone()<CR>
+

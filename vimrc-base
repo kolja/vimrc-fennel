@@ -214,3 +214,13 @@ function! Preserve(command)
     call cursor(l, c)
 endfunction
 
+" check/uncheck Todo-Items that look like this:
+" [ ] mow the lawn
+function! ToggleDone()
+    if search('\[x\]', 'bcn', line("."))
+        call Preserve('.s/\[x\]/\[ \]/')
+    elseif search('\[ \]', 'bcn', line("."))
+        call Preserve('.s/\[\s\]/\[x\]/')
+    endif
+endfunction
+
