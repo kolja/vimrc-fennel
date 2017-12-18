@@ -96,6 +96,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="~"
 
+let g:highlightedyank_highlight_duration = 500
+
 " nvim specific config
 if has('nvim')
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -141,6 +143,9 @@ set list listchars=tab:››,eol:¬,trail:·
 
 " Set to auto read when a file is changed from the outside
 set autoread
+
+" hilight search/replace
+set inccommand=nosplit
 
 " allow NerdTree to set the Working Directory correctly
 let NERDTreeChDirMode=2

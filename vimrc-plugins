@@ -8,6 +8,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'moll/vim-bbye'          " intuitive closing of Buffers, altervative to :bd
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim'
+Plug 'machakann/vim-highlightedyank'
 "Plug 'Shougo/vimproc.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
