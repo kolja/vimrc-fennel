@@ -4,16 +4,24 @@ function! DoRemote(arg)
 endfunction
 
 call plug#begin('~/.vim/bundle')
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'L9' " general purpose utility functions
 Plug 'moll/vim-bbye'          " intuitive closing of Buffers, altervative to :bd
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim'
 Plug 'machakann/vim-highlightedyank'
 "Plug 'Shougo/vimproc.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+"
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+
+Plug 'iCyMind/NeoSolarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'felixhummel/setcolors.vim'
+
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
@@ -24,12 +32,15 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 "" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
-" Plug 'clojure-vim/acid.nvim' " doesn't quite work yet, apparently
-Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-classpath'
-Plug 'tpope/vim-salve' " files will take a long time to open after project.clj has been changed
+" Plug 'clojure-vim/acid.nvim', { 'do': ':UpdateRemotePlugins' Plug 'clojure-vim/acid.nvim'} " doesn't quite work yet, apparently
+Plug 'kolja/repl-alliance'
+" Plug 'tpope/vim-fireplace'
+" Plug 'jebberjeb/clojure-socketrepl.nvim'
+" Plug 'tpope/vim-classpath'
+" Plug 'tpope/vim-salve' " files will take a long time to open after project.clj has been changed
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
+" Plug 'liquidz/vim-iced', {'for': 'clojure'}
 " Plug 'SevereOverfl0w/async-clj-omni'
 " Plug 'clojure-vim/clj-refactor.nvim'
 " Plug 'neovim/node-host' " dependency to cljrefactor
@@ -42,6 +53,10 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " Elm support
 " Plug 'lambdatoast/elm.vim'
 
+" C# support
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'dense-analysis/ale'
+
 " JavaScript support
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
@@ -50,9 +65,9 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 
 Plug 'neomake/neomake', {'do': 'npm install -g npm-which'}
-Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
+" Plug 'Shougo/deoplete.nvim', {'do': function('DoRemote')}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install && npm install -g tern' }
-Plug 'carlitux/deoplete-ternjs'
+" Plug 'carlitux/deoplete-ternjs'
 
 "Plug 'Rykka/riv.vim'
 "Plug 'Rykka/InstantRst'

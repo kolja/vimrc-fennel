@@ -5,6 +5,7 @@ let mapleader = ","
 let maplocalleader = ","
 
 command Time :echom system("date '+\%H:\%M' | tr -d '\n'")
+
 nnoremap <leader>t :Time<CR>
 
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
@@ -13,11 +14,13 @@ nnoremap \ ,
 " navigate buffers with ease
 " note: this requires system-level config, mapping cmd-hjkl to
 " cmd-<arrow-keys>)
-nnoremap <S-C-right> :bn<CR>
-nnoremap <S-C-left> :bp<CR>
+nnoremap ƒ :bn<CR>
+nnoremap ∂ :bp<CR>
+inoremap ƒ <ESC>:bn<CR>
+inoremap ∂ <ESC>:bp<CR>
 if has('nvim')
-    tnoremap <S-C-right> <C-\><C-n>:bn<CR>
-    tnoremap <S-C-left> <C-\><C-n>:bp<CR>
+    tnoremap ƒ <C-\><C-n>:bn<CR>
+    tnoremap ∂ <C-\><C-n>:bp<CR>
     tnoremap <ESC> <C-\><C-n>
 endif
 
@@ -46,17 +49,21 @@ endif
 " reload chrome from within vim
 " nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
 nmap ? <Plug>DashSearch
-nnoremap <leader>r :Require!<cr><cr>
+nnoremap <leader>r :w<cr> <bar> :!%:p<cr>
 
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>g :Rg
+nnoremap <leader>G :GitGutterToggle<CR>
 nnoremap <leader>b :Unite buffer<CR>
-nnoremap tt :NERDTreeTabsToggle<CR>
+nnoremap <silent> tt :NERDTreeTabsToggle<CR>
 
-nnoremap <leader>g :GitGutterToggle<CR>
+nnoremap <silent><leader>Z :call ToggleZenMode()<CR>
 
 nnoremap n nzz
 nnoremap N Nzz
 
+" toggle colorscheme (from vimrc-base)
+nnoremap <leader>c :call ToggleLightDarkColorscheme()<cr>
 
 " visual Block mode
 nnoremap <leader>v v<C-v>
@@ -65,7 +72,8 @@ nnoremap <leader>v v<C-v>
 nnoremap <leader>q :Bdelete<cr>
 
 " Fast editing of the .vimrc
-nnoremap <leader>e :e! ~/.vim/vimrc<cr>
+" nnoremap <leader>e :e! ~/.vim/vimrc<cr>
+command Vimrc :e! ~/.vim/vimrc
 
 " Fast editing of Snippets
 nnoremap <leader>ue :UltiSnipsEdit<CR>

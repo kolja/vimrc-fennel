@@ -2,6 +2,18 @@
 let g:clj_fmt_config_dir = '.lein/profiles.clj'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
+" ---------------------------- Repl Alliance ------------------------------------
+"
+autocmd FileType clojure lua repl = require("unrepl"):connect()
+
+let g:replPort = 3722
+let g:replHost = "127.0.0.1"
+let g:replNamespace = "user"
+let g:replProtocol = "unrepl"
+let g:replVirtual = 1000
+let g:replElision = "●"
+
+" ----------------------------------------------------------------
 " modify selected text using combining diacritics
 command! -range -nargs=0 Overline        call s:CombineSelection(<line1>, <line2>, '0305')
 command! -range -nargs=0 Underline       call s:CombineSelection(<line1>, <line2>, '0332')
@@ -52,11 +64,12 @@ set enc=utf-8
 set scroll=5
 set scrolloff=7
 
+let g:gitgutter_override_sign_column_highlight = 0
 
 "------------------------------------- prettier ---------------------------------
 let g:prettier#config#bracket_spacing = 'true'
 "------------------------------------- neomake ---------------------------------
-let g:neomake_javascript_eslint_exe = split(system('npm-which eslint'))[0]
+let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
 let g:neomake_javascript_enabled_makers = ['eslint']
 augroup my_neomake_signs
     au!
@@ -71,11 +84,13 @@ let g:neomake_error_sign = {'text': '✕', 'texthl': 'NeomakeErrorSign'}
 let g:neomake_message_sign = {'text': '➤','texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign = {'text': 'ℹ','texthl': 'NeomakeInfoSign'}
 autocmd! BufWritePost * Neomake
+
 "------------------------------------- deoplete --------------------------------
 "
 set runtimepath+=~/.vim/bundle/deoplete.nvim/
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#keyword_patterns = {}
+" call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
 let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
 let g:deoplete#enable_smart_case = 1
 
@@ -84,27 +99,37 @@ inoremap <expr><C-j> deoplete#mappings#smart_close_popup()
 inoremap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-
-" let g:user_emmet_leader_key='`'
-let g:user_emmet_expandabbr_key = '`'
-
+"-------------------------------- lightline / bufferline -----------------------
+set noshowmode
+set showtabline=2
+autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+let g:lightline = {'colorscheme': 'solarized'}
+let g:lightline.tabline          = {'left': [['buffers']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+let g:lightline.separator = {'left': '', 'right': ''}
+let g:lightline.subseparator = {'left': '┃', 'right': '│'}
+let g:lightline#bufferline#filename_modifier = ':t'
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#unicode_symbols = 1
+" branch: E0A0
+" "ln" symbol: E0A1
+" lock: E0A2
+"------------------------------------- Ultisnips --------------------------------
 let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsEditSplit = 'vertical'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="~"
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+
+" let g:user_emmet_leader_key='`'
+let g:user_emmet_expandabbr_key = '§'
 
 let g:highlightedyank_highlight_duration = 500
 
-" nvim specific config
-if has('nvim')
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set laststatus=1
-set t_Co=256
 
 let g:agprg="ag --column --smart-case -U"
 
@@ -140,17 +165,23 @@ set number
 
 " highlight tabs and trailing spaces
 set list listchars=tab:››,eol:¬,trail:·
+set nolist
+
+" highlight NonText guifg=#80a0ff ctermfg=Black
+" highlight Whitespace guifg=#ff0000
+" highlight EndOfBuffer guifg=#ff0000
 
 " Set to auto read when a file is changed from the outside
 set autoread
+
+set termguicolors
+set t_Co=256
 
 " hilight search/replace
 set inccommand=nosplit
 
 " allow NerdTree to set the Working Directory correctly
 let NERDTreeChDirMode=2
-
-command! Figwheel :Piggieback! (do (require 'figwheel-sidecar.repl-api) (figwheel-sidecar.repl-api/cljs-repl))
 
 augroup file_type
     autocmd!
@@ -162,29 +193,16 @@ augroup file_type
     autocmd BufNewFile,BufRead *.boot,*.cljs,*.edn set ft=clojure
 augroup end
 
-function! s:setGuiOptions()
-    syntax on
-    set guioptions=-t " don't show the menu
-    set guioptions=+R " show scrollbar
-    set hlsearch
-    set ch=2          " Make command line two lines high
-    set mousehide     " Hide the mouse when typing text
-    set guifont=FiraCode-Regular:h11
-    set background=dark
-    let g:solarized_visibility = "high"
-    let g:solarized_contrast = "high"
-    let g:solarized_termcolors = 256
-    let g:solarized_termtrans = 1
-    " my favourites (dark):
-    " candycode, darkburn, dante, redblack, antares
-    " ir_black, jellybeans, cthulhian,
-    " darkdesert, solarized
-    " (light)
-    " simpleandfriendly
-    colorscheme solarized
-endfunction
+syntax on
+set guioptions=-t " don't show the menu
+set guioptions=+R " show scrollbar
+set hlsearch
+set ch=2          " Make command line two lines high
+set mousehide     " Hide the mouse when typing text
+set guifont=FiraCode-Regular:h11
+set background=dark
 
-call s:setGuiOptions()
+colorscheme NeoSolarized
 
 function! ExecuteMacroOverVisualRange()
     echo "@".getcmdline()
@@ -194,17 +212,14 @@ endfunction
 let g:darkColorScheme=1
 function! ToggleLightDarkColorscheme()
     if g:darkColorScheme
-        colorscheme pencil " moria
         set background=light
         let g:darkColorScheme=0
     else
-        colorscheme solarized " lucid, znake, gruvbox
         set background=dark
         let g:darkColorScheme=1
     endif
 endfunction
 
-nnoremap <leader>c :call ToggleLightDarkColorscheme()<cr>
 
 " Strip trailing whitespace
 function! Preserve(command)
@@ -229,3 +244,15 @@ function! ToggleDone()
     endif
 endfunction
 
+let g:zenMode=0
+function! ToggleZenMode()
+    if g:zenMode
+        set number
+        GitGutterEnable
+        let g:zenMode=0
+    else
+        set nonumber
+        GitGutterDisable
+        let g:zenMode=1
+    endif
+endfunction

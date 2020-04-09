@@ -1,5 +1,6 @@
 bundle/*
 bundle/*/
+.DS_Store
 !bundle/Vundle.vim
 autoload/plug.vim
 vimrc-private
