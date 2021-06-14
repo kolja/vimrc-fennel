@@ -4,8 +4,9 @@
 let mapleader = ","
 let maplocalleader = ","
 
-command Time :echom system("date '+\%H:\%M' | tr -d '\n'")
+command Epub :%s!\v(.*)\sby\s(.*)\s\(z-lib.org\)!\2 - \1!
 
+command Time :echom system("date '+\%H:\%M' | tr -d '\n'")
 nnoremap <leader>t :Time<CR>
 
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
@@ -14,6 +15,14 @@ nnoremap \ ,
 " navigate buffers with ease
 " note: this requires system-level config, mapping cmd-hjkl to
 " cmd-<arrow-keys>)
+
+" navigate wrapped lines the same way you navigate non-wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+" map <option>l to λ
+inoremap ¬ <C-K>*l 
+
 nnoremap ƒ :bn<CR>
 nnoremap ∂ :bp<CR>
 inoremap ƒ <ESC>:bn<CR>
@@ -52,12 +61,11 @@ nmap ? <Plug>DashSearch
 nnoremap <leader>r :w<cr> <bar> :!%:p<cr>
 
 nnoremap <leader>f :Files<CR>
-nnoremap <leader>g :Rg
+nnoremap <leader>g :Rg<CR>
 nnoremap <leader>G :GitGutterToggle<CR>
-nnoremap <leader>b :Unite buffer<CR>
-nnoremap <silent> tt :NERDTreeTabsToggle<CR>
+nnoremap <silent> tt :NnnPicker<CR>
 
-nnoremap <silent><leader>Z :call ToggleZenMode()<CR>
+nnoremap <silent><leader>z :call ToggleZenMode()<CR>
 
 nnoremap n nzz
 nnoremap N Nzz
@@ -68,8 +76,8 @@ nnoremap <leader>c :call ToggleLightDarkColorscheme()<cr>
 " visual Block mode
 nnoremap <leader>v v<C-v>
 
-" better :bd (buffer delete)
-nnoremap <leader>q :Bdelete<cr>
+" was using :Bdelete (from bbye plugin) before
+nnoremap <leader>q :bd<cr>
 
 " Fast editing of the .vimrc
 " nnoremap <leader>e :e! ~/.vim/vimrc<cr>
@@ -77,13 +85,10 @@ command Vimrc :e! ~/.vim/vimrc
 
 " Fast editing of Snippets
 nnoremap <leader>ue :UltiSnipsEdit<CR>
-
-" jump to function definition in javascript
 nnoremap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
-nnoremap <leader>s :%s/\v
 
 " search and replace
-nnoremap <leader>s :%s/
+nnoremap <leader>s :%s/\v
 
 " move blocks of text in visual mode
 vnoremap <up> xkP`[V`]
@@ -103,19 +108,21 @@ nnoremap / /\v
 nnoremap <leader>o <leader>o==
 
 nnoremap <leader>l :set list!<CR>
+nnoremap <leader>L :LazyGit<CR>
 
 " run in node
 nnoremap <leader>n :!node %<CR>
 
-" --------------------- From Drews vimrc:
-" Visual line repeat
-xnoremap . :normal .<CR>
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-
+" remove whitespace from line endings, preserver cursor posistion
 vnoremap <leader><space> :call Preserve("'<,'>s/\\s\\+$//e")<CR>
 nnoremap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
 nnoremap <leader>u :call Preserve("Gread -")<CR>
 
 " check todo item
 nnoremap <leader>x :call ToggleDone()<CR>
+
+" --------------------- From Drews vimrc:
+" Visual line repeat
+xnoremap . :normal .<CR>
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 

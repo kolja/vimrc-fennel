@@ -1,8 +1,9 @@
 " Use the stdio OmniSharp-roslyn server
 let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_server_use_mono = 1
+" let g:OmniSharp_server_use_mono = 0
+let g:OmniSharp_server_path = '/usr/local/Cellar/omnisharp-mono/1.35.3/bin/omnisharp'
 let g:OmniSharp_server_stdio_quickload = 1
-
+let g:OmniSharp_expected_server_version = '1.35.3'
 " Set the type lookup function to use the preview window instead of echoing it
 "let g:OmniSharp_typeLookupInPreview = 1
 
@@ -72,8 +73,8 @@ command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
 
 " Start the omnisharp server for the current solution
-nnoremap <Leader>ss :OmniSharpStartServer<CR>
-nnoremap <Leader>sp :OmniSharpStopServer<CR>
+" nnoremap <Leader>ss :OmniSharpStartServer<CR>
+" nnoremap <Leader>sp :OmniSharpStopServer<CR>
 
 " Enable snippet completion
 let g:OmniSharp_want_snippet=1

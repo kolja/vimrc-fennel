@@ -1,15 +1,33 @@
 
 let g:clj_fmt_config_dir = '.lein/profiles.clj'
-let g:python3_host_prog = '/usr/local/bin/python3'
 
+let g:python_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/kolja/.pyenv/versions/neovim3/bin/python'
+let g:python2_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
+
+
+" ---------------------------- Starify ------------------------------------
+"
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+let g:startify_lists = [
+        \ { 'type': 'files',     'header': ['   MRU']            },
+        \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+        \ { 'type': 'sessions',  'header': ['   Sessions']       },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
 " ---------------------------- Repl Alliance ------------------------------------
 "
-autocmd FileType clojure lua repl = require("unrepl"):connect()
+autocmd FileType clojure lua repl = require("srepl"):connect()
 
-let g:replPort = 3722
+let g:replPort = 3449
 let g:replHost = "127.0.0.1"
 let g:replNamespace = "user"
-let g:replProtocol = "unrepl"
+let g:replProtocol = "srepl"
 let g:replVirtual = 1000
 let g:replElision = "●"
 
@@ -24,6 +42,12 @@ function! s:CombineSelection(line1, line2, cp)
   execute 'let char = "\u'.a:cp.'"'
   execute a:line1.','.a:line2.'s/\%V[^[:cntrl:]]/&'.char.'/ge'
 endfunction
+
+let g:ale_sign_error = '►'
+let g:ale_sign_warning = '▲'
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+
 " ----------------------------------------------------------------
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -51,23 +75,62 @@ endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 " feed Ag into fzf
-command! -bang -nargs=* Ack call fzf#vim#ag(<q-args>, {'down': '40%', 'options': --no-color'})
+" command! -bang -nargs=* Ack call fzf#vim#ag(<q-args>, {'down': '40%', 'options': --no-color'})
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#custom#source(
-        \ 'file', 'matchers',
-        \ ['matcher_default', 'matcher_hide_hidden_files',
-        \  'matcher_hide_current_file',
-        \  'matcher_project_ignore_files'])
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#custom#source(
+"        \ 'file', 'matchers',
+"        \ ['matcher_default', 'matcher_hide_hidden_files',
+"        \  'matcher_hide_current_file',
+"        \  'matcher_project_ignore_files'])
 
 set enc=utf-8
 set scroll=5
 set scrolloff=7
 
+let g:nnn#layout = { 'window': { 'width': 0.8, 'height': 0.6, 'highlight': 'Debug' } }
+let g:nnn#command = 'NNN_OPTS="" nnn -R'
+
+" let g:nnn#layout = { 'left': '~20%' }
+
 let g:gitgutter_override_sign_column_highlight = 0
+
+"------------------------------------- vimtex   ---------------------------------
+let g:vimtex_view_method = "skim"
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+let g:vimtex_compiler_callback_hooks = ['UpdateSkim']
+let g:vimtex_compiler_engine = 'xelatex'
+
+let g:vimtex_compiler_latexmk = {
+    \ 'executable' : 'latexmk',
+    \ 'build_dir' : './build',
+    \ 'options' : [
+    \   '-xelatex',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode']}
+
+function! UpdateSkim(status)
+    if !a:status | return | endif
+
+    let l:out = b:vimtex.out()
+    let l:tex = expand('%:p')
+    let l:cmd = [g:vimtex_view_general_viewer, '-r']
+    if !empty(system('pgrep Skim'))
+        call extend(l:cmd, ['-g'])
+    endif
+    call jobstart(l:cmd + [line('.'), l:out, l:tex])
+endfunction
+
+let g:tex_flavor = "latex"
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_quickfix_mode = 2
+let g:vimtex_compiler_progname = 'nvr'
 
 "------------------------------------- prettier ---------------------------------
 let g:prettier#config#bracket_spacing = 'true'
+
 "------------------------------------- neomake ---------------------------------
 let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -85,30 +148,17 @@ let g:neomake_message_sign = {'text': '➤','texthl': 'NeomakeMessageSign'}
 let g:neomake_info_sign = {'text': 'ℹ','texthl': 'NeomakeInfoSign'}
 autocmd! BufWritePost * Neomake
 
-"------------------------------------- deoplete --------------------------------
-"
-set runtimepath+=~/.vim/bundle/deoplete.nvim/
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#keyword_patterns = {}
-" call deoplete#custom#option('keyword_patterns', {'clojure': '[\w!$%&*+/:<=>?@\^_~\-\.#]*'})
-let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.]*'
-let g:deoplete#enable_smart_case = 1
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-j> deoplete#mappings#smart_close_popup()
-inoremap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
-
 "-------------------------------- lightline / bufferline -----------------------
 set noshowmode
 set showtabline=2
 autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 let g:lightline = {'colorscheme': 'solarized'}
-let g:lightline.tabline          = {'left': [['buffers']]}
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['charhex']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 let g:lightline.separator = {'left': '', 'right': ''}
 let g:lightline.subseparator = {'left': '┃', 'right': '│'}
+let g:lightline.component = {'charhex': '0x%B'}
 let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#unicode_symbols = 1
@@ -122,8 +172,7 @@ let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 
-" let g:user_emmet_leader_key='`'
-let g:user_emmet_expandabbr_key = '§'
+let g:user_emmet_expandabbr_key = '`'
 
 let g:highlightedyank_highlight_duration = 500
 
@@ -131,7 +180,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set laststatus=1
 
-let g:agprg="ag --column --smart-case -U"
+let g:ag_prg="ag --column --smart-case -U"
 
 scriptencoding utf-8
 
@@ -147,6 +196,8 @@ set expandtab
 set autoindent
 set laststatus=2
 
+set colorcolumn=81
+
 " don't use swapfiles. Use git instead
 set nobackup
 set nowritebackup
@@ -157,7 +208,7 @@ set hlsearch
 set clipboard=unnamed
 
 " Sets how many lines of history VIM has to remember
-set history=700
+set history=1000
 set nofoldenable
 
 " show linenumbers
@@ -191,13 +242,13 @@ augroup file_type
     autocmd BufNewFile,BufRead *.coffee set ft=coffee
     autocmd BufNewFile,BufRead *.less,*.scss,*.styl set ft=css
     autocmd BufNewFile,BufRead *.boot,*.cljs,*.edn set ft=clojure
+    autocmd BufNewFile,BufRead *.jl set ft=julia
+    autocmd BufNewFile,BufRead *.md setlocal textwidth=80
 augroup end
-
 syntax on
 set guioptions=-t " don't show the menu
 set guioptions=+R " show scrollbar
-set hlsearch
-set ch=2          " Make command line two lines high
+"set ch=2          " Make command line two lines high
 set mousehide     " Hide the mouse when typing text
 set guifont=FiraCode-Regular:h11
 set background=dark
@@ -249,10 +300,39 @@ function! ToggleZenMode()
     if g:zenMode
         set number
         GitGutterEnable
+        set showtabline=2
+        set laststatus=2
+        set colorcolumn=80
+        set ruler
+        set showcmd
+        hi! EndOfBuffer ctermbg=bg ctermfg=fg guibg=bg guifg=fg
         let g:zenMode=0
     else
         set nonumber
         GitGutterDisable
+        set showtabline=0
+        set laststatus=0
+        set colorcolumn=0
+        set noruler
+        set noshowcmd
+        hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
         let g:zenMode=1
     endif
 endfunction
+
+" bulk match/replace in zipfile (and epub):
+":%argd
+"visually select the paths of the files
+":'<,'>g/^/exe "norm \r" | argadd % | close
+":vim /pattern/ ##
+":Qargs
+":argdo %s/pattern/replacement/ge | update
+com! -nargs=0 -bar Qargs exe 'args '.s:qfl_names()
+fu! s:qfl_names() abort
+    let buffer_numbers = {}
+    for qf_item in getqflist()
+        let buffer_numbers[qf_item['bufnr']] = bufname(qf_item['bufnr'])
+    endfor
+    return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+endfu
+
