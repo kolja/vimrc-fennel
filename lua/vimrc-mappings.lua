@@ -1,4 +1,5 @@
 
+
 " ------------------- Key mappings
 "
 let mapleader = ","
@@ -9,10 +10,12 @@ command Epub :%s!\v(.*)\sby\s(.*)\s\(z-lib.org\)!\2 - \1!
 command Time :echom system("date '+\%H:\%M' | tr -d '\n'")
 nnoremap <leader>t :Time<CR>
 
-nnoremap <leader>1 :Silent pdflatex % && open -a Preview && open -a iTerm
-
 " , used to have this 'backwards to character' functionality. Use '\' for this instead.
 nnoremap \ ,
+
+" navigate buffers with ease
+" note: this requires system-level config, mapping cmd-hjkl to
+" cmd-<arrow-keys>)
 
 " navigate wrapped lines the same way you navigate non-wrapped lines
 nnoremap j gj

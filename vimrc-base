@@ -5,6 +5,11 @@ let g:python_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/kolja/.pyenv/versions/neovim3/bin/python'
 let g:python2_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
 
+" ---------------------------- Vimwiki ------------------------------------
+
+let g:vimwiki_list = [{'path': '~/Documents/notes/', 'links_space_char': '_', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+let g:vimwiki_filetypes = ['markdown', 'pandoc']
 
 " ---------------------------- Starify ------------------------------------
 "
@@ -47,32 +52,6 @@ let g:ale_sign_error = '►'
 let g:ale_sign_warning = '▲'
 highlight ALEErrorSign ctermbg=NONE ctermfg=red
 highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-
-" ----------------------------------------------------------------
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-function! s:fzf_statusline()
-  " Override statusline as you like
-  highlight fzf1 ctermfg=161 ctermbg=251
-  highlight fzf2 ctermfg=23 ctermbg=251
-  highlight fzf3 ctermfg=237 ctermbg=251
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
-endfunction
-
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 set enc=utf-8
 set scroll=5
@@ -204,10 +183,6 @@ set number
 set list listchars=tab:››,eol:¬,trail:·
 set nolist
 
-" highlight NonText guifg=#80a0ff ctermfg=Black
-" highlight Whitespace guifg=#ff0000
-" highlight EndOfBuffer guifg=#ff0000
-
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -217,8 +192,12 @@ set t_Co=256
 " hilight search/replace
 set inccommand=nosplit
 
-" allow NerdTree to set the Working Directory correctly
-let NERDTreeChDirMode=2
+set nolazyredraw
+
+" Custom Silent command that will call redraw
+command! -nargs=+ Silent
+\   execute 'silent ! <args>'
+\ | redraw!
 
 augroup file_type
     autocmd!
