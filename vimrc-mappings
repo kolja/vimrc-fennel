@@ -96,6 +96,8 @@ nnoremap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
 " search and replace
 nnoremap <leader>s :%s/\v
 
+nnoremap <leader>S :Startify<CR>
+
 " move blocks of text in visual mode
 vnoremap <up> xkP`[V`]
 vnoremap <down> xp`[V`]

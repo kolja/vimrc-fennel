@@ -5,6 +5,24 @@ let g:python_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/kolja/.pyenv/versions/neovim3/bin/python'
 let g:python2_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
 
+" ---------------------------- autocompletion -----------------------------
+
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_enable_snippet = 'UltiSnips'
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
+
 " ---------------------------- Vimwiki ------------------------------------
 
 let g:vimwiki_list = [{'path': '~/Documents/notes/', 'links_space_char': '_', 'syntax': 'markdown', 'ext': '.md'}]

@@ -1,11 +1,19 @@
 " Use the stdio OmniSharp-roslyn server
 let g:OmniSharp_server_stdio = 1
-" let g:OmniSharp_server_use_mono = 0
+let g:OmniSharp_server_use_mono = 0
+" let g:OmniSharp_server_use_mono = 1
 let g:OmniSharp_server_path = '/usr/local/Cellar/omnisharp-mono/1.35.3/bin/omnisharp'
 let g:OmniSharp_server_stdio_quickload = 1
 let g:OmniSharp_expected_server_version = '1.35.3'
 " Set the type lookup function to use the preview window instead of echoing it
 "let g:OmniSharp_typeLookupInPreview = 1
+
+let g:OmniSharp_start_without_solution = 1
+" let g:OmniSharp_server_use_mono = 1
+let g:OmniSharp_want_snippet=1
+let g:OmniSharp_popup = 1
+let g:OmniSharp_popup_options = { 'winblend': 30, 'winhl': 'Normal:Normal' }
+
 
 " Timeout in seconds to wait for a response from the server
 let g:OmniSharp_timeout = 5

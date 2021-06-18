@@ -2,7 +2,7 @@
 return require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-     
+
     use 'mhinz/vim-startify'
     use 'itchyny/lightline.vim'
     use 'mengelbrecht/lightline-bufferline'
@@ -19,18 +19,30 @@ return require('packer').startup(function()
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
 
+    use 'sirver/ultisnips'
+
+    -- Fennel support
+    -- use 'Olical/aniseed', { 'tag': 'v3.10.0' }
+    -- use 'bakpakin/fennel.vim'
+
+    use 'neovim/nvim-lspconfig'
+    use 'nvim-lua/completion-nvim'
+    use 'kabouzeid/nvim-lspinstall'
+
     -- C# support
     use 'OmniSharp/omnisharp-vim'
     --use 'dense-analysis/ale'
 
     use {'neomake/neomake', run = 'npm install -g npm-which'}
-    use {'neoclide/coc.nvim', branch = 'release'}
+    -- use {'neoclide/coc.nvim', branch = 'release'}
+
     use {
       'nvim-telescope/telescope.nvim',
-      requires = {{'nvim-lua/popup.nvim'}, 
+      requires = {{'nvim-lua/popup.nvim'},
                   {'nvim-lua/plenary.nvim'},
                   {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-                  {'fannheyward/telescope-coc.nvim'}}
+                  -- {'fannheyward/telescope-coc.nvim'}
+      }
     }
 
     use 'kyazdani42/nvim-web-devicons'
@@ -48,9 +60,6 @@ end)
 --Plug 'godlygeek/tabular'
 --Plug 'plasticboy/vim-markdown'
 --
---" Fennel support
---Plug 'Olical/aniseed', { 'tag': 'v3.10.0' }
---Plug 'bakpakin/fennel.vim'
 --
 --" Clojure support. see: http://www.neo.com/2014/02/25/getting-started-with-clojure-in-vim
 --" Plug 'clojure-vim/acid.nvim', { 'do': ':UpdateRemotePlugins' Plug 'clojure-vim/acid.nvim'} " doesn't quite work yet, apparently
@@ -100,7 +109,6 @@ end)
 --"Plug 'Rykka/InstantRst'
 --
 --Plug 'mattn/emmet-vim'
---Plug 'sirver/ultisnips'
 --
 --Plug 'rizzatti/dash.vim'
 --Plug 'scrooloose/nerdcommenter'
