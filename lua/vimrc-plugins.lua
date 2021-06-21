@@ -3,10 +3,15 @@ return require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    use 'svermeulen/vimpeccable'
+    use 'famiu/nvim-reload'
+
     use 'mhinz/vim-startify'
     use 'itchyny/lightline.vim'
     use 'mengelbrecht/lightline-bufferline'
-    use 'machakann/vim-highlightedyank'
+    -- use 'famiu/feline.nvim' -- check out later
+    
+    -- use 'machakann/vim-highlightedyank'
     use 'mcchrish/nnn.vim'
 
     use 'iCyMind/NeoSolarized'
@@ -15,10 +20,10 @@ return require('packer').startup(function()
     use 'vimwiki/vimwiki'
     use 'kdheepak/lazygit.nvim'
 
-    use 'airblade/vim-gitgutter'
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
-
+    use 'michaeljsmith/vim-indent-object'
+    use 'airblade/vim-gitgutter'
     use 'sirver/ultisnips'
 
     -- Fennel support
@@ -88,10 +93,6 @@ end)
 --" Julia support
 --Plug 'JuliaEditorSupport/julia-vim'
 --
---" C# support
---Plug 'OmniSharp/omnisharp-vim'
---Plug 'dense-analysis/ale'
---
 --" JavaScript support
 --Plug 'pangloss/vim-javascript'
 --Plug 'jelera/vim-javascript-syntax'
@@ -112,7 +113,6 @@ end)
 --
 --Plug 'rizzatti/dash.vim'
 --Plug 'scrooloose/nerdcommenter'
---Plug 'michaeljsmith/vim-indent-object'
 --"Plug 'tomtom/tregisters_vim'
 --"Plug 'genutils'
 --Plug 'ryanoasis/vim-devicons'

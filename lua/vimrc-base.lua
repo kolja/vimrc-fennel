@@ -13,3 +13,4 @@ lsp.omnisharp.setup{
     root_dir = lsp.util.root_pattern('.csproj', '.git'),
     on_attach = require'completion'.on_attach
 }
+

@@ -1,137 +1,147 @@
 
+local vimp = require 'vimp'
 
-" ------------------- Key mappings
-"
-let mapleader = ","
-let maplocalleader = ","
+local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
+local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
+local g = vim.g      -- a table to access global variables
+local opt = vim.opt  -- to set options
 
-command Epub :%s!\v(.*)\sby\s(.*)\s\(z-lib.org\)!\2 - \1!
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
 
-command Time :echom system("date '+\%H:\%M' | tr -d '\n'")
-nnoremap <leader>t :Time<CR>
+-- reload config via nvim-reload plugin
+vimp.nnoremap('<leader>r', function()
+  vimp.unmap_all()
+  cmd('Reload') -- TODO: configure Reload Plugin
+end)
 
-" , used to have this 'backwards to character' functionality. Use '\' for this instead.
-nnoremap \ ,
+vimp.nnoremap('<leader>n', function()
+  vim.wo.number = not vim.wo.number
+end)
 
-" navigate buffers with ease
-" note: this requires system-level config, mapping cmd-hjkl to
-" cmd-<arrow-keys>)
+vimp.map_command('Vimrc', function()
+    require('telescope.builtin').find_files { -- file_browser, live_grep, git_files    
+        prompt_title = 'Vimrc Config',
+        file_ignore_patterns = {'UltiSnips/*.*'},
+        cwd = '~/.vim'
+    }
+end)
 
-" navigate wrapped lines the same way you navigate non-wrapped lines
-nnoremap j gj
-nnoremap k gk
+vimp.map_command('Epub', function()
+    cmd('%s!\\v(.*)\\sby\\s(.*)\\s\\(z-lib.org\\)!\\2 - \\1!')
+end)
 
-" map <option>l to λ
-inoremap ¬ <C-K>*l 
+vimp.map_command('Time', function()
+   print(os.date('%H:%M'))
+end)
+vimp.nnoremap('<leader>t', '<cmd>Time<cr>')
 
-nnoremap ƒ :bn<CR>
-nnoremap ∂ :bp<CR>
-inoremap ƒ <ESC>:bn<CR>
-inoremap ∂ <ESC>:bp<CR>
-if has('nvim')
-    tnoremap ƒ <C-\><C-n>:bn<CR>
-    tnoremap ∂ <C-\><C-n>:bp<CR>
-    tnoremap <ESC> <C-\><C-n>
-endif
+-- autocmd BufWinEnter,WinEnter term://* startinsert
+-- autocmd BufLeave term://* stopinsert
 
-autocmd BufWinEnter,WinEnter term://* startinsert
-autocmd BufLeave term://* stopinsert
+-- , used to have this 'backwards to character' functionality. Use '\' for this instead.
+vimp.nnoremap(';', ',')
 
-" create split windows intuitively
-nnoremap <C-right> :set splitright<CR>:vnew<CR>
-nnoremap <C-left> :set nosplitright<CR>:vnew<CR>
-nnoremap <C-up> :set nosplitbelow<CR>:new<CR>
-nnoremap <C-down> :set splitbelow<CR>:new<CR>
+-- navigate wrapped lines the same way you navigate non-wrapped lines
+vimp.nnoremap('j', 'gj')
+vimp.nnoremap('k', 'gk')
 
-" Smart way to move beteen windows
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
-if has('nvim')
-    tnoremap <C-j> <C-\><C-n><C-W>j
-    tnoremap <C-k> <C-\><C-n><C-W>k
-    tnoremap <C-h> <C-\><C-n><C-W>h
-    tnoremap <C-l> <C-\><C-n><C-W>l
-endif
+-- map <option>l to λ
+vimp.inoremap('¬', '<C-K>*l')
 
+-- navigate buffers: cmd-shift-l = ƒ  cmd-shift-h = ∂
+vimp.nnoremap('ƒ', '<cmd>bn<cr>')
+vimp.nnoremap('∂', '<cmd>bp<cr>')
+vimp.inoremap('ƒ', '<esc><cmd>bn<cr>')
+vimp.inoremap('∂', '<esc><cmd>bp<cr>')
 
-" reload chrome from within vim
-" nnoremap <leader>r :!/usr/local/bin/chromereload.sh<cr><cr>
-nmap ? <Plug>DashSearch
-nnoremap <leader>r :w<cr> <bar> :!%:p<cr>
+vimp.tnoremap('ƒ', '<C-\\><C-n>:bn<CR>')
+vimp.tnoremap('∂', '<C-\\><C-n>:bp<CR>')
+vimp.tnoremap('<esc>', '<C-\\><C-n>')
 
-"nnoremap <leader>f :Files<CR>
-"nnoremap <leader>g :Rg<CR>
-"
-"nnoremap <leader>f <cmd>Telescope find_files<cr>
-nnoremap <leader>f <cmd>Telescope git_files<cr>
-nnoremap <leader>g <cmd>Telescope live_grep<cr>
-"nnoremap <leader>fb <cmd>Telescope buffers<cr>
-"nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <Leader>p :lua require'telescope.builtin'.builtin{}<cr>
+-- create split windows intuitively
+vimp.nnoremap('<C-right>', function() opt.splitright=true cmd('vnew') end)
+vimp.nnoremap('<C-left>',  function() opt.splitright=false cmd('vnew') end)
+vimp.nnoremap('<C-up>',    function() opt.splitbelow=false cmd('new') end)
+vimp.nnoremap('<C-down>',  function() opt.splitbelow=true cmd('new') end)
 
-nnoremap <leader>G :GitGutterToggle<CR>
-nnoremap <silent> tt :NnnPicker<CR>
+-- Smart way to move beteen windows
+vimp.nnoremap('<C-j>', '<C-W>j')
+vimp.nnoremap('<C-k>', '<C-W>k')
+vimp.nnoremap('<C-h>', '<C-W>h')
+vimp.nnoremap('<C-l>', '<C-W>l')
 
-nnoremap <silent><leader>z :call ToggleZenMode()<CR>
+vimp.tnoremap('<C-j>', '<C-\\><C-n><C-W>j')
+vimp.tnoremap('<C-k>', '<C-\\><C-n><C-W>k')
+vimp.tnoremap('<C-h>', '<C-\\><C-n><C-W>h')
+vimp.tnoremap('<C-l>', '<C-\\><C-n><C-W>l')
 
-nnoremap n nzz
-nnoremap N Nzz
+-- Save and run on the commandline
+-- vimp.nnoremap('<leader>r', ':w<cr> <bar> :!%:p<cr>')
 
-" toggle colorscheme (from vimrc-base)
-nnoremap <leader>c :call ToggleLightDarkColorscheme()<cr>
+vimp.nnoremap('<leader>f', ':Telescope git_files<cr>')
+vimp.nnoremap('<leader>g', ':Telescope live_grep<cr>')
 
-" visual Block mode
-nnoremap <leader>v v<C-v>
+vimp.nnoremap('<leader>p', function()
+    require'telescope.builtin'.builtin{}
+end)
 
-" was using :Bdelete (from bbye plugin) before
-nnoremap <leader>q :bd<cr>
+vimp.nnoremap('<leader>G', ':GitGutterToggle<cr>')
+vimp.nnoremap('tt', ':NnnPicker<cr>')
 
-" Fast editing of the .vimrc
-" nnoremap <leader>e :e! ~/.vim/vimrc<cr>
-command Vimrc :e! ~/.vim/vimrc
+-- add {'expr', 'silent'} and you get error messages
+-- also tried: function() fn.ToggleZenMode() end
+vimp.nnoremap('<leader>z', ':call ToggleZenMode()<cr>')
 
-" Fast editing of Snippets
-nnoremap <leader>ue :UltiSnipsEdit<CR>
-nnoremap <leader>, /<C-r><C-w>.*function/<CR>zt3<C-Y>
+vimp.nnoremap('n', 'nzz')
+vimp.nnoremap('N', 'Nzz')
 
-" search and replace
-nnoremap <leader>s :%s/\v
+-- toggle colorscheme (from vimrc-base)
+vimp.nnoremap('<leader>c', ':call ToggleLightDarkColorscheme()<cr>')
 
-" move blocks of text in visual mode
-vnoremap <up> xkP`[V`]
-vnoremap <down> xp`[V`]
+-- visual Block mode
+vimp.nnoremap('<leader>v', 'v<C-v>')
 
-" leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
-noremap <leader>d :nohlsearch<CR>
-noremap <leader>h <ctrl-w>
+vimp.nnoremap('<leader>q', ':bd<cr>')
 
-" make A and I work in visual mode as they do in visual block mode
-vnoremap <C-q> <esc>'<<C-q>'>$
+-- Fast editing of Snippets
+vimp.nnoremap('<leader>ue', ':UltiSnipsEdit<cr>')
+--
+-- search and replace
+vimp.nnoremap('<leader>s', ':%s/\\v')
 
-" always use 'very magic' regexes
-nnoremap / /\v
+vimp.nnoremap('<leader>S', ':Startify<cr>')
 
-" fix indentation after splice
-nnoremap <leader>o <leader>o==
+-- move blocks of text in visual mode
+vimp.vnoremap('<up>',   'xkP`[V`]')
+vimp.vnoremap('<down>', 'xp`[V`]')
 
-nnoremap <leader>l :set list!<CR>
-nnoremap <leader>L :LazyGit<CR>
+-- leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
+vimp.nnoremap('<leader>d', ':nohlsearch<cr>')
 
-" run in node
-nnoremap <leader>n :!node %<CR>
+-- make A and I work in visual mode as they do in visual block mode
+vimp.vnoremap('<C-q>', '<esc>\'<<C-q>\'>$')
 
-" remove whitespace from line endings, preserver cursor posistion
-vnoremap <leader><space> :call Preserve("'<,'>s/\\s\\+$//e")<CR>
-nnoremap <leader><space> :call Preserve("%s/\\s\\+$//e")<CR>
-nnoremap <leader>u :call Preserve("Gread -")<CR>
+-- always use 'very magic' regexes
+vimp.nnoremap('/', '/\\v')
 
-" check todo item
-nnoremap <leader>x :call ToggleDone()<CR>
+-- -- fix indentation after splice
+vimp.nnoremap('<leader>o', 'o==')
 
-" --------------------- From Drews vimrc:
-" Visual line repeat
-xnoremap . :normal .<CR>
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+vimp.nnoremap('<leader>l', function()
+    vim.wo.list = not vim.wo.list
+end)
+
+vimp.nnoremap('<leader>L', ':LazyGit<cr>')
+
+-- remove whitespace from line endings, preserver cursor posistion
+vimp.nnoremap('<leader><space>', [[:call Preserve('%s/\s\+$//e')<cr>]])
+
+-- check todo item
+vimp.nnoremap('<leader>x', ':call ToggleDone()<cr>')
+
+-- --------------------- From Drews Neil's vimrc:
+-- Visual line repeat
+-- xnoremap . :normal .<CR>
+-- xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 

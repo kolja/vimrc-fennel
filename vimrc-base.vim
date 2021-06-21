@@ -5,6 +5,11 @@ let g:python_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/kolja/.pyenv/versions/neovim3/bin/python'
 let g:python2_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
 
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=300 }
+augroup END
+
 " ---------------------------- autocompletion -----------------------------
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
@@ -81,6 +86,7 @@ let g:nnn#command = 'NNN_OPTS="" nnn -R'
 let g:gitgutter_override_sign_column_highlight = 0
 
 "------------------------------------- vimtex   ---------------------------------
+
 let g:vimtex_view_method = "skim"
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
@@ -114,11 +120,19 @@ let g:vimtex_quickfix_mode = 2
 let g:vimtex_compiler_progname = 'nvr'
 
 "------------------------------------- prettier ---------------------------------
+
 let g:prettier#config#bracket_spacing = 'true'
 
 "------------------------------------- neomake ---------------------------------
+
 let g:neomake_javascript_eslint_exe = '/usr/local/bin/eslint'
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
+let g:neomake_error_sign = {'text': '✕', 'texthl': 'NeomakeErrorSign'}
+let g:neomake_message_sign = {'text': '➤','texthl': 'NeomakeMessageSign'}
+let g:neomake_info_sign = {'text': 'ℹ','texthl': 'NeomakeInfoSign'}
+autocmd! BufWritePost * Neomake
+
 augroup my_neomake_signs
     au!
     autocmd ColorScheme *
@@ -127,13 +141,9 @@ augroup my_neomake_signs
         \ hi NeomakeMessageSign ctermfg=blue |
         \ hi NeomakeInfoSign ctermfg=green
 augroup END
-let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'NeomakeWarningSign'}
-let g:neomake_error_sign = {'text': '✕', 'texthl': 'NeomakeErrorSign'}
-let g:neomake_message_sign = {'text': '➤','texthl': 'NeomakeMessageSign'}
-let g:neomake_info_sign = {'text': 'ℹ','texthl': 'NeomakeInfoSign'}
-autocmd! BufWritePost * Neomake
 
 "-------------------------------- lightline / bufferline -----------------------
+
 set noshowmode
 set showtabline=2
 autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
@@ -149,6 +159,7 @@ let g:lightline#bufferline#enable_devicons = 1
 let g:lightline#bufferline#unicode_symbols = 1
 
 "------------------------------------- Ultisnips --------------------------------
+
 let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -310,20 +321,4 @@ function! ToggleZenMode()
         let g:zenMode=1
     endif
 endfunction
-
-" bulk match/replace in zipfile (and epub):
-":%argd
-"visually select the paths of the files
-":'<,'>g/^/exe "norm \r" | argadd % | close
-":vim /pattern/ ##
-":Qargs
-":argdo %s/pattern/replacement/ge | update
-com! -nargs=0 -bar Qargs exe 'args '.s:qfl_names()
-fu! s:qfl_names() abort
-    let buffer_numbers = {}
-    for qf_item in getqflist()
-        let buffer_numbers[qf_item['bufnr']] = bufname(qf_item['bufnr'])
-    endfor
-    return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
-endfu
 
