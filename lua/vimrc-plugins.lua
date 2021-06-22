@@ -7,9 +7,9 @@ return require('packer').startup(function()
     use 'famiu/nvim-reload'
 
     use 'mhinz/vim-startify'
-    use 'itchyny/lightline.vim'
-    use 'mengelbrecht/lightline-bufferline'
-    -- use 'famiu/feline.nvim' -- check out later
+    use 'akinsho/nvim-bufferline.lua'
+    use 'famiu/feline.nvim' -- check out later
+    use 'norcalli/nvim-colorizer.lua'
     
     -- use 'machakann/vim-highlightedyank'
     use 'mcchrish/nnn.vim'
@@ -25,6 +25,7 @@ return require('packer').startup(function()
     use 'michaeljsmith/vim-indent-object'
     use 'airblade/vim-gitgutter'
     use 'sirver/ultisnips'
+    use 'godlygeek/tabular'
 
     -- Fennel support
     -- use 'Olical/aniseed', { 'tag': 'v3.10.0' }
@@ -36,7 +37,7 @@ return require('packer').startup(function()
 
     -- C# support
     use 'OmniSharp/omnisharp-vim'
-    --use 'dense-analysis/ale'
+    use 'dense-analysis/ale'
 
     use {'neomake/neomake', run = 'npm install -g npm-which'}
     -- use {'neoclide/coc.nvim', branch = 'release'}
@@ -62,7 +63,6 @@ end)
 --Plug 'tpope/vim-fugitive'
 --Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 --Plug 'junegunn/fzf.vim'
---Plug 'godlygeek/tabular'
 --Plug 'plasticboy/vim-markdown'
 --
 --

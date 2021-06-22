@@ -10,6 +10,8 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=300 }
 augroup END
 
+let g:nnn#set_default_mappings = 0
+
 " ---------------------------- autocompletion -----------------------------
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
@@ -142,22 +144,6 @@ augroup my_neomake_signs
         \ hi NeomakeInfoSign ctermfg=green
 augroup END
 
-"-------------------------------- lightline / bufferline -----------------------
-
-set noshowmode
-set showtabline=2
-autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
-let g:lightline = {'colorscheme': 'solarized'}
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [['charhex']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
-let g:lightline.separator = {'left': '', 'right': ''}
-let g:lightline.subseparator = {'left': '┃', 'right': '│'}
-let g:lightline.component = {'charhex': '0x%B'}
-let g:lightline#bufferline#filename_modifier = ':t'
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#unicode_symbols = 1
-
 "------------------------------------- Ultisnips --------------------------------
 
 let g:UltiSnipsUsePythonVersion = 3
@@ -259,20 +245,12 @@ function! ToggleLightDarkColorscheme()
     if g:darkColorScheme
         set background=light
         let g:darkColorScheme=0
-        runtime autoload/lightline/colorscheme/solarized.vim
-        call lightline#init()
-        call lightline#colorscheme()
-        call lightline#update()
     else
         set background=dark
         let g:darkColorScheme=1
-        runtime autoload/lightline/colorscheme/solarized.vim
-        call lightline#init()
-        call lightline#colorscheme()
-        call lightline#update()
+        lua require('feline').reset_highlights()
     endif
 endfunction
-
 
 " Strip trailing whitespace
 function! Preserve(command)
