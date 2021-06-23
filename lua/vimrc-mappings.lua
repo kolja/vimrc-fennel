@@ -1,4 +1,6 @@
 
+
+local maw = require 'maw'
 local vimp = require 'vimp'
 
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
@@ -6,8 +8,8 @@ local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local opt = vim.opt  -- to set options
 
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
+g.mapleader = ','
+g.maplocalleader = ','
 
 -- reload config via nvim-reload plugin
 vimp.nnoremap('<leader>r', function()
@@ -15,9 +17,7 @@ vimp.nnoremap('<leader>r', function()
   cmd('Reload') -- TODO: configure Reload Plugin
 end)
 
-vimp.nnoremap('<leader>n', function()
-  vim.wo.number = not vim.wo.number
-end)
+maw.nmap('<leader>n', maw.togglewin('number'))
 
 vimp.map_command('Vimrc', function()
     require('telescope.builtin').find_files { -- file_browser, live_grep, git_files    
@@ -86,18 +86,18 @@ vimp.nnoremap('<leader>p', function()
     require'telescope.builtin'.builtin{}
 end)
 
-vimp.nnoremap('<leader>G', ':GitGutterToggle<cr>')
-vimp.nnoremap('tt', ':NnnPicker<cr>')
+vimp.nnoremap({'silent'}, '<leader>G', ':GitGutterToggle<cr>')
+vimp.nnoremap({'silent'}, 'tt', ':NnnPicker<cr>')
 
--- add {'expr', 'silent'} and you get error messages
--- also tried: function() fn.ToggleZenMode() end
-vimp.nnoremap('<leader>z', ':call ToggleZenMode()<cr>')
+vimp.nnoremap({'silent'}, '<leader>z', function()
+    fn.ToggleZenMode()
+end)
 
 vimp.nnoremap('n', 'nzz')
 vimp.nnoremap('N', 'Nzz')
 
 -- toggle colorscheme (from vimrc-base)
-vimp.nnoremap('<leader>c', ':call ToggleLightDarkColorscheme()<cr>')
+vimp.nnoremap({'silent'}, '<leader>c', ':call ToggleLightDarkColorscheme()<cr>')
 
 -- visual Block mode
 vimp.nnoremap('<leader>v', 'v<C-v>')
@@ -110,14 +110,14 @@ vimp.nnoremap('<leader>ue', ':UltiSnipsEdit<cr>')
 -- search and replace
 vimp.nnoremap('<leader>s', ':%s/\\v')
 
-vimp.nnoremap('<leader>S', ':Startify<cr>')
+vimp.nnoremap({'silent'}, '<leader>S', ':Startify<cr>')
 
 -- move blocks of text in visual mode
 vimp.vnoremap('<up>',   'xkP`[V`]')
 vimp.vnoremap('<down>', 'xp`[V`]')
 
 -- leader-d to remove a selection -- somehow reminds me of cmd-d in Photoshop
-vimp.nnoremap('<leader>d', ':nohlsearch<cr>')
+vimp.nnoremap({'silent'}, '<leader>d', ':nohlsearch<cr>:echom ""<cr>')
 
 -- make A and I work in visual mode as they do in visual block mode
 vimp.vnoremap('<C-q>', '<esc>\'<<C-q>\'>$')
@@ -125,7 +125,7 @@ vimp.vnoremap('<C-q>', '<esc>\'<<C-q>\'>$')
 -- always use 'very magic' regexes
 vimp.nnoremap('/', '/\\v')
 
--- -- fix indentation after splice
+-- fix indentation after splice
 vimp.nnoremap('<leader>o', 'o==')
 
 vimp.nnoremap('<leader>l', function()
