@@ -3,15 +3,18 @@ return require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use 'svermeulen/vimpeccable'
+    -- Fennel support
+    use {'Olical/aniseed', config = function() vim.api.nvim_set_var('aniseed#env', true) end}
+    use 'bakpakin/fennel.vim'
+    use 'Olical/conjure'
+    
     use 'famiu/nvim-reload'
 
     use 'mhinz/vim-startify'
     use 'akinsho/nvim-bufferline.lua'
-    use 'famiu/feline.nvim' -- check out later
+    use 'famiu/feline.nvim'
     use 'norcalli/nvim-colorizer.lua'
     
-    -- use 'machakann/vim-highlightedyank'
     use 'mcchrish/nnn.vim'
 
     use 'iCyMind/NeoSolarized'
@@ -26,10 +29,6 @@ return require('packer').startup(function()
     use 'airblade/vim-gitgutter'
     use 'sirver/ultisnips'
     use 'godlygeek/tabular'
-
-    -- Fennel support
-    -- use 'Olical/aniseed', { 'tag': 'v3.10.0' }
-    -- use 'bakpakin/fennel.vim'
 
     use 'neovim/nvim-lspconfig'
     use 'nvim-lua/completion-nvim'

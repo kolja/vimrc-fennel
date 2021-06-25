@@ -5,6 +5,8 @@ let g:python_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/Users/kolja/.pyenv/versions/neovim3/bin/python'
 let g:python2_host_prog = '/Users/kolja/.pyenv/versions/neovim2/bin/python'
 
+let g:conjure#client#fennel#aniseed#aniseed_module_prefix = "aniseed."
+
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=300 }
@@ -275,28 +277,4 @@ function! ToggleDone()
     endif
 endfunction
 
-let g:zenMode=0
-function! ToggleZenMode()
-    if g:zenMode
-        set number
-        GitGutterEnable
-        set showtabline=2
-        set laststatus=2
-        set colorcolumn=80
-        set ruler
-        set showcmd
-        hi! EndOfBuffer ctermbg=bg ctermfg=fg guibg=bg guifg=fg
-        let g:zenMode=0
-    else
-        set nonumber
-        GitGutterDisable
-        set showtabline=0
-        set laststatus=0
-        set colorcolumn=0
-        set noruler
-        set noshowcmd
-        hi! EndOfBuffer ctermbg=bg ctermfg=bg guibg=bg guifg=bg
-        let g:zenMode=1
-    endif
-endfunction
 

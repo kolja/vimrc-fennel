@@ -9,7 +9,3 @@ lua require('vimrc-statusline')
 lua require('vimrc-private')
 
 source ~/.vim/vimrc-csharp.vim
-
-lua require('vimrc-mappings')
-
-
