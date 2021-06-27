@@ -16,6 +16,7 @@
 (set nvim.g.completion_enable_snippet :UltiSnips)
 
 ;; Set completeopt to have a better completion experience
+;; (set nvim.o.completeopt "longest,menuone,preview"])
 (set nvim.o.completeopt "menuone,noinsert,noselect")
 
 ;; Avoid showing message extra message when using completion

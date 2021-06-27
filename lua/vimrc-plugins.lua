@@ -4,7 +4,10 @@ return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
     -- Fennel support
-    use {'Olical/aniseed', config = function() vim.api.nvim_set_var('aniseed#env', {output = 'fnllua'}) end}
+    use {'Olical/aniseed', config = function() 
+        vim.api.nvim_set_var('aniseed#env', {output = 'fnllua'}) 
+    end}
+
     use 'bakpakin/fennel.vim'
     use 'Olical/conjure'
     

@@ -1,4 +1,3 @@
-
 (module mappings
   {require {a aniseed.core
             nvim aniseed.nvim
@@ -82,6 +81,8 @@
 
 ;; toggle colorscheme (from vimrc-base)
 (nmap :<leader>c ":call ToggleLightDark()<cr>")
+
+(nmap :<Leader>= ":OmniSharpCodeFormat<cr>") ;; <leader> =
 
 ;; visual Block mode
 (nmap :<leader>v "v<C-v>")

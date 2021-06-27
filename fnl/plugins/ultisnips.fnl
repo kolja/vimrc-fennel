@@ -7,4 +7,3 @@
 (set nvim.g.UltiSnipsExpandTrigger "<tab>")
 (set nvim.g.UltiSnipsJumpForwardTrigger "<tab>")
 (set nvim.g.UltiSnipsJumpBackwardTrigger "<s-tab>")
-(set nvim.g.user_emmet_expandabbr_key "`")

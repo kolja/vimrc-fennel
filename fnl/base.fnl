@@ -1,7 +1,5 @@
 (module base
-  {require {core aniseed.core
-            nvim aniseed.nvim
-            nu aniseed.nvim.util}})
+  {require {nvim aniseed.nvim}})
 
 ;; (set nvim.o.termguicolors true)
 
@@ -57,6 +55,8 @@
 (set nvim.o.inccommand "nosplit")
 
 (set nvim.o.lazyredraw false)
+
+(set nvim.o.showmode false)
 
 (nvim.command ":syntax on")
 

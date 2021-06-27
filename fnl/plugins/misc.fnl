@@ -13,6 +13,15 @@
 
 (set nvim.g.gitgutter_override_sign_column_highlight 0)
 
+(set nvim.g.ale_linters {:cs [:OmniSharp]})
+
+(set nvim.g.user_emmet_expandabbr_key "`")
+
+(vim.schedule
+  (fn []
+    (local colorizer (require :colorizer))
+    (colorizer.setup)))
+
 (defn toggle-zen-mode []
   (let [zen-mode-on (fn []
                       (set nvim.wo.number false)
