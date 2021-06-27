@@ -1,5 +1,5 @@
 
-(module plugins.ultisnips
+(module plug.ultisnips
   {require {nvim aniseed.nvim}})
 
 (set nvim.g.UltiSnipsUsePythonVersion 3)

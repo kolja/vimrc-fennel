@@ -1,5 +1,4 @@
-
-(module plugins.telescope
+(module plug.telescope
   {require {nvim aniseed.nvim
             nu aniseed.nvim.util}})
 

@@ -1,5 +1,4 @@
-
-(module plugins.vimwiki
+(module plug.vimwiki
   {require {nvim aniseed.nvim}})
 
 (set nvim.g.vimwiki_list [{"path"             "~/Documents/notes/" 

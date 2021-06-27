@@ -1,4 +1,4 @@
-(module plugins.autocomplete
+(module plug.autocomplete
   {require {a aniseed.core
             nvim aniseed.nvim}})
 

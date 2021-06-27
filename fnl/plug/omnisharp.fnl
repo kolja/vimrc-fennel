@@ -1,4 +1,4 @@
-(module plugins.omnisharp {require {nvim aniseed.nvim}})
+(module plug.omnisharp {require {nvim aniseed.nvim}})
 
 ;; Use the stdio OmniSharp-roslyn server
 (set nvim.g.OmniSharp_server_stdio 1)

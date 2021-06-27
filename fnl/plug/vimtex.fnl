@@ -1,5 +1,4 @@
-
-(module plugins.vimtex
+(module plug.vimtex
   {require {nvim aniseed.nvim
             nu aniseed.nvim.util}})
 

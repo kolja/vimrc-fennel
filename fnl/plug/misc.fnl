@@ -1,4 +1,4 @@
-(module plugins.misc
+(module plug.misc
   {require {nvim aniseed.nvim
             nu aniseed.nvim.util
             feline feline}})
@@ -14,6 +14,11 @@
 (set nvim.g.gitgutter_override_sign_column_highlight 0)
 
 (set nvim.g.ale_linters {:cs [:OmniSharp]})
+(set nvim.g.ale_sign_error "►")
+(set nvim.g.ale_sign_warning "▲")
+
+(nvim.ex.highlight :ALEErrorSign :ctermbg=NONE :ctermfg=red)
+(nvim.ex.highlight :ALEWarningSign :ctermbg=NONE :ctermfg=yellow)
 
 (set nvim.g.user_emmet_expandabbr_key "`")
 
@@ -62,6 +67,7 @@
                   (feline.reset_highlights))]
     (if nvim.g.dark (go-light) (go-dark))))
 
+;; TODO: these have to be written in fennel:
 ;; 
 ;; " Strip trailing whitespace
 ;; function! Preserve(command)
@@ -86,3 +92,14 @@
 ;;     endif
 ;; endfunction
 
+;; " ----------------------------------------------------------------
+;; " modify selected text using combining diacritics
+;; command! -range -nargs=0 Overline        call s:CombineSelection(<line1>, <line2>, '0305')
+;; command! -range -nargs=0 Underline       call s:CombineSelection(<line1>, <line2>, '0332')
+;; command! -range -nargs=0 DoubleUnderline call s:CombineSelection(<line1>, <line2>, '0333')
+;; command! -range -nargs=0 Strikethrough   call s:CombineSelection(<line1>, <line2>, '0336')
+;; 
+;; function! s:CombineSelection(line1, line2, cp)
+;;   execute 'let char = "\u'.a:cp.'"'
+;;   execute a:line1.','.a:line2.'s/\%V[^[:cntrl:]]/&'.char.'/ge'
+;; endfunction

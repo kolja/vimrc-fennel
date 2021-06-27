@@ -1,5 +1,4 @@
-(module plugins.bufferline
-  {require {nvim aniseed.nvim}})
+(module plug.bufferline {require {nvim aniseed.nvim}})
 
 (vim.schedule
   (fn []
