@@ -3,6 +3,7 @@
             private    private
             mappings   mappings
             plugins    plugins
+            statusline statusline
             misc       plug.misc
             complete   plug.autocomplete
             omnisharp  plug.omnisharp
