@@ -5,7 +5,7 @@ return require('packer').startup(function()
 
     -- Fennel support
     use {'Olical/aniseed', config = function() 
-        vim.api.nvim_set_var('aniseed#env', {output = 'fnllua'}) 
+       vim.api.nvim_set_var('aniseed#env', true) 
     end}
 
     use 'bakpakin/fennel.vim'
