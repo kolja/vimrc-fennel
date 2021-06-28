@@ -1,10 +1,10 @@
 (module init
   {require {base         base
             private      private
+            ;; plugins      plugins
             mappings     mappings
-            plugins      plugins
-            statusline   statusline
             misc         plug.misc
+            stautsline   plug.statusline
             startify     plug.startify
             replalliance plug.replalliance
             complete     plug.autocomplete

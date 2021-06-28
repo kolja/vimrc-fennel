@@ -1,5 +1,5 @@
-
 (module plugins {require {nvim aniseed.nvim
+                          aniseed-env aniseed.env
                           packer packer}})
 
 (packer.startup (fn []
@@ -7,10 +7,13 @@
   (use "wbthomason/packer.nvim")
 
   ;; Fennel support
-  (use {1 "Olical/aniseed" :config (fn [] (set nvim.g.aniseed#env true))})
+  (use "Olical/aniseed")
+  ;;(use {1 "Olical/aniseed" :config (fn [] (aniseed-env.init))})
 
   (use "bakpakin/fennel.vim")
   (use "Olical/conjure")
+  (use "guns/vim-sexp")
+  (use "tpope/vim-sexp-mappings-for-regular-people.git")
   
   (use "famiu/nvim-reload")
 
@@ -44,12 +47,12 @@
 
   (use {1 "neomake/neomake" :run "npm install -g npm-which"})
 
-  ;;(use {
-  ;;  1 "nvim-telescope/telescope.nvim"
-  ;;  :requires [["nvim-lua/popup.nvim"]
-  ;;             ["nvim-lua/plenary.nvim"]
-  ;;             {1 "nvim-telescope/telescope-fzf-native.nvim" :run "make"}]
-  ;;})
+  (use {
+    1 "nvim-telescope/telescope.nvim"
+    :requires [["nvim-lua/popup.nvim"]
+               ["nvim-lua/plenary.nvim"]
+               {1 "nvim-telescope/telescope-fzf-native.nvim" :run "make"}]
+  })
 
   (use "kyazdani42/nvim-web-devicons")
 ))

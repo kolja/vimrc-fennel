@@ -8,11 +8,11 @@
 (defn- vmap [from to] (nvim.set_keymap :v from to {:noremap true :silent true}))
 (defn- tmap [from to] (nvim.set_keymap :t from to {:noremap true :silent true}))
 
-(nu.fn-bridge :Time            :mappings            :show-time)
-(nu.fn-bridge :ToggleNum       :mappings            :toggle-number)
-(nu.fn-bridge :ToggleZenMode   :plugins.misc        :toggle-zen-mode)
-(nu.fn-bridge :Vimrc           :plugins.telescope   :vimrc)
-(nu.fn-bridge :ToggleLightDark :plugins.misc        :toggle-light-dark)
+(nu.fn-bridge :Time            :mappings         :show-time)
+(nu.fn-bridge :ToggleNum       :mappings         :toggle-number)
+(nu.fn-bridge :ToggleZenMode   :plug.misc        :toggle-zen-mode)
+(nu.fn-bridge :Vimrc           :plug.telescope   :vimrc)
+(nu.fn-bridge :ToggleLightDark :plug.misc        :toggle-light-dark)
 
 (defn show-time []
    (a.println (os.date "%H:%M")))
