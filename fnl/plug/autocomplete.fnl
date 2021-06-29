@@ -19,7 +19,7 @@
 ;; (set nvim.o.completeopt "longest,menuone,preview"])
 (set nvim.o.completeopt "menuone,noinsert,noselect")
 
-;; Avoid showing message extra message when using completion
+;; Avoid showing extra message when using completion
 (set nvim.o.shortmess :c)
 
 ;; Use <Tab> and <S-Tab> to navigate through popup menu

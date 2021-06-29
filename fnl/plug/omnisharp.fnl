@@ -53,6 +53,6 @@
           :cmd {:omnisharp_bin "--languageserver" "--hostPID" pid}
           :filetypes [:cs]
           :root_dir (lsp.util.root_pattern ".csproj" ".git")
-          :on_attach (completion.on_attach)
+          :on_attach (. completion :on_attach)
       }))))
 
