@@ -21,7 +21,7 @@
   (use "akinsho/nvim-bufferline.lua")
   (use "famiu/feline.nvim")
   (use "norcalli/nvim-colorizer.lua")
-  
+
   (use "mcchrish/nnn.vim")
 
   (use "iCyMind/NeoSolarized")
@@ -38,12 +38,16 @@
   (use "godlygeek/tabular")
 
   (use "neovim/nvim-lspconfig")
-  (use "nvim-lua/completion-nvim")
+  ;; (use "nvim-lua/completion-nvim") ;; using coc for now
+  (use {1 "neoclide/coc.nvim" :branch "release"})
   (use "kabouzeid/nvim-lspinstall")
 
   ;; C# support
   (use "OmniSharp/omnisharp-vim")
   (use "dense-analysis/ale")
+
+  ;; TeX support
+  (use "lervag/vimtex")
 
   (use {1 "neomake/neomake" :run "npm install -g npm-which"})
 
@@ -56,3 +60,13 @@
 
   (use "kyazdani42/nvim-web-devicons")
 ))
+
+;; Haskell support
+;; (use "neovimhaskell/haskell-vim")
+;; (use "Twinside/vim-haskellConceal")
+;;
+;; Elm support
+;; (use "lambdatoast/elm.vim")
+;;
+;; Julia support
+;; (use "JuliaEditorSupport/julia-vim")

@@ -1,6 +1,4 @@
-(module plug.autocomplete
-  {require {a aniseed.core
-            nvim aniseed.nvim}})
+(module plug.autocomplete {require {nvim aniseed.nvim}})
 
 ;; TODO: implement these:
 ;;(defn- split [delim str] 
@@ -12,6 +10,10 @@
 ;;   (let [opts (split "," opts)]
 ;;    (join "," (table.insert opts opt))))
 
+;; (set nvim.g.completion_enable_auto_popup 0)
+
+;; (set nvim.g.completion_trigger_character ["." "::"])
+
 (set nvim.g.completion_matching_strategy_list [:exact :substring :fuzzy])
 (set nvim.g.completion_enable_snippet :UltiSnips)
 
@@ -20,11 +22,11 @@
 (set nvim.o.completeopt "menuone,noinsert,noselect")
 
 ;; Avoid showing extra message when using completion
-(set nvim.o.shortmess :c)
+(set nvim.o.shortmess "c")
 
 ;; Use <Tab> and <S-Tab> to navigate through popup menu
-(nvim.set_keymap :i :<Tab> ":pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"" {:noremap true :expr true})
-(nvim.set_keymap :i :<S-Tab> ":pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"" {:noremap true :expr true})
+(nvim.set_keymap :i :<Tab> "pumvisible() ? \"\\<C-n>\" : \"\\<Tab>\"" {:noremap true :expr true})
+(nvim.set_keymap :i :<S-Tab> "pumvisible() ? \"\\<C-p>\" : \"\\<S-Tab>\"" {:noremap true :expr true})
 
 (nvim.set_keymap :i :<tab> "<Plug>(completion_smart_tab)" {})
 (nvim.set_keymap :i :<s-tab> "<Plug>(completion_smart_s_tab)" {})

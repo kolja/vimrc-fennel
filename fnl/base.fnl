@@ -4,7 +4,7 @@
 ;; (set nvim.o.termguicolors true)
 
 (set nvim.g.mapleader ",")
-(set nvim.g.maplocalleader " ")
+(set nvim.g.maplocalleader "\\")
 
 (set nvim.o.laststatus 1)
 
