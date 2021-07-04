@@ -2,7 +2,5 @@ bundle/*
 bundle/*/
 plugin/
 .DS_Store
-!bundle/Vundle.vim
-autoload/plug.vim
+.netrwhist
 lua
-init.vim
