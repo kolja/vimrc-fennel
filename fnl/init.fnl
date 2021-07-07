@@ -7,8 +7,8 @@
             stautsline   plug.statusline
             startify     plug.startify
             replalliance plug.replalliance
-            omnisharp    plug.omnisharp
-            ;;complete   plug.autocomplete ;; using coc for now
+            lsp          plug.lsp
+            compe        plug.compe
             ultisnips    plug.ultisnips
             telescope    plug.telescope
             vimwiki      plug.vimwiki

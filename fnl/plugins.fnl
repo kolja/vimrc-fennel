@@ -35,15 +35,16 @@
   (use "michaeljsmith/vim-indent-object")
   (use "airblade/vim-gitgutter")
   (use "sirver/ultisnips")
+  ;; (use "L3MON4D3/LuaSnip") ;; check out
   (use "godlygeek/tabular")
 
   (use "neovim/nvim-lspconfig")
-  ;; (use "nvim-lua/completion-nvim") ;; using coc for now
-  (use {1 "neoclide/coc.nvim" :branch "release"})
+  (use {1 "nvim-treesitter/nvim-treesitter" :run :TSUpdate})
+  (use "hrsh7th/nvim-compe")
+
   (use "kabouzeid/nvim-lspinstall")
 
   ;; C# support
-  (use "OmniSharp/omnisharp-vim")
   (use "dense-analysis/ale")
 
   ;; TeX support

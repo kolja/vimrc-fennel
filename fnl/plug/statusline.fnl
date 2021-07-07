@@ -135,7 +135,7 @@
     :force_inactive {
         :filetypes [:NvimTree :dbui :packer :startify :fugitive :fugitiveblame]
         :buftypes  [:terminal :packer :startify]
-        :bufnames  [:startify:]}})
+        :bufnames  [:startify]}})
 
 (local components {
     :left {
