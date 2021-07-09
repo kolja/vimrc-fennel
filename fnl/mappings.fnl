@@ -66,12 +66,9 @@
 
 (nmap :<leader>f ":Telescope git_files<cr>")
 (nmap :<leader>g ":Telescope live_grep<cr>")
+(nmap :<leader>p ":Telescope builtin<cr>")
 
-;;(nmap "<leader>p", function()
-;;    require"telescope.builtin".builtin{}
-;; end)
-
-(nmap :<leader>G ":GitGutterToggle<cr>")
+(nmap :<leader>G ":lua require'gitsigns'.toggle_signs()<cr>")
 (nmap :tt ":NnnPicker<cr>")
 
 (nmap :<leader>z ":call ToggleZenMode()<cr>")
@@ -82,7 +79,7 @@
 ;; toggle colorscheme (from vimrc-base)
 (nmap :<leader>c ":call ToggleLightDark()<cr>")
 
-(nmap :<Leader>= ":OmniSharpCodeFormat<cr>") ;; <leader> =
+;; (nmap :<Leader>= ":OmniSharpCodeFormat<cr>") ;; <leader> =
 
 ;; visual Block mode
 (nmap :<leader>v "v<C-v>")
@@ -94,6 +91,7 @@
 
 ;; search and replace
 (nvim.set_keymap :n :<leader>s ":%s/\\v" {:noremap true})
+(nvim.set_keymap :v :<leader>s ":s/\\v" {:noremap true})
 
 (nmap :<leader>S ":Startify<cr>")
 

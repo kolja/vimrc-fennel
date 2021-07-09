@@ -1,7 +1,10 @@
 (module plug.misc
   {require {nvim aniseed.nvim
             nu aniseed.nvim.util
-            feline feline}})
+            feline feline
+            gitsigns gitsigns
+            autopairs nvim-autopairs
+            }})
 
 (set nvim.g.nnn#set_default_mappings 0)
 (set nvim.g.nnn#layout {:window {:width 0.8 :height 0.6 :highlight :Debug}})
@@ -17,10 +20,15 @@
 (set nvim.g.ale_sign_error "►")
 (set nvim.g.ale_sign_warning "▲")
 
+(set nvim.g.sexp_filetypes "clojure,scheme,lisp,fennel,racket")
+
 (nvim.ex.highlight :ALEErrorSign :ctermbg=NONE :ctermfg=red)
 (nvim.ex.highlight :ALEWarningSign :ctermbg=NONE :ctermfg=yellow)
 
 (set nvim.g.user_emmet_expandabbr_key "`")
+
+(autopairs.setup)
+(gitsigns.setup)
 
 (vim.schedule
   (fn []
@@ -30,7 +38,7 @@
 (defn toggle-zen-mode []
   (let [zen-mode-on (fn []
                       (set nvim.wo.number false)
-                      (nvim.command ":GitGutterDisable")
+                      (gitsigns.detach_all)
                       (set nvim.o.showtabline 0)
                       (set nvim.o.laststatus 0)
                       (set nvim.o.colorcolumn "0")
@@ -40,7 +48,7 @@
                       (set nvim.g.zenMode true))
         zen-mode-off (fn []
                        (set nvim.wo.number true)
-                       (nvim.command ":GitGutterEnable")
+                       (gitsigns.attach)
                        (set nvim.o.showtabline 2)
                        (set nvim.o.laststatus 2)
                        (set nvim.o.colorcolumn "80")

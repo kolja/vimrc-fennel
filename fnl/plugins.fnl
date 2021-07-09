@@ -10,10 +10,13 @@
   (use "Olical/aniseed")
   ;;(use {1 "Olical/aniseed" :config (fn [] (aniseed-env.init))})
 
+  (use_rocks "lua-xmlreader") ;; for my Telescope-opds
+
   (use "bakpakin/fennel.vim")
   (use "Olical/conjure")
-  (use "guns/vim-sexp")
+
   (use "tpope/vim-sexp-mappings-for-regular-people.git")
+  (use "guns/vim-sexp")
   
   (use "famiu/nvim-reload")
 
@@ -33,15 +36,17 @@
   (use "tpope/vim-surround")
   (use "tpope/vim-repeat")
   (use "michaeljsmith/vim-indent-object")
-  (use "airblade/vim-gitgutter")
+  (use "lewis6991/gitsigns.nvim")
+
   (use "sirver/ultisnips")
   ;; (use "L3MON4D3/LuaSnip") ;; check out
   (use "godlygeek/tabular")
+  (use "windwp/nvim-autopairs")
 
   (use "neovim/nvim-lspconfig")
   (use {1 "nvim-treesitter/nvim-treesitter" :run :TSUpdate})
   (use "hrsh7th/nvim-compe")
-
+  (use "ray-x/lsp_signature.nvim")
   (use "kabouzeid/nvim-lspinstall")
 
   ;; C# support
@@ -60,7 +65,11 @@
   })
 
   (use "kyazdani42/nvim-web-devicons")
-))
+)
+  :config {
+     :git {:clone_timeout 30}
+  }
+)
 
 ;; Haskell support
 ;; (use "neovimhaskell/haskell-vim")
