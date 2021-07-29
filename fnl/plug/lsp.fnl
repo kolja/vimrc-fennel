@@ -45,5 +45,25 @@
             :on_attach (fn [client bufnr] 
                               (ts-setup)
                               (signature.on_attach))
-        }))))
+        })
+
+        (lsp.julials.setup { 
+            :cmd ["julia" "--startup-file=no" "--history-file=no" "/Users/kolja/.config/nvim/lua/lsp.jl"]
+            :filetypes ["julia"]
+            :on_new_config (fn [new_config _]
+                (let [
+                  server_path (vim.fn.system "/Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia --startup-file=no -q -e 'print(dirname(dirname(Base.find_package(\"LanguageServer\"))))'")
+                  new_cmd (vim.deepcopy cmd)]
+                    (table.insert new_cmd 2 (.. "--project=" server_path))
+                    (set new_config.cmd new_cmd)))
+            :root_dir (fn [fname]
+                (or (lsp.util.find_git_ancestor fname) (vim.fn.getcwd)))
+            :on_attach (fn [client bufnr] 
+                          ;; (require'diagnostic'.on_attach)
+            )
+        })
+    )))
+
+local cmd = {
+}
 

@@ -10,14 +10,12 @@
   (use "Olical/aniseed")
   ;;(use {1 "Olical/aniseed" :config (fn [] (aniseed-env.init))})
 
-  (use_rocks "lua-xmlreader") ;; for my Telescope-opds
-
   (use "bakpakin/fennel.vim")
   (use "Olical/conjure")
 
   (use "tpope/vim-sexp-mappings-for-regular-people.git")
   (use "guns/vim-sexp")
-  
+  (use "kolja/telescope-opds") 
   (use "famiu/nvim-reload")
 
   (use "mhinz/vim-startify")
@@ -55,6 +53,9 @@
   ;; TeX support
   (use "lervag/vimtex")
 
+  ;; Julia support
+  (use "JuliaEditorSupport/julia-vim")
+
   (use {1 "neomake/neomake" :run "npm install -g npm-which"})
 
   (use {
@@ -78,5 +79,3 @@
 ;; Elm support
 ;; (use "lambdatoast/elm.vim")
 ;;
-;; Julia support
-;; (use "JuliaEditorSupport/julia-vim")

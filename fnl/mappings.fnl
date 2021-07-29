@@ -1,6 +1,7 @@
 (module mappings
   {require {a aniseed.core
             nvim aniseed.nvim
+            telescope telescope
             nu aniseed.nvim.util}})
 
 (defn- nmap [from to] (nvim.set_keymap :n from to {:noremap true :silent true}))
@@ -10,6 +11,7 @@
 
 (nu.fn-bridge :Time            :mappings         :show-time)
 (nu.fn-bridge :ToggleNum       :mappings         :toggle-number)
+(nu.fn-bridge :BrowseOpds      :mappings         :browse-opds)
 (nu.fn-bridge :ToggleZenMode   :plug.misc        :toggle-zen-mode)
 (nu.fn-bridge :Vimrc           :plug.telescope   :vimrc)
 (nu.fn-bridge :ToggleLightDark :plug.misc        :toggle-light-dark)
@@ -24,8 +26,15 @@
 (nmap :<leader>t ":call Time()<cr>")
 (nmap :<leader>n ":call ToggleNum()<cr>")
 
-;; , used to have this 'backwards to character' functionality. Use '\' for this instead.
-;; (nmap :; ",") ;; how to escape the semicoloon
+(nmap :<leader>k ":call BrowseOpds()<cr>")
+
+(defn browse-opds []
+  ((. telescope :extensions :opds :browse) 
+      {:url "http://192.168.3.42:49194/feed.php"
+       :raw_preview false
+       :open_fn (fn [media] 
+                   (print (vim.inspect media))
+                   )}))
 
 ;; navigate wrapped lines the same way you navigate non-wrapped lines
 (nmap :j "gj")
