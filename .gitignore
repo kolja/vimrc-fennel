@@ -1,6 +1,7 @@
 bundle/*
 bundle/*/
 plugin/
+fnl/private.fnl
 .DS_Store
 .netrwhist
 lua
