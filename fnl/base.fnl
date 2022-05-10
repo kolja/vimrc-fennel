@@ -1,12 +1,11 @@
 (module base
   {require {nvim aniseed.nvim}})
 
-;; (set nvim.o.termguicolors true)
-
 (set nvim.g.mapleader ",")
 (set nvim.g.maplocalleader "\\")
 
-(set nvim.o.laststatus 1)
+(set nvim.o.laststatus 2)
+(set nvim.o.termguicolors true)
 
 (set nvim.o.incsearch true)
 (set nvim.o.hidden true)
@@ -17,9 +16,8 @@
 (set nvim.o.smarttab true)
 (set nvim.o.expandtab true)
 (set nvim.o.autoindent true)
-(set nvim.o.laststatus 2)
 
-(set nvim.o.colorcolumn "81")
+(set nvim.o.colorcolumn "81") ;; reminder when line gets too long
 
 (set nvim.o.enc "utf-8")
 (set nvim.o.scroll 5)
@@ -49,8 +47,6 @@
 ;; Set to auto read when a file is changed from the outside
 (set nvim.o.autoread true)
 
-(set nvim.o.termguicolors true)
-
 ;; preview search/replace -- neovim only
 (set nvim.o.inccommand "nosplit")
 
@@ -65,3 +61,15 @@
 
 (nvim.command ":colorscheme NeoSolarized")
 
+
+;; set shortmess+=c
+;; highlight link CompeDocumentation NormalFloat
+;; 
+;; "------------------------------------- Autocommands --------------------------------
+;; 
+;; " autocmd FileType clojure lua repl = require("srepl"):connect()
+;; 
+;; augroup highlight_yank
+;;     autocmd!
+;;     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=300 }
+;; augroup END

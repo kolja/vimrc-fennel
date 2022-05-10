@@ -64,6 +64,5 @@
         })
     )))
 
-local cmd = {
-}
+;; local cmd = {}
 

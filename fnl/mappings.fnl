@@ -4,10 +4,15 @@
             telescope telescope
             nu aniseed.nvim.util}})
 
+;; in nvim 0.7 this is the way:
+;; TODO: rewrite everything against this new API (noremap is true by default now)
+(vim.keymap.set :n :<leader>r (fn [] (print "foo")))
+
 (defn- nmap [from to] (nvim.set_keymap :n from to {:noremap true :silent true}))
 (defn- imap [from to] (nvim.set_keymap :i from to {:noremap true :silent true}))
 (defn- vmap [from to] (nvim.set_keymap :v from to {:noremap true :silent true}))
 (defn- tmap [from to] (nvim.set_keymap :t from to {:noremap true :silent true}))
+
 
 (nu.fn-bridge :Time            :mappings         :show-time)
 (nu.fn-bridge :ToggleNum       :mappings         :toggle-number)

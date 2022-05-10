@@ -12,7 +12,7 @@
 
 (set nvim.g.clj_fmt_config_dir ".lein/profiles.clj")
 
-(set nvim.g.conjure#client#fennel#aniseed#aniseed_module_prefix "aniseed.")
+;; (set nvim.g.conjure#client#fennel#aniseed#aniseed_module_prefix "aniseed.")
 
 (set nvim.g.gitgutter_override_sign_column_highlight 0)
 
@@ -72,7 +72,8 @@
         go-dark (fn []
                   (set nvim.g.dark true)
                   (set nvim.o.background :dark)
-                  (feline.reset_highlights))]
+                  (feline.reset_highlights)
+                  )]
     (if nvim.g.dark (go-light) (go-dark))))
 
 ;; TODO: these have to be written in fennel:

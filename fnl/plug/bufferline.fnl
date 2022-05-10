@@ -9,4 +9,4 @@
                         :show_close_icon false
                         :separator_style :thin ;; :thick :slant { :any :any }
                         :enforce_regular_tabs true
-                        :always_show_bufferline true}})))
+                        :always_show_bufferline false}})))

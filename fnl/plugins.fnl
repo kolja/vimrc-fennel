@@ -13,15 +13,15 @@
   (use "bakpakin/fennel.vim")
   (use "Olical/conjure")
 
-  (use "tpope/vim-sexp-mappings-for-regular-people.git")
+  (use "tpope/vim-sexp-mappings-for-regular-people")
   (use "guns/vim-sexp")
   (use "kolja/telescope-opds") 
   (use "famiu/nvim-reload")
 
+  (use "norcalli/nvim-colorizer.lua")
   (use "mhinz/vim-startify")
   (use "akinsho/nvim-bufferline.lua")
   (use "famiu/feline.nvim")
-  (use "norcalli/nvim-colorizer.lua")
 
   (use "mcchrish/nnn.vim")
 

@@ -140,35 +140,41 @@
 (local components {
     :left {
         :active [            
-            (. comps :vi_mode :left)
-            (. comps :file    :info)
-            (. comps :lsp     :name)
-            (. comps :diagnos :err)
-            (. comps :diagnos :warn)
-            (. comps :diagnos :hint)
-            (. comps :diagnos :info)]
+           (. comps :vi_mode :left)
+           (. comps :file    :info)
+           (. comps :lsp     :name)
+           (. comps :diagnos :err)
+           (. comps :diagnos :warn)
+           (. comps :diagnos :hint)
+           (. comps :diagnos :info)
+            ]
         :inactive [
             (. comps :vi_mode :left)
-            (. comps :file    :info)]}
+            (. comps :file    :info)
+            ]}
 
     :mid {:active [] :inactive []}
 
     :right {
         :active [
-            (. comps :git     :add)
-            (. comps :git     :change)
-            (. comps :git     :remove)
-            (. comps :file    :os)
-            (. comps :git     :branch)
-            (. comps :line_percentage)
-            (. comps :scroll_bar)
-            (. comps :vi_mode :right)]
+           (. comps :git     :add)
+           (. comps :git     :change)
+           (. comps :git     :remove)
+           (. comps :file    :os)
+           (. comps :git     :branch)
+           (. comps :line_percentage)
+           (. comps :scroll_bar)
+           (. comps :vi_mode :right)
+           ]
         :inactive []}})
 
 (feline.setup {
-    :default_bg     (. colors :bg)
-    :default_fg     (. colors :fg)
-    :components     components
-    :properties     properties
-    :vi_mode_colors vi_mode_colors})
+    :preset :noicon
+    ;; :default_bg     (. colors :bg)
+    ;; :default_fg     (. colors :fg)
+    ;; :components     components
+    ;; :properties     properties
+    ;; :vi_mode_colors vi_mode_colors
+})
+
 
