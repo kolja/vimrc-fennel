@@ -7,11 +7,11 @@
             lsp          plug.lsp
             startify     plug.startify
             replalliance plug.replalliance
-            compe        plug.compe
-            ultisnips    plug.ultisnips
+            cmp          plug.cmp
+            luasnip      plug.luasnip
             telescope    plug.telescope
-            vimwiki      plug.vimwiki
             bufferline   plug.bufferline
-            stautsline   plug.statusline
+            ;;feline       plug.feline
+            lualine      plug.lualine
             }})
 

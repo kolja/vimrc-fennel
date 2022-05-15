@@ -21,14 +21,15 @@
   (use "norcalli/nvim-colorizer.lua")
   (use "mhinz/vim-startify")
   (use "akinsho/nvim-bufferline.lua")
-  (use "famiu/feline.nvim")
+  ;;(use "famiu/feline.nvim")
+  (use {1 "nvim-lualine/lualine.nvim" :requires {1 "kyazdani42/nvim-web-devicons" :opt true}})
 
   (use "mcchrish/nnn.vim")
 
   (use "iCyMind/NeoSolarized")
   (use "flazz/vim-colorschemes")
+  (use "onsails/lspkind.nvim")
 
-  (use "vimwiki/vimwiki")
   (use "kdheepak/lazygit.nvim")
 
   (use "tpope/vim-surround")
@@ -36,17 +37,25 @@
   (use "michaeljsmith/vim-indent-object")
   (use "lewis6991/gitsigns.nvim")
 
-  (use "sirver/ultisnips")
-  ;; (use "L3MON4D3/LuaSnip") ;; check out
+  (use "hrsh7th/cmp-nvim-lsp")
+  (use "hrsh7th/cmp-buffer")
+  (use "hrsh7th/cmp-path")
+  (use "hrsh7th/cmp-cmdline")
+  (use "hrsh7th/nvim-cmp")
+
+  ;; (use "sirver/ultisnips")
+  (use "L3MON4D3/LuaSnip")
+  (use "saadparwaiz1/cmp_luasnip")
   (use "godlygeek/tabular")
   (use "windwp/nvim-autopairs")
 
   (use "neovim/nvim-lspconfig")
   (use {1 "nvim-treesitter/nvim-treesitter" :run :TSUpdate})
-  (use "hrsh7th/nvim-compe")
+  ;; (use "hrsh7th/nvim-compe")
   (use "ray-x/lsp_signature.nvim")
   (use "kabouzeid/nvim-lspinstall")
 
+  (use "numToStr/Comment.nvim")
   ;; C# support
   (use "dense-analysis/ale")
 

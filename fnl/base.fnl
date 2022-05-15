@@ -17,6 +17,8 @@
 (set nvim.o.expandtab true)
 (set nvim.o.autoindent true)
 
+(set nvim.o.pumblend 20) ;; make pop-up-menu transparent
+
 (set nvim.o.colorcolumn "81") ;; reminder when line gets too long
 
 (set nvim.o.enc "utf-8")

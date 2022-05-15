@@ -2,17 +2,30 @@
   {require {a aniseed.core
             nvim aniseed.nvim
             telescope telescope
+            ls luasnip
             nu aniseed.nvim.util}})
 
 ;; in nvim 0.7 this is the way:
 ;; TODO: rewrite everything against this new API (noremap is true by default now)
-(vim.keymap.set :n :<leader>r (fn [] (print "foo")))
+
+(vim.keymap.set [:i :s] :<c-k> 
+                (fn [] (if (ls.expand_or_jumpable) (ls.expand_or_jump))) 
+                {:silent false})
+
+(vim.keymap.set [:i :s] :<c-j> 
+                (fn [] (if (ls.jumpable -1) (ls.jump -1))) 
+                {:silent true})
+
+(vim.keymap.set [:i] :<c-l> 
+                (fn [] (if (ls.choice_active) (ls.change_choice 1))) 
+                {:silent true})
+
+(vim.keymap.set [:n] :<leader><leader>s "<cmd>source ~/.vim/lua/plug/luasnip.lua<CR>")
 
 (defn- nmap [from to] (nvim.set_keymap :n from to {:noremap true :silent true}))
 (defn- imap [from to] (nvim.set_keymap :i from to {:noremap true :silent true}))
 (defn- vmap [from to] (nvim.set_keymap :v from to {:noremap true :silent true}))
 (defn- tmap [from to] (nvim.set_keymap :t from to {:noremap true :silent true}))
-
 
 (nu.fn-bridge :Time            :mappings         :show-time)
 (nu.fn-bridge :ToggleNum       :mappings         :toggle-number)

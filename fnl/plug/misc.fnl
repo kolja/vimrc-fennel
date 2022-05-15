@@ -1,11 +1,13 @@
 (module plug.misc
   {require {nvim aniseed.nvim
             nu aniseed.nvim.util
-            feline feline
             gitsigns gitsigns
+            Comment Comment
             autopairs nvim-autopairs
             }})
 
+
+(Comment.setup)
 (set nvim.g.nnn#set_default_mappings 0)
 (set nvim.g.nnn#layout {:window {:width 0.8 :height 0.6 :highlight :Debug}})
 (set nvim.g.nnn#command "NNN_OPTS=\"\" nnn -R")
@@ -72,7 +74,7 @@
         go-dark (fn []
                   (set nvim.g.dark true)
                   (set nvim.o.background :dark)
-                  (feline.reset_highlights)
+                  ;; (feline.reset_highlights)
                   )]
     (if nvim.g.dark (go-light) (go-dark))))
 

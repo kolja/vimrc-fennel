@@ -169,12 +169,12 @@
         :inactive []}})
 
 (feline.setup {
-    :preset :noicon
-    ;; :default_bg     (. colors :bg)
-    ;; :default_fg     (. colors :fg)
-    ;; :components     components
-    ;; :properties     properties
-    ;; :vi_mode_colors vi_mode_colors
+    ;; :preset :noicon
+    :default_bg     (. colors :bg)
+    :default_fg     (. colors :fg)
+    :components     components
+    :properties     properties
+    :vi_mode_colors vi_mode_colors
 })
 
 
