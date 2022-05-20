@@ -4,7 +4,6 @@
 (set nvim.g.mapleader ",")
 (set nvim.g.maplocalleader "\\")
 
-(set nvim.o.laststatus 2)
 (set nvim.o.termguicolors true)
 
 (set nvim.o.incsearch true)
@@ -49,7 +48,6 @@
 ;; Set to auto read when a file is changed from the outside
 (set nvim.o.autoread true)
 
-;; preview search/replace -- neovim only
 (set nvim.o.inccommand "nosplit")
 
 (set nvim.o.lazyredraw false)
@@ -64,14 +62,33 @@
 (nvim.command ":colorscheme NeoSolarized")
 
 
-;; set shortmess+=c
-;; highlight link CompeDocumentation NormalFloat
-;; 
-;; "------------------------------------- Autocommands --------------------------------
-;; 
-;; " autocmd FileType clojure lua repl = require("srepl"):connect()
-;; 
-;; augroup highlight_yank
-;;     autocmd!
-;;     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=300 }
-;; augroup END
+;; ------ Autocommands ----------
+;; ------ :help lua-autocmd -----
+
+(local group (vim.api.nvim_create_augroup "the_group" {:clear false}))
+
+(vim.api.nvim_create_autocmd [:TextYankPost] {
+ :group group
+ :callback (fn [] (vim.highlight.on_yank {
+                   :higroup "IncSearch"
+                   :timeout 300}))})
+
+;;----------- hide statusline for Startify -------------
+
+(vim.api.nvim_create_autocmd [:FileType] {
+  :group group
+  :pattern "startify"
+  :callback (fn [] (set nvim.o.laststatus 0))})
+
+(vim.api.nvim_create_autocmd [:BufEnter] {
+  :group group
+  :callback (fn [] (set nvim.o.laststatus 3))})
+
+;;------------ Repl-Alliance --------------
+
+;;(vim.api.nvim_create_autocmd [:FileType]
+;;     :group group
+;;     :pattern "clojure"
+;;     :callback (fn []  (global repl (require "srepl"))
+;;                       (repl:connect)))
+

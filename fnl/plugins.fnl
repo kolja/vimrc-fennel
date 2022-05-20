@@ -13,6 +13,11 @@
   (use "bakpakin/fennel.vim")
   (use "Olical/conjure")
 
+  ;; Colorscheme
+  (use "flazz/vim-colorschemes")
+  (use "iCyMind/NeoSolarized")
+  (use "onsails/lspkind.nvim")
+
   (use "tpope/vim-sexp-mappings-for-regular-people")
   (use "guns/vim-sexp")
   (use "kolja/telescope-opds") 
@@ -26,9 +31,6 @@
 
   (use "mcchrish/nnn.vim")
 
-  (use "iCyMind/NeoSolarized")
-  (use "flazz/vim-colorschemes")
-  (use "onsails/lspkind.nvim")
 
   (use "kdheepak/lazygit.nvim")
 

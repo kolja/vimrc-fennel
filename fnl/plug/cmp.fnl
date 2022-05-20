@@ -52,15 +52,6 @@
      }
 })
 
-;; Set configuration for specific filetype.
-;;(cmp.setup.filetype "gitcommit" {
-;;    :sources (cmp.config.sources {
-;;      {:name "cmp_git"} ;; You can specify the `cmp_git` source if you were installed it.
-;;    } {
-;;      {:name "buffer"}
-;;    })
-;;})
-
 ;; Use buffer source for "/" (if you enabled "native_menu", this won't work anymore).
 ;; (cmp.setup.cmdline "/" {
 ;;   :mapping (cmp.mapping.preset.cmdline)
@@ -78,4 +69,25 @@
 ((. (. lspconfig "omnisharp") "setup") {
   :capabilities (cmp_nvim_lsp.update_capabilities (vim.lsp.protocol.make_client_capabilities))
 })
+
+
+(vim.cmd "highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080")
+(vim.cmd "highlight! CmpItemAbbrMatch guibg=#acecff guifg=#335566")
+(vim.cmd "highlight! CmpItemAbbrMatchFuzzy guibg=#8cccee guifg=#335566")
+(vim.cmd "highlight! CmpItemKindVariable guibg=#ffbb00 guifg=NONE")
+(vim.cmd "highlight! CmpItemKindInterface guibg=#ffbb00 guifg=#555500")
+(vim.cmd "highlight! CmpItemKindModule guibg=#3296db guifg=NONE")
+(vim.cmd "highlight! CmpItemKindFunction guibg=#dd2233 guifg=NONE")
+(vim.cmd "highlight! CmpItemKindMethod guibg=#dd2233 guifg=NONE")
+(vim.cmd "highlight! CmpItemKindKeyword guibg=#007788 guifg=NONE")
+(vim.cmd "highlight! CmpItemKindField guibg=#ffaa00 guifg=NONE")
+(vim.cmd "highlight! CmpItemKindProperty guibg=#ffaa00 guifg=#333300")
+(vim.cmd "highlight! CmpItemKindClass guibg=#44bb00 guifg=NONE")
+(vim.cmd "highlight! CmpItemKindEnum guibg=#aaaaaa guifg=NONE")
+(vim.cmd "highlight! CmpItemKindText guibg=#4444cc guifg=NONE")
+
+(vim.cmd "highlight! Pmenu guifg=#224455 guibg=#569cd6")		;; Popup menu: normal item.
+(vim.cmd "highlight! PmenuSel guifg=#226688 guibg=#ffee33")	;; Popup menu: selected item.
+(vim.cmd "highlight! PmenuSbar guifg=#123445 guibg=#3333ff") ;; Popup menu: scrollbar.
+(vim.cmd "highlight! PmenuThumb guifg=#446677 guibg=NONE"); Popup menu: Thumb of the scrollbar.
 
