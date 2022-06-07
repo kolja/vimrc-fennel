@@ -4,13 +4,20 @@
             gitsigns gitsigns
             Comment Comment
             autopairs nvim-autopairs
+            nnn nnn
             }})
 
-
 (Comment.setup)
-(set nvim.g.nnn#set_default_mappings 0)
-(set nvim.g.nnn#layout {:window {:width 0.8 :height 0.6 :highlight :Debug}})
-(set nvim.g.nnn#command "NNN_OPTS=\"\" nnn -R")
+
+(fn exit-nnn [] "override <esc> in nnn")
+
+(nnn.setup {
+           :command "NNN_OPTS=\"\" nnn -R"
+           :set_default_mappings false
+           :statusline false
+           :layout {:window {:width 0.8 :height 0.6 :highlight :Debug}}
+           :action { :<esc> exit-nnn }
+           })
 
 (set nvim.g.clj_fmt_config_dir ".lein/profiles.clj")
 
@@ -37,7 +44,7 @@
     (local colorizer (require :colorizer))
     (colorizer.setup)))
 
-(defn toggle-zen-mode []
+(def toggle-zen-mode (fn []
   (let [zen-mode-on (fn []
                       (set nvim.wo.number false)
                       (gitsigns.detach_all)
@@ -58,7 +65,7 @@
                        (set nvim.o.showcmd true)
                        (nvim.command ":hi! EndOfBuffer ctermbg=bg ctermfg=fg guibg=bg guifg=fg")
                        (set nvim.g.zenMode false))]
-    (if nvim.g.zenMode (zen-mode-off) (zen-mode-on))))
+    (if nvim.g.zenMode (zen-mode-off) (zen-mode-on)))))
 
 ;; function! ExecuteMacroOverVisualRange()
 ;;     echo "@".getcmdline()
@@ -66,7 +73,8 @@
 ;; endfunction
 
 (set nvim.g.dark true)
-(defn toggle-light-dark []
+
+(def toggle-light-dark (fn []
   "toggle light/dark colorscheme"
   (let [go-light (fn []
                    (set nvim.g.dark false)
@@ -76,7 +84,7 @@
                   (set nvim.o.background :dark)
                   ;; (feline.reset_highlights)
                   )]
-    (if nvim.g.dark (go-light) (go-dark))))
+    (if nvim.g.dark (go-light) (go-dark)))))
 
 ;; TODO: these have to be written in fennel:
 ;; 
@@ -114,3 +122,4 @@
 ;;   execute 'let char = "\u'.a:cp.'"'
 ;;   execute a:line1.','.a:line2.'s/\%V[^[:cntrl:]]/&'.char.'/ge'
 ;; endfunction
+

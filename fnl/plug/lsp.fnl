@@ -9,20 +9,17 @@
   (treesitter.setup {
     :highlight {:enable true}}))
 
-(defn- imap [from to] (nvim.set_keymap :i from to {:noremap true :silent true :expr true}))
-(defn- nmap [from to] (nvim.set_keymap :n from to {:noremap true :silent true}))
-
 ;; See `:help vim.lsp.*` for documentation on any of the below functions
-(nmap "gD"              "<Cmd>lua vim.lsp.buf.declaration()<CR>")
-(nmap "gd"              "<Cmd>lua vim.lsp.buf.definition()<CR>")
-(nmap "K"               "<Cmd>lua vim.lsp.buf.hover()<CR>")
-(nmap "gi"              "<cmd>lua vim.lsp.buf.implementation()<CR>")
-(nmap "<C-k>"           "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-(nmap "<leader>D"       "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-(nmap "<leader>R"       "<cmd>lua vim.lsp.buf.rename()<CR>")
-(nmap "<C-;>"           "<cmd>lua vim.lsp.buf.code_action()<CR>")
-(nmap "gr"              "<cmd>lua vim.lsp.buf.references()<CR>")
-(nmap "=="              "<cmd>lua vim.lsp.buf.formatting()<CR>")
+(vim.keymap.set [:n] "gD"        "<Cmd>lua vim.lsp.buf.declaration()<CR>")
+(vim.keymap.set [:n] "gd"        "<Cmd>lua vim.lsp.buf.definition()<CR>")
+(vim.keymap.set [:n] "K"         "<Cmd>lua vim.lsp.buf.hover()<CR>")
+(vim.keymap.set [:n] "gi"        "<Cmd>lua vim.lsp.buf.implementation()<CR>")
+(vim.keymap.set [:i :n] "<C-K>"     "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
+(vim.keymap.set [:n] "<leader>D" "<Cmd>lua vim.lsp.buf.type_definition()<CR>")
+(vim.keymap.set [:n] "<leader>R" "<Cmd>lua vim.lsp.buf.rename()<CR>")
+(vim.keymap.set [:n] "<leader>A" "<Cmd>lua vim.lsp.buf.code_action()<CR>")
+(vim.keymap.set [:n] "gr"        "<Cmd>lua vim.lsp.buf.references()<CR>")
+(vim.keymap.set [:n] "=="        "<Cmd>lua vim.lsp.buf.formatting()<CR>")
 
 (vim.schedule
   (fn []
@@ -40,7 +37,14 @@
                               (signature.on_attach))
         })
 
-        (lsp.julials.setup { 
+        ;; (lsp.phpactor.setup {
+        ;;                      :cmd ["phpactor"]
+        ;;                      :filetypes ["php"]
+        ;;                      :root_dir (lsp.util.root_pattern "composer.json" ".git") 
+        ;;                      })
+        (lsp.intelephense.setup {})
+
+        ;; (lsp.julials.setup { 
             ;; :cmd ["julia" "--startup-file=no" "--history-file=no" "/Users/kolja/.config/nvim/lua/lsp.jl"]
             ;; :filetypes ["julia"]
             ;; :on_new_config (fn [new_config _]
@@ -54,8 +58,6 @@
             ;; :on_attach (fn [client bufnr] 
             ;;               ;; (require'diagnostic'.on_attach)
             ;; )
-        })
+        ;; })
     )))
-
-;; local cmd = {}
 
