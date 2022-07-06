@@ -10,6 +10,7 @@
   (use "Olical/aniseed")
   ;;(use {1 "Olical/aniseed" :config (fn [] (aniseed-env.init))})
 
+  (use "kolja/repl-alliance")
   (use "bakpakin/fennel.vim")
   (use "Olical/conjure")
 
@@ -31,8 +32,8 @@
 
   (use "mcchrish/nnn.vim")
 
-
-  (use "kdheepak/lazygit.nvim")
+  (use "akinsho/toggleterm.nvim")
+  ;; (use "kdheepak/lazygit.nvim")
 
   (use "tpope/vim-surround")
   (use "tpope/vim-repeat")

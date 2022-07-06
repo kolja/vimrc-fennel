@@ -15,19 +15,21 @@
 (def vmap (partial vim.keymap.set :v))
 (def imap (partial vim.keymap.set :i))
 
-(vim.keymap.set [:i :s] :<c-k> 
-                (fn [] (if (ls.expand_or_jumpable) (ls.expand_or_jump))) 
+(vim.keymap.set [:i :s] :<c-k>
+                (fn [] (if (ls.expand_or_jumpable) (ls.expand_or_jump)))
                 {:silent false})
 
-(vim.keymap.set [:i :s] :<c-j> 
-                (fn [] (if (ls.jumpable -1) (ls.jump -1))) 
+(vim.keymap.set [:i :s] :<c-j>
+                (fn [] (if (ls.jumpable -1) (ls.jump -1)))
                 {:silent true})
 
-(vim.keymap.set [:i] :<c-l> 
-                (fn [] (if (ls.choice_active) (ls.change_choice 1))) 
+(vim.keymap.set [:i] :<c-l>
+                (fn [] (if (ls.choice_active) (ls.change_choice 1)))
                 {:silent true})
 
 (nmap :<leader><leader>s "<cmd>source ~/.vim/lua/plug/luasnip.lua<CR>")
+
+(nmap :tl ":5TermExec cmd=\"lg\" direction=float<cr>")
 
 
 (nmap :<leader>t #(print (os.date "%H:%M"))
@@ -45,18 +47,18 @@
        :open_fn (fn [media]
                    (print (vim.inspect media)))}))
 
-(vim.api.nvim_create_user_command :Opds #(browse-opds "49194") 
+(vim.api.nvim_create_user_command :Opds #(browse-opds "49194")
                                   {:desc "Browse Opds Server: Fiction"})
 
-(vim.api.nvim_create_user_command :OpdsNonfiction #(browse-opds "49196") 
+(vim.api.nvim_create_user_command :OpdsNonfiction #(browse-opds "49196")
                                   {:desc "Browse Opds Server: Nonfiction"})
 
-;; navigate wrapped lines 
+;; navigate wrapped lines
 (nmap :j "gj" {:desc "navigate wrapped lines the same way you navigate non-wrapped lines"})
 (nmap :k "gk" {:desc "navigate wrapped lines the same way you navigate non-wrapped lines"})
 
-;; ;; map <option>l to λ
-(imap :i :¬ "<C-K>*l")
+;; map <option>l to λ
+(imap :¬ "<C-K>*l")
 
 ;; navigate buffers: cmd-shift-l = ƒ  cmd-shift-h = ∂
 (nmap :ƒ "<cmd>bn<cr>")

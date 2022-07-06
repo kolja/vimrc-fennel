@@ -3,6 +3,7 @@
             nu aniseed.nvim.util
             gitsigns gitsigns
             Comment Comment
+            toggleterm toggleterm
             autopairs nvim-autopairs
             nnn nnn
             }})
@@ -10,6 +11,8 @@
 (Comment.setup)
 
 (fn exit-nnn [] "override <esc> in nnn")
+
+(toggleterm.setup { :open_mapping "\t" })
 
 (nnn.setup {
            :command "NNN_OPTS=\"\" nnn -R"
