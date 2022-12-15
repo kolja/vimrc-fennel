@@ -77,7 +77,7 @@
 
 (vim.api.nvim_create_autocmd [:FileType] {
   :group group
-  :pattern "startify"
+  :pattern "starter"
   :callback (fn [] (set nvim.o.laststatus 0))})
 
 (vim.api.nvim_create_autocmd [:BufEnter] {

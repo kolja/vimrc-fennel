@@ -5,7 +5,9 @@
             mappings     mappings
             misc         plug.misc
             lsp          plug.lsp
-            startify     plug.startify
+            rust-tools   rust-tools
+            ;;startify     plug.startify
+            ministarter  plug.ministarter
             replalliance plug.replalliance
             cmp          plug.cmp
             luasnip      plug.luasnip

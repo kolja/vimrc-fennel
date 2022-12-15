@@ -6,6 +6,7 @@
             nu aniseed.nvim.util
             pt plug.telescope
             misc plug.misc
+            starter mini.starter
             }})
 
 ;; in nvim 0.7 this is the way:
@@ -29,7 +30,9 @@
 
 (nmap :<leader><leader>s "<cmd>source ~/.vim/lua/plug/luasnip.lua<CR>")
 
-(nmap :tl ":5TermExec cmd=\"lg\" direction=float<cr>")
+(nmap :<leader>l ":set list!<cr>")
+
+(nmap :<leader>L ":5TermExec cmd=\"lg\" direction=float<cr>")
 
 
 (nmap :<leader>t #(print (os.date "%H:%M"))
@@ -114,7 +117,7 @@
 (nmap :<leader>s ":%s/\\v")
 (vmap :<leader>s ":s/\\v")
 
-(nmap :<leader>S ":Startify<cr>" {:silent true})
+(nmap :<leader>S starter.open {:silent true})
 
 ;; move blocks of text in visual mode
 (vmap :<up>   "xkP`[V`]")
@@ -129,12 +132,6 @@
 ;; always use 'very magic' regexes
 (nmap "/" "/\\v")
 
-;; fix indentation after splice
-(nmap :<leader>o "o==")
-
-(nmap :<leader>l ":set list!<cr>")
-
-(nmap :<leader>L ":LazyGit<cr>")
 
 ;; remove whitespace from line endings, preserver cursor posistion
 ;; (nmap :<leader><space>, [[:call Preserve("%s/\s\+$//e")<cr>]])

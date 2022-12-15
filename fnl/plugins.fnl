@@ -8,7 +8,6 @@
 
   ;; Fennel support
   (use "Olical/aniseed")
-  ;;(use {1 "Olical/aniseed" :config (fn [] (aniseed-env.init))})
 
   (use "kolja/repl-alliance")
   (use "bakpakin/fennel.vim")
@@ -25,20 +24,20 @@
   (use "famiu/nvim-reload")
 
   (use "norcalli/nvim-colorizer.lua")
-  (use "mhinz/vim-startify")
+  (use {1 "echasnovski/mini.nvim" :branch "stable" })
   (use "akinsho/nvim-bufferline.lua")
-  ;;(use "famiu/feline.nvim")
   (use {1 "nvim-lualine/lualine.nvim" :requires {1 "kyazdani42/nvim-web-devicons" :opt true}})
 
   (use "mcchrish/nnn.vim")
 
   (use "akinsho/toggleterm.nvim")
-  ;; (use "kdheepak/lazygit.nvim")
-
-  (use "tpope/vim-surround")
-  (use "tpope/vim-repeat")
   (use "michaeljsmith/vim-indent-object")
   (use "lewis6991/gitsigns.nvim")
+
+  (use "neovim/nvim-lspconfig")
+  (use {1 "nvim-treesitter/nvim-treesitter" :run :TSUpdate})
+  (use "j-hui/fidget.nvim")
+  ;; (use "folke/lsp-colors.nvim")
 
   (use "hrsh7th/cmp-nvim-lsp")
   (use "hrsh7th/cmp-buffer")
@@ -46,17 +45,14 @@
   (use "hrsh7th/cmp-cmdline")
   (use "hrsh7th/nvim-cmp")
 
-  ;; (use "sirver/ultisnips")
   (use "L3MON4D3/LuaSnip")
   (use "saadparwaiz1/cmp_luasnip")
   (use "godlygeek/tabular")
   (use "windwp/nvim-autopairs")
 
-  (use "neovim/nvim-lspconfig")
-  (use {1 "nvim-treesitter/nvim-treesitter" :run :TSUpdate})
-  ;; (use "hrsh7th/nvim-compe")
   (use "ray-x/lsp_signature.nvim")
   (use "kabouzeid/nvim-lspinstall")
+  (use "simrat39/rust-tools.nvim")
 
   (use "numToStr/Comment.nvim")
   ;; C# support

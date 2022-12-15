@@ -6,13 +6,16 @@
             toggleterm toggleterm
             autopairs nvim-autopairs
             nnn nnn
+            fidget fidget
             }})
 
 (Comment.setup)
 
+(fidget.setup)
+
 (fn exit-nnn [] "override <esc> in nnn")
 
-(toggleterm.setup { :open_mapping "\t" })
+(toggleterm.setup { :open_mapping "<leader>T" })
 
 (nnn.setup {
            :command "NNN_OPTS=\"\" nnn -R"
